@@ -24,6 +24,10 @@
                 height: 100vh;
             }
 
+            ul {
+                list-style-type: none;
+                margin: 0;
+            }
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -48,7 +52,7 @@
                 font-size: 84px;
             }
 
-            .links > a {
+             a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
@@ -81,18 +85,29 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    API
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{route('categoryList')}}">test api - Lista categorie</a>
+                    <div class="details">
+                        <strong>Endpoint: </strong>{{route('categoryList')}}
+                    </div>
+                </div>
+                <hr>
+                <div class="links ">
+                    <a href="{{route('restaurantsByCategory',['category'=>'italiano'])}}">test api - Lista Ristoranti da categoria</a>
+                    <div class="details">
+                        <strong>Endpoint: </strong>{{route('restaurantsByCategory',['category'=>'NomeCategoria'])}}
+                        <div class="categories">
+                            <strong>Categorie Accettate: </strong>
+                            <ul>
+                                @foreach ($categories as $category)
+                                <li><a href="{{route('restaurantsByCategory',['category'=>$category])}}">{{$category}}</a></li>        
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
