@@ -46,6 +46,8 @@ class TestCategoryController extends Controller
             'sardo',
             'sushi'
         ];
+
+
         if (!in_array(strtolower($category),$categories,true)) {
             $response = [
                 'status' => '404',
@@ -54,30 +56,22 @@ class TestCategoryController extends Controller
             return response()->json($response);
 
         }
-        //removing from categories the $category parameter used from API call
-        array_splice($categories,array_search($category,$categories),1);
+        //removing from categories the $category parameter used for API call
+        unset($categories[array_search($category,$categories)]);
+        $categories = array_values($categories);
 
 
         for ($i = 0; $i < 10; $i++ ) {
             //resetting categories
-            $categories = [
-                'italiano',
-                'indiano',
-                'giapponese',
-                'libanese',
-                'americano',
-                'thailandese',
-                'pizza',
-                'sardo',
-                'sushi'
-            ];
+            $filteredCat = $categories;
 
             $restaurantCategories = [strtolower($category)];
-            //getting a random number (1 to 5) of categories from $categories array
+            //getting a random number (1 to 5) of categories from $filteredCat array
             for ($y = 0; $y < $faker->numberBetween(0,4);$y++) {
                 $randomCatIndex = $faker->numberBetween(0,7-$y);
-                $restaurantCategories[] = $categories[$faker->numberBetween(0,7)];
-                array_slice($categories,$randomCatIndex,1);
+                $restaurantCategories[] = $filteredCat[$randomCatIndex];
+                unset($filteredCat[$randomCatIndex]);
+                $filteredCat = array_values($filteredCat);
             }
             
             $restaurant = [
@@ -91,6 +85,7 @@ class TestCategoryController extends Controller
         $response = [
             'status' => '200',
             'restaurants' => $restaurants
+            
         ];
 
         return response()->json($response);
