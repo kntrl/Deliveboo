@@ -26,7 +26,7 @@
 
             ul {
                 list-style-type: none;
-                margin: 0;
+                padding: 0;
             }
             .flex-center {
                 align-items: center;
@@ -85,7 +85,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    API
+                    Deliveboo
                 </div>
 
                 <div class="links">
@@ -100,7 +100,7 @@
                     <div class="details">
                         <strong>Endpoint: </strong>{{route('restaurantsByCategory',['category'=>'NomeCategoria'])}}
                         <div class="categories">
-                            <strong>Categorie Accettate: </strong>
+                            <strong>Categorie Accettate </strong>
                             <ul>
                                 @foreach ($categories as $category)
                                 <li><a href="{{route('restaurantsByCategory',['category'=>$category])}}">{{$category}}</a></li>        

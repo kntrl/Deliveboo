@@ -11,15 +11,15 @@ class TestCategoryController extends Controller
 {
     public function index(){
         $categories = [
-            'Italiano',
-            'Indiano',
-            'Giapponese',
-            'Libanese',
-            'Americano',
-            'Thailandese',
-            'Pizza',
-            'Sardo',
-            'Sushi'
+            'italiano',
+            'indiano',
+            'giapponese',
+            'libanese',
+            'americano',
+            'thailandese',
+            'pizza',
+            'sardo',
+            'sushi'
         ];
 
         $response = [
@@ -36,17 +36,17 @@ class TestCategoryController extends Controller
         $faker->addProvider(new \FakerRestaurant\Provider\it_IT\Restaurant($faker));
 
         $categories = [
-            'Italiano',
-            'Indiano',
-            'Giapponese',
-            'Libanese',
-            'Americano',
-            'Thailandese',
-            'Pizza',
-            'Sardo',
-            'Sushi'
+            'italiano',
+            'indiano',
+            'giapponese',
+            'libanese',
+            'americano',
+            'thailandese',
+            'pizza',
+            'sardo',
+            'sushi'
         ];
-        if (!in_array(ucfirst($category),$categories,true)) {
+        if (!in_array(strtolower($category),$categories,true)) {
             $response = [
                 'status' => '404',
                 'error' => 'Category not found',
@@ -61,18 +61,18 @@ class TestCategoryController extends Controller
         for ($i = 0; $i < 10; $i++ ) {
             //resetting categories
             $categories = [
-                'Italiano',
-                'Indiano',
-                'Giapponese',
-                'Libanese',
-                'Americano',
-                'Thailandese',
-                'Pizza',
-                'Sardo',
-                'Sushi'
+                'italiano',
+                'indiano',
+                'giapponese',
+                'libanese',
+                'americano',
+                'thailandese',
+                'pizza',
+                'sardo',
+                'sushi'
             ];
 
-            $restaurantCategories = [ucfirst($category)];
+            $restaurantCategories = [strtolower($category)];
             //getting a random number (1 to 5) of categories from $categories array
             for ($y = 0; $y < $faker->numberBetween(0,4);$y++) {
                 $randomCatIndex = $faker->numberBetween(0,7-$y);
