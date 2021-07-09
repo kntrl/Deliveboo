@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Foods extends Model
+class Food extends Model
 {
+    protected $table = "foods";
+    
     public function orders()
     {
         return $this->belongsTo('App\Order');
     }
-
 }
