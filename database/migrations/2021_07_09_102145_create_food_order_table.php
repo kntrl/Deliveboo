@@ -34,8 +34,6 @@ class CreateFoodOrderTable extends Migration
         Schema::table('food_order', function(Blueprint $table){
             $table->dropForeign('food_order_food_id_foreign');
             $table->dropForeign('food_order_order_id_foreign');
-            $table->dropColumn('food_id');
-            $table->dropColumn('order_id');
         });
 
         Schema::dropIfExists('food_order');

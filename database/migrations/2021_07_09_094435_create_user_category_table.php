@@ -31,8 +31,6 @@ class CreateUserCategoryTable extends Migration
         Schema::table('user_category', function(Blueprint $table){
             $table->dropForeign('user_category_user_id_foreign');
             $table->dropForeign('user_category_category_id_foreign');
-            $table->dropColumn('user_id');
-            $table->dropColumn('category_id');
         });
 
         Schema::dropIfExists('user_category');
