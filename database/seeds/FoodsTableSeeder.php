@@ -32,7 +32,7 @@ class FoodsTableSeeder extends Seeder
             $new_food->is_gluten_free = $faker->numberBetween(0,1);
 
             //
-            $new_food->user_id = 1;
+            $new_food->user_id = $faker->numberBetween(1,5);
             $new_food->timestamps = false;
 
             $new_food->save();
