@@ -13,11 +13,17 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            "italian",
-            "chinese",
-            "indian",
+            "italiano",
+            "cinese",
+            "indiano",
             "hamburger",
-            "chinese",
+            "pizza",
+            "libanese",
+            "americano",
+            "sushi",
+            "africano",
+            "messicano",
+            "kebab",
         ];
 
 
@@ -26,6 +32,7 @@ class CategoriesTableSeeder extends Seeder
             $new_category->name = $category;
             $new_category->slug = Str::slug($new_category->name, '-');
 
+            $new_category->timestamps = false;
             $new_category->save();
         }
     }

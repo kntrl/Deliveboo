@@ -13,11 +13,11 @@ class UsersTableSeeder extends Seeder
     {
         for ($i=0; $i < 5; $i++) { 
             $new_user = new User();
-            $new_user->name = $faker->word(2, false);
+            $new_user->name = $faker->words($faker->numberBetween(1,3), true);
             $new_user->piva = $faker->shuffle('80123456789');
-            $new_user->address = $faker->word(2, true); //da cambiare con faker address ===>>  https://fakerphp.github.io/formatters/#fakerprovideren_usaddress
+            $new_user->address = $faker->address(); //da cambiare con faker address ===>>  https://fakerphp.github.io/formatters/#fakerprovideren_usaddress
             $new_user->slug = Str::slug($new_user->name, '-');
-            $new_user->description = $faker->words(6, true);
+            $new_user->description = $faker->paragraph(6, true);
             $new_user->email = $faker->safeEmail();
             $new_user->password = $faker->password();
             
