@@ -10,6 +10,7 @@ class Food extends Model
     
     public function orders()
     {
-        return $this->belongsToMany('App\Order');
+        //return $this->belongsToMany('App\Role')->withPivot('column1', 'column2');
+        return $this->belongsToMany('App\Order')->withPivot('quantity', 'note');
     }
 }
