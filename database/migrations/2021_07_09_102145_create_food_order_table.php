@@ -20,6 +20,9 @@ class CreateFoodOrderTable extends Migration
             $table->foreign('food_id')->references('id')->on('foods');
             $table->integer('quantity');
             $table->text('note')->nullable();
+
+            
+            $table->primary(['food_id', 'order_id']);
         });
     }
 
