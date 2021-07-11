@@ -10942,3 +10942,31 @@ a.text-dark:focus {
   }
 }
 
+.my-jumbotron {
+  background-color: aquamarine;
+  height: calc(100vh - 22px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  min-height: 100vh;
+  background-color: azure;
+}
+
+.main-content .flexable-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-content .flexable-container .my-card {
+  width: calc(100% / 4);
+  padding: 15px;
+  background-color: white;
+}
+
+.main-content .flexable-container .my-card .inner-card {
+  background-color: wheat;
+}
+
