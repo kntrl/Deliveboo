@@ -61,6 +61,8 @@
                             </div>
                         </div>
 
+                        {{-- CUSTOM FIELDS Section --}}
+                        {{-- Address --}}
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo attività</label>
 
@@ -75,6 +77,7 @@
                             </div>
                         </div>
 
+                        {{-- Partita Iva --}}
                         <div class="form-group row">
                             <label for="piva" class="col-md-4 col-form-label text-md-right">Partita Iva</label>
 
@@ -88,29 +91,35 @@
                                 @enderror
                             </div>
                         </div>
-
+                       
+                        {{-- Categories --}}
                         <div class="form-group row">
-                            <p class="col-md-4 col-form-label text-md-right">Categorie Ristorante:</p>
-                            <div class="form-check d-flex flex-wrap align-items-center ">
-                                <div class="tag w25">
-                                    <input class="form-check-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="1" id="category-1" >
-                                    <label class="form-check-label" for="tag-1">
-                                        Italiana
-                                    </label>
-                                <div>
-                                <div class="tag w25">
-                                    <input class="form-check-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="2" id="category-2">
-                                    <label class="form-check-label" for="tag-2">
-                                        Sarda
-                                    </label>
-                                    @error('categories')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>At least one category has to be checked</strong>
-                                    </span>
-                                    @enderror
+                            <span class="col-md-4 col-form-label text-md-right"> Categorie Ristorante</span>
+                            @error('categories')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>At least one category has to be checked</strong>
+                            </span>
+                            @enderror
+                            {{-- category list column --}}
+                            <div class="col-md-6 ml-2 d-flex flex-wrap justify-content-between">
+                                @foreach ($categories as $category)
+                                    <div class="{{ $loop->last ? 'col-12' : 'col-5'}}">
+                                    <input class="custom-control-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="{{$category->id}}" id="category-{{$category->id}}" >
+                                    <label class="custom-control-label" for="category-{{$category->id}}">
+                                        {{$category->name}}
+                                    </label>        
+                                    @if ($loop->last)
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>At least one category has to be checked</strong>
+                                        </span>
+                                    @endif
                                 </div>
+                            @endforeach
                             </div>
+                            
                         </div>
+                       
+                        {{-- CUSTOM FIELDS SECTION ENDS --}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

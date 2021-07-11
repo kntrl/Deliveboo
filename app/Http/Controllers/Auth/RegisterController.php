@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -41,6 +42,17 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Custom function to pass Categories list to Register form.
+     *  
+     */
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        return view('auth.register',compact('categories'));
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
