@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+
+                    {{-- DASHBOARD --}}
+                    <div class="dashboard">
+                        MENU DEL RISTORANTE
+                    </div>
+                    {{-- {{ __('You are logged in!') }} --}}
                 </div>
             </div>
         </div>

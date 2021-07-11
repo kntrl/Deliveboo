@@ -9,8 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <!-- Styles --> 
+        {{-- <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -65,14 +66,16 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>
+        </style> --}}
+
     </head>
+
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -84,20 +87,33 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                
+                <div class="my-jumbotron">
+                    <h1>DELIVEBOO</h1>
                 </div>
-                <div class="links ">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                
+
+                <main class="main-content">
+                    <div class="flexable-container">
+                        @for ($i = 0; $i < 5; $i++)
+                            <div class="my-card">
+                                <div class="inner-card">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">See Restaurants</a>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                </main>
+                
+
+
             </div>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+        <script src="{{ asset("js/gsapAnimations.js") }}"></script>
     </body>
 </html>
