@@ -149,26 +149,20 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="row text-center">
                                         <div class="col-6 ">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" id="edit" name="edit" class="btn btn-primary">
                                                 Modifica
                                             </button>
                                         </div>
-                                        <div class="col-6">
-                                            <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
-                                                @csrf
-                                                @method('DELETE')
-                    
-                                                <input type="submit" class="btn btn-danger" value="Elimina">
-                                            </form>
-                                        </div>
                                     </div>
-                                    
-                               
                                 </div>
                             </div>
-
                         </form>
+                        <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
+                            @csrf
+                            @method('DELETE')
 
+                            <input type="submit" id="delete" name="delete" class="btn btn-danger" value="Elimina">
+                        </form>
                     </div>
                 </div>
             </div>
