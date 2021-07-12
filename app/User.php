@@ -47,5 +47,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Food');
     }
 
+    /**
+     * Checks if a food id belongs to user.
+     * if true,returns the food 
+     * if false aborts(404)
+     * @param foodId
+     * @return App\Food or 404
+     */
+    public function foodOrFail($foodId)
+    {
+        if ($food = $this->foods->firstWhere('id',$foodId)){
+            return $food;
+        } else {
+            abort(404);
+        }
 
+    }
 }
