@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 //model
 use App\Food;
 //zaninotto faker
 use Faker\Generator as Faker;
+use App\Services\Slug;
 
 class FoodsTableSeeder extends Seeder
 {
-    public function run()
+    public function run(Slug $slug)
     {
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \FakerRestaurant\Provider\it_IT\Restaurant($faker));
@@ -18,7 +18,7 @@ class FoodsTableSeeder extends Seeder
         for ($i=0; $i < 5; $i++) { 
             $new_food = new Food();
             $new_food->name = $faker->foodName();
-            $new_food->slug = Str::slug($new_food->name, '-');
+            $new_food->slug = $slug($new_food->name,'foods');
             $new_food->ingredients = $faker->sentence(3);
             $new_food->price = $faker->randomFloat(2, 1, 50);
             $new_food->course = $faker->word();

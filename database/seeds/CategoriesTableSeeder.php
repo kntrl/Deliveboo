@@ -3,14 +3,14 @@
 use Illuminate\Database\Seeder;
 //model
 use App\Category;
-//per lo slug
-use Illuminate\Support\Str;
+//services
+use App\Services\Slug;
 
 
 class CategoriesTableSeeder extends Seeder
 {
     
-    public function run()
+    public function run(Slug $slug)
     {
         $categories = [
             "italiano",
@@ -30,7 +30,7 @@ class CategoriesTableSeeder extends Seeder
         foreach ($categories as $category) {
             $new_category = new Category();
             $new_category->name = $category;
-            $new_category->slug = Str::slug($new_category->name, '-');
+            $new_category->slug = $slug($new_category->name,'categories');
 
             $new_category->timestamps = false;
             $new_category->save();
