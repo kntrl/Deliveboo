@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    @foreach ($foods as $food)
+    @foreach (Auth::user()->foods as $food)
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header"><h5><a href="{{route('admin.foods.edit',['food' => $food->id])}}">{{$food->name}}</a></h5></div>

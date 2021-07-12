@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Aggiungi Piatto</div>
+                    <div class="card-header">Modifica Piatto</div>
     
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.foods.update', ['food' => $food->id]) }}" >
@@ -144,25 +144,28 @@
 
                             </div>
 
-                           
-
-                            
-                            {{-- CUSTOM FIELDS SECTION ENDS --}}
-    
+                            {{-- BUTTONS --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Modifica
-                                    </button>
+                                    <div class="row text-center">
+                                        <div class="col-6 ">
+                                            <button type="submit" class="btn btn-primary">
+                                                Modifica
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
+                                                @csrf
+                                                @method('DELETE')
+                    
+                                                <input type="submit" class="btn btn-danger" value="Elimina">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                               
                                 </div>
                             </div>
-
-                            <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
-                                @csrf
-                                @method('DELETE')
-    
-                                <input type="submit" class="btn btn-danger" value="Elimina">
-                            </form>
 
                         </form>
 

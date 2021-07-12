@@ -22,12 +22,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-
-        $data = [
-            'foods' => Auth::user()->foods
-        ];
-
-        return view('admin.foods.index', $data);
+        return view('admin.foods.index');
     }
 
     /**
