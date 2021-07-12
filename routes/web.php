@@ -31,5 +31,7 @@ Route::prefix('admin')
         
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/view', 'FoodController@index')->name('view');
+
+        Route::resource('foods', 'FoodController');
     }
 );

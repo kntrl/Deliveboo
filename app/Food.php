@@ -20,6 +20,8 @@ class Food extends Model
         "is_veggy",
         "is_gluten_free"
     ];
+
+    public $timestamps = false;
     
     public function orders()
     {
