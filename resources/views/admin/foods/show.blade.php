@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
+
 {{-- TEST VIEW ADDED FOR THE SAKE OF TESTING  --}}
 @section('content')
 <div class="container">
-    <div class="row">
-    @foreach ($foods as $food)
-        <div class="col-md-6 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h5><a href="{{route('admin.foods.edit',['food' => $food->id])}}">{{$food->name}}</a></h5></div>
+                <div class="card-header"><h5>{{$food->name}}</h5></div>
                 <div class="card-body">
                     <div class="row">
                         <div class="pl-3"><strong>Price: </strong></div>
@@ -48,8 +48,6 @@
                 </div>
             </div>
         </div>
-        @endforeach
-
     </div>
 </div>
 @endsection 
