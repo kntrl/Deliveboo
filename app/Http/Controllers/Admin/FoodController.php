@@ -111,7 +111,12 @@ class FoodController extends Controller
 
         $form_data = $request->all();
 
-        $food = Food::findOrFail($id);
+        $food = Auth::user()->foodOrFail($id);
+
+        //updating is_foodType fields 
+        foreach ($food->foodTypes() as $type) {
+            $food->$type = isset($form_data[$type]) ? 1 : 0 ;
+        }
 
         // Checking if slugs needs an update.
         if ($form_data['name'] != $food->name) {

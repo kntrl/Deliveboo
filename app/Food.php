@@ -33,4 +33,15 @@ class Food extends Model
     {
         return $this->belongsToMany('App\Order')->withPivot('quantity', 'note');
     }
+
+    public function foodTypes()
+    {
+        return [
+            "is_vegan",
+            "is_hot",
+            "is_lactose_free",
+            "is_veggy",
+            "is_gluten_free"
+        ];
+    }
 }
