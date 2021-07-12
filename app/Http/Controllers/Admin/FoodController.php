@@ -37,7 +37,6 @@ class FoodController extends Controller
      */
     public function create()
     {
-       
         return view('admin.foods.create');
     }
 
@@ -52,20 +51,18 @@ class FoodController extends Controller
         // ADD VALIDATION
         $request->validate($this->getValidation());
 
-       $from_data = $request->all();
-
-        
+        $form_data = $request->all();
 
         // Create new Food
         $food = new Food();
 
         // ADD SLUG
-        $food->slug = $slug($from_data['name'],'foods');
+        $food->slug = $slug($form_data['name'],'foods');
 
         // User Id
         $food->user_id = Auth::user()->id;
 
-        $food->fill($from_data);
+        $food->fill($form_data);
         $food->save();
 
         return redirect()->route('admin.foods.index');
@@ -79,14 +76,7 @@ class FoodController extends Controller
      */
     public function show($id)
     {
-        $food = Food::findOrFail($id);
-
-
-        //User Auth can show only his food
-        if(Auth::user()->id != $food->user_id) {
-
-            return redirect()->route('admin.foods.index');
-        }
+        $food = Auth::user()->foodOrFail($id);
 
         $data = [
             'food' => $food
@@ -103,13 +93,7 @@ class FoodController extends Controller
      */
     public function edit($id)
     {
-        $food = Food::findOrFail($id);
-
-
-        //User Auth can edit only his food
-        if(Auth::user()->id != $food->user_id) {
-            return redirect()->route('admin.foods.index');
-        }
+        $food = Auth::user()->foodOrFail($id);
 
         $data = [
             'food' => $food
@@ -130,17 +114,16 @@ class FoodController extends Controller
         // ADD VALIDATION
         $request->validate($this->getValidation());
 
-        $from_data = $request->all();
+        $form_data = $request->all();
 
         $food = Food::findOrFail($id);
 
-        // ADD SLUG
-        // Name check function
-        if ($from_data['name'] != $food->name) {
-          $food->slug = $slug($from_data['name'],'foods');
+        // Checking if slugs needs an update.
+        if ($form_data['name'] != $food->name) {
+          $food->slug = $slug($form_data['name'],'foods');
         }
         // Update
-        $food->update($from_data);
+        $food->update($form_data);
 
         return redirect()->route('admin.foods.index');
 
@@ -154,12 +137,7 @@ class FoodController extends Controller
      */
     public function destroy($id)
     {
-        $food = Food::findOrFail($id);
-
-        //User Auth can delete only his food
-        if(Auth::user()->id != $food->user_id) {
-            return redirect()->route('admin.foods.index');
-        }
+        $food = Auth::user()->foodOrFail($id);
 
         $food->delete();
 
