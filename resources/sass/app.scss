@@ -8,4 +8,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-@import 'partials/tempHome';
+@import 'partials/mixins';
+
+
+@import 'partials/nav';
+@import 'partials/header';
+@import 'partials/main';
+@import 'partials/footer';
+
+@import 'partials/commons';
