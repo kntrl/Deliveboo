@@ -30,5 +30,6 @@ Route::prefix('admin')
     ->group(function () {
         
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/view', 'FoodController@index')->name('view');
     }
 );
