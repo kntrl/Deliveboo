@@ -23,6 +23,7 @@ class CreateFoodsTable extends Migration
             $table->tinyInteger('available');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            
             $table->tinyInteger('is_vegan')->default(0);
             $table->tinyInteger('is_veggy')->default(0);
             $table->tinyInteger('is_hot')->default(0);
