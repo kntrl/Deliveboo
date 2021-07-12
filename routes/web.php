@@ -28,9 +28,6 @@ Route::prefix('admin')
     ->middleware('auth')
     ->name('admin.')
     ->group(function () {
-        
-        Route::get('/', 'HomeController@index')->name('home');
-
-        Route::resource('foods', 'FoodController');
+                Route::resource('foods', 'FoodController');
     }
 );
