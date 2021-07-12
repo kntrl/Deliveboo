@@ -149,6 +149,8 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="row text-center">
                                         <div class="col-6 ">
+
+                                            {{-- EDIT --}}
                                             <button type="submit" id="edit" name="edit" class="btn btn-primary">
                                                 Modifica
                                             </button>
@@ -157,6 +159,8 @@
                                 </div>
                             </div>
                         </form>
+
+                       {{-- DELETE --}}
                         <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
                             @csrf
                             @method('DELETE')
