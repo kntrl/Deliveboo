@@ -157,6 +157,13 @@
                                 </div>
                             </div>
 
+                            <form action="{{route('admin.foods.destroy', ['food' => $food->id])}} " method="post">
+                                @csrf
+                                @method('DELETE')
+    
+                                <input type="submit" class="btn btn-danger" value="Elimina">
+                            </form>
+
                         </form>
 
                     </div>

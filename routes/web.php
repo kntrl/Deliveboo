@@ -21,7 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/viewProva', 'ProvaController@index');
 
 Route::prefix('admin')
     ->namespace('Admin')
@@ -30,7 +29,6 @@ Route::prefix('admin')
     ->group(function () {
         
         Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/view', 'FoodController@index')->name('view');
 
         Route::resource('foods', 'FoodController');
     }

@@ -22,13 +22,12 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::where('user_id', '=', Auth::user()->id)->get();
 
         $data = [
-            'foods' => $foods
+            'foods' => Auth::user()->foods
         ];
 
-        return view('admin.view', $data);
+        return view('admin.foods.index', $data);
     }
 
     /**
@@ -82,6 +81,8 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
 
+
+        //User Auth can show only his food
         if(Auth::user()->id != $food->user_id) {
 
             return redirect()->route('admin.foods.index');
@@ -91,7 +92,7 @@ class FoodController extends Controller
             'food' => $food
         ];
 
-        return view('show', $data);
+        return view('admin.foods.show', $data);
     }
 
     /**
@@ -104,6 +105,8 @@ class FoodController extends Controller
     {
         $food = Food::findOrFail($id);
 
+
+        //User Auth can edit only his food
         if(Auth::user()->id != $food->user_id) {
             return redirect()->route('admin.foods.index');
         }
@@ -125,15 +128,13 @@ class FoodController extends Controller
     public function update(Request $request, $id, Slug $slug)
     {
         // ADD VALIDATION
+        $request->validate($this->getValidation());
 
         $from_data = $request->all();
 
         $food = Food::findOrFail($id);
 
         // ADD SLUG
-        $food->slug = Str::slug($from_data['name'], '-');
-
-
         // Name check function
         if ($from_data['name'] != $food->name) {
           $food->slug = $slug($from_data['name'],'foods');
@@ -153,8 +154,18 @@ class FoodController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $food = Food::findOrFail($id);
+
+        //User Auth can delete only his food
+        if(Auth::user()->id != $food->user_id) {
+            return redirect()->route('admin.foods.index');
+        }
+
+        $food->delete();
+
+        return redirect()->route('admin.foods.index');
     }
+
 
 
     private function getValidation() {
