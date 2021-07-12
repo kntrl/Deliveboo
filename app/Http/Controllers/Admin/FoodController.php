@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
+//models
 use App\Food;
 
+//services
+use App\Services\Slug;
 
 class FoodController extends Controller
 {
@@ -44,7 +48,7 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Slug $slug)
     {
         // ADD VALIDATION
         $request->validate($this->getValidation());
@@ -57,7 +61,7 @@ class FoodController extends Controller
         $food = new Food();
 
         // ADD SLUG
-        $food->slug = Str::slug($from_data['name'], '-');
+        $food->slug = $slug($from_data['name'],'foods');
 
         // User Id
         $food->user_id = Auth::user()->id;
@@ -101,7 +105,6 @@ class FoodController extends Controller
         $food = Food::findOrFail($id);
 
         if(Auth::user()->id != $food->user_id) {
-
             return redirect()->route('admin.foods.index');
         }
 
@@ -119,7 +122,7 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Slug $slug)
     {
         // ADD VALIDATION
 
@@ -133,10 +136,8 @@ class FoodController extends Controller
 
         // Name check function
         if ($from_data['name'] != $food->name) {
-            
-            //Aggiorna lo slug
+          $food->slug = $slug($from_data['name'],'foods');
         }
-
         // Update
         $food->update($from_data);
 
