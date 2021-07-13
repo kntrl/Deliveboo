@@ -29,5 +29,6 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
                 Route::resource('foods', 'FoodController');
+                Route::get('/orders','OrderController@index');
     }
 );
