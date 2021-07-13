@@ -1,4 +1,64 @@
-footer{
-    height: 100vh;
-    background-color: blueviolet;
+footer{    
+    @include auto-margin;   
+    background-color: $primary-color;
+    padding: 40px 0;
+
+    img {
+        width: 100px;
+    }
+
+    h5 {
+        color: $primary-title-color;
+        font-weight: bold;
+    }
+
+    .menu {
+        list-style-type: none;        
+
+        li {
+            padding-top: 10px;
+
+
+            a {
+                color: $primary-text-color;
+            }
+        }
+    }
+
+    .small-container {
+        width: 60%;
+        margin: auto;
+        border-top: 3px solid $primary-title-color;
+        margin-top: 40px;
+
+        .lower-footer {            
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+
+            .social-menu {
+                list-style-type: none;
+                display: flex;
+
+                li {
+                    padding-left: 10px;
+
+                    a {
+                        width: 40px;
+                        height: 40px;
+                        background-color: $secondary-text-color;
+                        display: block;
+                        text-align: center;
+                        line-height: 40px;
+                        border-radius: 50%;
+                        color: $primary-color;
+                        text-decoration: none;
+                    }
+                }
+
+            }
+            
+        }
+    }
+    
 }
