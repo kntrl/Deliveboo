@@ -26,15 +26,11 @@ class OrderController extends Controller
             return $order->foods->count() > 0;
         });
 
-        //test output
-        foreach ($currentUserOrder as $order) {
-            echo '<h1> ordine n°'.$order->id.' da '.$order->name. ' '. $order->last_name.'</h1>';
-            foreach ($order->foods as $food) {
-                echo $food->name. ' '. 'Qt: '. $food->pivot->quantity. '<br>';
-            }
-        }
+        $data = [
+            'orders' => $currentUserOrder
+        ];
         
-        return view('admin.orders.index' );
+        return view('admin.orders.index', $data);
 
     }
 }
