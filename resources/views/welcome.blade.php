@@ -12,6 +12,10 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <!-- Styles --> 
         
+        {{-- Axios CDN --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        {{-- VUE --}}
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 
     </head>
 
@@ -19,103 +23,62 @@
         
         @include('partials/header')
         
-        <div class="my-jumbotron">
+        {{-- VUE ROOT --}}
+        <div id="root">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 left-side">
-                        <h1>Ordina i tuoi piatti preferiti direttamente dal tuo divano</h1>
-                        <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                        <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?">
-                    </div>
-                    
-                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 right-side">
-                        <img src="{{asset("img/undraw_Hamburger_8ge6.png")}}" alt="">
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-
-
-        <div class="content">
-            <main class="main-content">
+            <div class="my-jumbotron">
+    
                 <div class="container">
-                    {{-- ROW 1 --}}
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
+                        <div class="col-12 col-md-6 left-side">
+                            <h1>Ordina i tuoi piatti preferiti direttamente dal tuo divano</h1>
+                            <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
+                            <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?">
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- ROW 2 --}}
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- ROW 3 --}}
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                            <div class="inner-box">
-                                test
-                            </div>
+                        
+                        <div class="col-12 col-md-6 right-side">
+                            <img src="{{asset("img/undraw_Hamburger_8ge6.png")}}" alt="">
                         </div>
                     </div>
                 </div>
-            </main>
+    
+    
+            </div>
+    
+    
+    
+            <div class="content">
+                <main class="main-content">
+                    <div class="container">
+                        {{-- ROW 1 --}}
+                        <div id="row1" class="row">
+                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                                <div class="inner-box">
+                                    test
+                                </div>
+                            </div>
+                        </div>
+    
+                        {{-- ROW 2 --}}
+                        <div id="row2" class="row">
+                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                                <div class="inner-box">
+                                    test
+                                </div>
+                            </div>
+                        </div>
+    
+                        {{-- ROW 3 --}}
+                        <div id="row3" class="row">
+                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                                <div class="inner-box">
+                                    test
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
     
         
@@ -130,6 +93,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
 
         {{-- my script --}}
+        <script src="{{ asset("js/main.js") }}"></script>
         <script src="{{ asset("js/gsapAnimations.js") }}"></script>
     </body>
 </html>
