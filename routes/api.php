@@ -18,3 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+//Categories API
+Route::get('/categories','Api\CategoryController@index');
+Route::get('/categories/{category:slug}','Api\CategoryController@show');
+
+//Restaurant API
+Route::get('/restaurants','Api\RestaurantController@index');
+Route::get('/restaurants/search/{queryString}','Api\RestaurantController@search');
+Route::get('/restaurants/{user:slug}','Api\RestaurantController@show');
+
+
+
