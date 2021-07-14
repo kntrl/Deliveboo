@@ -1,8 +1,21 @@
 nav{
     @include h-reset;
-    padding: 10px 0;
+    background-color: #fcecd5;
+    padding: 1rem 0;
+    box-shadow: 1px 1px 10px grey;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+
     a{
         margin-left: 1rem;
+        color: black;
+        font-weight: 600;
+        transition: .5s all;
+        text-decoration: none;
+        &:hover{
+            color: $primary-title-color;
+        }
     }
     img{
         width: 200px;

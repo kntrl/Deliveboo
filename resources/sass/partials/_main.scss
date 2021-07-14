@@ -1,62 +1,77 @@
 
 /* ----- JUMBOTRON ----- */
 .my-jumbotron{
-    height: calc(100vh - 45px);
-    @include auto-margin;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    //H1 SIDE
-    .left-side{
-        background-color: grey;
-        width: 50%;
-
-        h1{
-            font-size: 3rem;
-            padding: 2rem 0;
-            background-color: green;
-        }
-
-        p{
-            background-color: hotpink;
-            padding: 1rem 0;
-        }
-    }
-
-    //IMAGE SIDE
-    .right-side{
-        width: 50%;
-        background-color: red;
+    background-color: #fcecd5;
+    .my-wrap{
+        height: calc(100vh);
+        @include auto-margin;
         display: flex;
         align-items: center;
         justify-content: center;
-        img{
-            width: 100%;
+    
+        //H1 SIDE
+        .left-side{
+            //background-color: grey;
+            width: 50%;
+            padding-left: 0;
+            h1{
+                font-size: 3rem;
+                padding: 2rem 0;
+                color: $primary-title-color;
+                //background-color: green;
+            }
+    
+            p{
+                //background-color: hotpink;
+                padding: 1rem 0;
+            }
+        }
+    
+        //IMAGE SIDE
+        .right-side{
+            width: 50%;
+            padding-right: 0;
+            //background-color: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 100%;
+            }
         }
     }
 }
 
 
+
+
 /* ----- MAIN ----- */
 .main-content{
     min-height: 100vh;
-    background-color: aqua;
+    //background-color: aqua;
     @include auto-margin;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    .container{
+        h2{
+            text-align: center;
+            padding: 1rem 0 5rem 0;
+            color: $primary-title-color;
+        }
+    }
     .card-temp{
-        background-color: yellowgreen;
+        //background-color: yellowgreen;
         text-align: center;
         padding: 1rem;
         margin-bottom: 2rem;
-
         .inner-box{
-            background-color: violet;
-            padding: 2rem;
+            cursor: pointer;
+            img{
+                width: auto;
+                max-height: 150px;
+                transition: .5s all;
+            }
         }
     }
 }

@@ -1,14 +1,18 @@
-footer{    
-    @include auto-margin;   
-    background-color: $primary-color;
+footer{      
+    background-color: $primary-title-color;
     padding: 40px 0;
+    color: lightgray;
+    .wrapper{
+        width: 85%;
+        margin: auto;
+    }
 
     img {
         width: 100px;
     }
 
     h5 {
-        color: $primary-title-color;
+        color: lightgray;
         font-weight: bold;
     }
 
@@ -17,17 +21,13 @@ footer{
 
         li {
             padding-top: 10px;
-
-
             a {
-                color: $primary-text-color;
+                color: lightgray;
             }
         }
     }
 
     .small-container {
-        width: 60%;
-        margin: auto;
         border-top: 3px solid $primary-title-color;
         margin-top: 40px;
 
@@ -55,10 +55,7 @@ footer{
                         text-decoration: none;
                     }
                 }
-
             }
-            
         }
     }
-    
 }
