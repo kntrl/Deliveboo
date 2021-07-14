@@ -1,13 +1,16 @@
 gsap.registerPlugin(ScrollTrigger);
 
 /* V1 */
+
 const tl = gsap.timeline({
     scrollTrigger: {
         trigger: ".main-content",
+        
         //markers: true,
         start: "top center",
     }
 });
+
 const tl2 = gsap.timeline({
     scrollTrigger: {
         trigger: ".main-content",
@@ -16,11 +19,23 @@ const tl2 = gsap.timeline({
     }
 });
 
-tl.from("#row1 div", { y: -50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
+const tl3 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".my-wrap",
+        
+        scrub: 1,
+        start: "15% 10%",
+        end: "18%"
+    }
+});
+
+
+tl.from("#row1 div", { y: -50, opacity: 0, stagger: 0.2, duration: 1, ease: "back" })
 
 tl2.from("#anim-h2", {y: -50, opacity: 0, duration: .8})
 
-
+tl3.to("#nav-id", { backgroundColor: "#ffffff", boxShadow: "1px 1px 10px grey"})
+   
 
 
 
