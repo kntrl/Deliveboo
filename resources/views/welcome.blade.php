@@ -32,28 +32,20 @@
         {{-- VUE ROOT --}}
         <div id="root">
 
+            {{-- JUMBOTRON --}}
             <div class="my-jumbotron">
                 <div class="my-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 col-md-6 left-side">
-                                <h1>Ordina i tuoi piatti preferiti direttamente dal tuo divano</h1>
-                                <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                                {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
-                            </div>
-                            
-                            <div class="col-12 col-md-6 right-side">
-                                <img src="{{asset("img/undraw_Hamburger_8ge6.png")}}" alt="">
-                            </div>
-                        </div>
+                    <div class="left-side">
+                        <h1 id="main-title">Hungry? You're in the right place</h1>
+                        <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
+                        {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
                     </div>
                 </div>
-    
-    
             </div>
     
     
-    
+            
+            {{-- MAIN CONTENT --}}
             <div class="content">
                 <main class="main-content">
                     <div class="container">

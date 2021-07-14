@@ -1,5 +1,5 @@
 <header>
-    <nav>
+    <nav id="nav-id">
         @if (Route::has('login'))
             <div class="top-right links">
                 <img src="{{ asset("/img/logo.png") }}" alt="">
