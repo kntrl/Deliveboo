@@ -8,7 +8,7 @@
             <div class="row">
            
                 <div class="col-6 col-md-6 col-lg-3 col-xl-3">
-                    <img src="{{ asset('/img/logo-piccolo.png') }}" alt="Deliveboo logo">
+                    <img src="{{ asset('/img/logo-piccolo-footer.png') }}" alt="Deliveboo small logo">
                 </div>
     
                 <div class="col-6 col-md-6 col-lg-3 col-xl-3">
@@ -29,9 +29,7 @@
     
                         <li>
                             <a href="">Contattaci</a>
-                        </li>
-    
-                        
+                        </li>                       
                         
                     </ul>
     
@@ -85,13 +83,13 @@
                     <ul class="menu">
                         <li>
                             <a href="">
-                                <img src="{{ asset('/img/app-store-badge.svg') }}" alt="">
+                                <img src="{{ asset('/img/app-store-badge.svg') }}" alt="app atore">
                             </a>
                         </li>
     
                         <li>
                             <a href="">
-                                <img src="{{ asset('/img/google-play-badge.svg') }}" alt="">
+                                <img src="{{ asset('/img/google-play-badge.svg') }}" alt="google play">
                             </a>
                         </li>
     
@@ -107,7 +105,7 @@
                 <div class="lower-footer">                
     
                     <div class="foot-lower-logo">
-                        <img src="{{ asset('/img/logo-deliveboo.png') }}" alt="">
+                        <img src="{{ asset('/img/logo-footer.png') }}" alt="Deliveboo logo">
                     </div>                
     
                     <ul class="social-menu">
@@ -116,11 +114,11 @@
                         </li>
     
                         <li>
-                            <a href="">F</a>
+                            <a href="">T</a>
                         </li>
     
                         <li>
-                            <a href="">F</a>
+                            <a href="">I</a>
                         </li>
     
                     </ul>   
