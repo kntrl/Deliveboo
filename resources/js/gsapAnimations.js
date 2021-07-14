@@ -4,14 +4,67 @@ gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline({
     scrollTrigger: {
         trigger: ".main-content",
-        markers: true,
+        //markers: true,
         start: "top center",
     }
 });
-tl.from("#row1 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
-    .from("#row2 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
-    .from("#row3 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
+const tl2 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".main-content",
+        //markers: true,
+        start: "top 75%",
+    }
+});
 
+tl.from("#row1 div", { y: -50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
+
+tl2.from("#anim-h2", {y: -50, opacity: 0, duration: .8})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .from("#row2 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
+    .from("#row3 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
+ */
 
 
 

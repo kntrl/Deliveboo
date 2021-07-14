@@ -5,7 +5,16 @@ var app = new Vue({
     el: "#root",
 
     data: {
-        title: "HELLO VUE"
+        categories : [
+            "Pizza",
+            "Hamburger",
+            "Cinese",
+            "Kebab",
+            "Messicano",
+            "Vegano",
+            "Giapponese",
+            "Thai",
+        ]
         
     },
     
@@ -18,3 +27,6 @@ var app = new Vue({
 
     },
 })
+
+
+    //`img/avatar${obj.avatar}.jpg`
