@@ -2107,11 +2107,11 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 var app = new Vue({
   el: "#root",
   data: {
-    title: "HELLO VUE"
+    categories: ["Pizza", "Hamburger", "Cinese", "Kebab", "Messicano", "Vegano", "Giapponese", "Thai"]
   },
   methods: {},
   mounted: function mounted() {}
-});
+}); //`img/avatar${obj.avatar}.jpg`
 
 /***/ }),
 
