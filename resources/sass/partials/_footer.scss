@@ -1,5 +1,5 @@
 footer{      
-    background-color: $primary-title-color;
+    background-color: black;
     padding: 40px 0;
     color: lightgray;
     .wrapper{
@@ -16,8 +16,7 @@ footer{
         font-weight: bold;
     }
 
-    .menu {
-        list-style-type: none;        
+    .menu {               
 
         li {
             padding-top: 10px;
@@ -28,7 +27,7 @@ footer{
     }
 
     .small-container {
-        border-top: 3px solid $primary-title-color;
+        border-top: 3px solid white;
         margin-top: 40px;
 
         .lower-footer {            
@@ -36,8 +35,7 @@ footer{
             display: flex;
             justify-content: space-between;
 
-            .social-menu {
-                list-style-type: none;
+            .social-menu {                
                 display: flex;
 
                 li {
@@ -51,8 +49,8 @@ footer{
                         text-align: center;
                         line-height: 40px;
                         border-radius: 50%;
-                        color: $primary-color;
-                        text-decoration: none;
+                        color: $primary-title-color;
+                                               
                     }
                 }
             }
