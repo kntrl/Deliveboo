@@ -32,3 +32,8 @@ Route::prefix('admin')
                 Route::get('/orders','OrderController@index');
     }
 );
+
+
+//BRAINTREE TEST ROUTES
+
+Route::get('/client-token','PaymentController@getClientToken');
