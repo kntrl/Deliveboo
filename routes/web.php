@@ -23,12 +23,16 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+//Dashboard Routes
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
     ->name('admin.')
     ->group(function () {
+                //Foods Routes
                 Route::resource('foods', 'FoodController');
+                
+                //Order Routes
                 Route::get('/orders','OrderController@index');
     }
 );
