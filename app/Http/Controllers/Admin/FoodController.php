@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Http\Requests\AdminRequest;
 
 //models
 use App\Food;
@@ -41,10 +42,8 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Slug $slug)
+    public function store(AdminRequest $request,Slug $slug)
     {
-        // ADD VALIDATION
-        $request->validate($this->getValidation());
 
         $form_data = $request->all();
 
@@ -104,10 +103,8 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Slug $slug)
+    public function update(AdminRequest $request, $id, Slug $slug)
     {
-        // ADD VALIDATION
-        $request->validate($this->getValidation());
 
         $form_data = $request->all();
 
@@ -145,20 +142,4 @@ class FoodController extends Controller
     }
 
 
-
-    private function getValidation() {
-
-        return [
-            'name' => 'required| min: 2| max: 255',
-            'price' => 'required| numeric| min: 0| max: 9999,99',
-            'course' => 'nullable| max: 20',
-            'ingredients' => 'required| max: 2000',
-            'available' => 'required| min: 0| max: 1| numeric',
-            'is_vegan' => 'nullable| min: 1| max: 1| numeric',
-            'is_veggy' => 'nullable| min: 1| max: 1| numeric',
-            'is_hot' => 'nullable| min: 1| max: 1| numeric',
-            'is_lactose_free' => 'nullable| min: 1| max: 1| numeric',
-            'is_gluten_free' => 'nullable| min: 1| max: 1| numeric'
-        ];
-    }
 }
