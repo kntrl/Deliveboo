@@ -9,10 +9,13 @@ nav{
 
     a{
         margin-left: 1rem;
-        color: black;
+        color: $secondary-text-color;
         font-weight: 600;
         transition: .5s all;
         text-decoration: none;
+        background-color: #f74543;
+        border-radius: 25px;
+        padding: 10px 20px;
         &:hover{
             color: $primary-title-color;
         }
@@ -38,6 +41,9 @@ nav{
 @media screen and (max-width: 768px){
     nav{
         .top-right{
+            img {
+                width: 120px;
+            }
             .container-commands{
                 .shown-commands{
                     display: none;
