@@ -10006,9 +10006,9 @@ h3 {
   }
 }
 nav {
-  background-color: #fcecd5;
+  background-color: white;
   padding: 1rem 0;
-  box-shadow: 1px 1px 10px grey;
+  box-shadow: 0px 0px 0px white;
   position: fixed;
   width: 100%;
   z-index: 999;
@@ -10064,15 +10064,18 @@ nav .burger-menu {
 /* ----- JUMBOTRON ----- */
 .my-jumbotron {
   background-color: #fcecd5;
+  background-image: url("../img/banner.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
 }
 .my-jumbotron .my-wrap {
   height: calc(100vh);
   display: block;
   margin: auto;
   width: 85%;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .my-jumbotron .my-wrap .left-side {
   width: 50%;
@@ -10080,21 +10083,11 @@ nav .burger-menu {
 }
 .my-jumbotron .my-wrap .left-side h1 {
   font-size: 3rem;
-  padding: 2rem 0;
+  margin-top: 1rem;
   color: #6E1916;
 }
 .my-jumbotron .my-wrap .left-side p {
   padding: 1rem 0;
-}
-.my-jumbotron .my-wrap .right-side {
-  width: 50%;
-  padding-right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.my-jumbotron .my-wrap .right-side img {
-  width: 100%;
 }
 
 /* ----- MAIN ----- */
@@ -10109,7 +10102,7 @@ nav .burger-menu {
 }
 .main-content .container h2 {
   text-align: center;
-  padding: 1rem 0 5rem 0;
+  padding: 4rem 0 4rem 0;
   color: #6E1916;
 }
 .main-content .card-temp {
@@ -10126,9 +10119,51 @@ nav .burger-menu {
   transition: 0.5s all;
 }
 
+/* MEDIA 978*/
+@media screen and (max-width: 978px) {
+  body .my-jumbotron .left-side p {
+    text-align: center;
+  }
+  body .my-jumbotron .left-side #main-title {
+    text-align: center;
+  }
+  body .my-jumbotron #reset-align {
+    align-self: center;
+    justify-self: flex-end;
+  }
+  body .my-jumbotron .right-side #jumbo-img {
+    width: 100%;
+  }
+}
+/* MEDIA 768*/
 @media screen and (max-width: 768px) {
-  .my-jumbotron .left-side h1 {
+  body .my-jumbotron {
+    background-image: url("../img/bkground-bianco.svg");
+  }
+  body .my-jumbotron .my-wrap {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  body .my-jumbotron .my-wrap .left-side {
+    width: 100%;
+  }
+  body .my-jumbotron .my-wrap .left-side #main-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  body .my-jumbotron .my-wrap .right-side #jumbo-img {
+    width: 100%;
+  }
+}
+/* MEDIA 524*/
+@media screen and (max-width: 524px) {
+  body .my-jumbotron .my-wrap .left-side #main-title {
     font-size: 2rem;
+    text-align: center;
+  }
+  body .my-jumbotron .my-wrap .right-side #jumbo-img {
+    width: 100%;
   }
 }
 footer {

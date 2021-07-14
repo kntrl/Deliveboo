@@ -110,17 +110,29 @@ var tl2 = gsap.timeline({
     start: "top 75%"
   }
 });
+var tl3 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".my-wrap",
+    scrub: 1,
+    start: "15% 10%",
+    end: "18%"
+  }
+});
 tl.from("#row1 div", {
   y: -50,
   opacity: 0,
   stagger: 0.2,
-  duration: 0.8,
+  duration: 1,
   ease: "back"
 });
 tl2.from("#anim-h2", {
   y: -50,
   opacity: 0,
   duration: .8
+});
+tl3.to("#nav-id", {
+  backgroundColor: "#ffffff",
+  boxShadow: "1px 1px 10px grey"
 });
 /* .from("#row2 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
     .from("#row3 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back" })
