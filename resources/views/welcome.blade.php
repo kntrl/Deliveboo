@@ -7,7 +7,10 @@
         <title>DeliveBoo</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
 
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <!-- Styles --> 
@@ -30,17 +33,18 @@
         <div id="root">
 
             <div class="my-jumbotron">
-    
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-6 left-side">
-                            <h1>Ordina i tuoi piatti preferiti direttamente dal tuo divano</h1>
-                            <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                            <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?">
-                        </div>
-                        
-                        <div class="col-12 col-md-6 right-side">
-                            <img src="{{asset("img/undraw_Hamburger_8ge6.png")}}" alt="">
+                <div class="my-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-6 left-side">
+                                <h1>Ordina i tuoi piatti preferiti direttamente dal tuo divano</h1>
+                                <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
+                                {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
+                            </div>
+                            
+                            <div class="col-12 col-md-6 right-side">
+                                <img src="{{asset("img/undraw_Hamburger_8ge6.png")}}" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,28 +58,12 @@
                 <main class="main-content">
                     <div class="container">
                         {{-- ROW 1 --}}
-                        <div id="row1" class="row">
-                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                        <h2 id="anim-h2">Categories of Restaurants</h2>
+                        <div id="row1" class="row"> 
+                            <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
                                 <div class="inner-box">
-                                    test
-                                </div>
-                            </div>
-                        </div>
-    
-                        {{-- ROW 2 --}}
-                        <div id="row2" class="row">
-                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                                <div class="inner-box">
-                                    test
-                                </div>
-                            </div>
-                        </div>
-    
-                        {{-- ROW 3 --}}
-                        <div id="row3" class="row">
-                            <div v-for="n in 4" class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                                <div class="inner-box">
-                                    test
+                                    <img v-bind:src="`img/img_${index + 1}.png`" alt="">
+                                    <h3>@{{el}}</h3>
                                 </div>
                             </div>
                         </div>
