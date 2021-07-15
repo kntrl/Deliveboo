@@ -2107,10 +2107,127 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 var app = new Vue({
   el: "#root",
   data: {
-    categories: ["Pizza", "Hamburger", "Cinese", "Kebab", "Messicano", "Vegano", "Giapponese", "Thai"]
+    url: "http://127.0.0.1:8000/api/",
+    crossRightBurgerBar: "untoggle-cross-right",
+    crossLeftBurgerBar: "untoggle-cross-left",
+    upperBar: "upper-bar",
+    lowerBar: "lower-bar",
+    toggledSlider: "slider-off",
+    category: "",
+    restaurants: [],
+    categories: []
   },
-  methods: {},
-  mounted: function mounted() {}
+  methods: {
+    getCategories: function getCategories() {
+      var _this = this;
+
+      Axios.get("http://127.0.0.1:8000/api/categories").then(function (response) {
+        var res = response.data.categories;
+        _this.categories = res;
+        console.log(_this.categories);
+      });
+    },
+    selectCategory: function selectCategory(category) {
+      var _this2 = this;
+
+      var apiToCall = "".concat(this.url, "categories/").concat(category);
+      this.category = category;
+      Axios.get(apiToCall).then(function (response) {
+        _this2.topFunction();
+
+        var res = response.data;
+        Vue.set(_this2.restaurants, 0, res);
+      });
+    },
+    resetCategory: function resetCategory() {
+      this.category = "";
+    },
+    //riporta l'utente in cima alla pagina
+    topFunction: function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
+    toggleSlider: function toggleSlider() {
+      if (this.toggledSlider === "slider-off") {
+        this.toggledSlider = "slider-toggle";
+      } else {
+        this.toggledSlider = "slider-off";
+      }
+    },
+    toggleCrossBurger: function toggleCrossBurger() {
+      // cross on the burger menu when clicking to toggle the slide nav
+      if (this.crossRightBurgerBar === "untoggle-cross-right") {
+        this.crossRightBurgerBar = "cross-right";
+        this.crossLeftBurgerBar = "cross-left"; //remove the upper and lower bar when cross toggled
+
+        this.upperBar = "invisible-upper-bar";
+        this.lowerBar = "invisible-lower-bar";
+      } else {
+        this.crossRightBurgerBar = "untoggle-cross-right";
+        this.crossLeftBurgerBar = "untoggle-cross-left"; //show upper and lower bar
+
+        this.upperBar = "upper-bar";
+        this.lowerBar = "lower-bar";
+      } //slider anim
+
+
+      if (this.toggledSlider === "slider-off") {
+        this.toggledSlider = "slider-toggle";
+      } else {
+        this.toggledSlider = "slider-off";
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getCategories(); //GSAP
+
+    gsap.registerPlugin(ScrollTrigger);
+    /* V1 */
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".main-content",
+        //markers: true,
+        start: "top center"
+      }
+    });
+    var currentTimeScale = tl.timeScale(); //sets timeScale to half-speed
+
+    tl.timeScale(2);
+    var tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".main-content",
+        //markers: true,
+        start: "top 75%"
+      }
+    });
+    var tl3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".my-wrap",
+        scrub: 1,
+        start: "15% 10%",
+        end: "18%"
+      }
+    });
+    setTimeout(function () {
+      tl.from("#row1 div", {
+        y: -50,
+        opacity: 0,
+        stagger: 0.250,
+        duration: 1,
+        ease: "back"
+      });
+    }, 500);
+    tl2.from("#anim-h2", {
+      y: -50,
+      opacity: 0,
+      duration: .8
+    });
+    tl3.to("#nav-id", {
+      backgroundColor: "#ffffff",
+      boxShadow: "1px 1px 10px grey"
+    });
+  }
 }); //`img/avatar${obj.avatar}.jpg`
 
 /***/ }),

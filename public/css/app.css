@@ -10004,8 +10004,6 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
-<<<<<<< HEAD
-=======
 }
 nav {
   background-color: white;
@@ -10022,16 +10020,32 @@ nav h1, nav h2, nav h3, nav h4, nav h5, nav h6 {
 }
 nav a {
   margin-left: 1rem;
-  color: black;
+  color: white;
   font-weight: 600;
   transition: 0.5s all;
   text-decoration: none;
+  background-color: #f74543;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: 1px solid #f74543;
 }
 nav a:hover {
-  color: #6E1916;
+  color: #f74543;
+  background-color: white;
+  border: 1px solid #f74543;
+  text-decoration: none;
+}
+nav #ghosted-btn {
+  background-color: white;
+  color: #f74543;
+}
+nav #ghosted-btn:hover {
+  background-color: #f74543;
+  color: white;
 }
 nav img {
   width: 200px;
+  cursor: pointer;
 }
 nav .top-right {
   display: block;
@@ -10043,15 +10057,29 @@ nav .top-right {
 }
 nav .burger-menu {
   display: none;
+  cursor: pointer;
 }
 
+@media screen and (min-width: 768px) {
+  .slider-off {
+    display: none;
+  }
+
+  .slider-toggle {
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
+  nav .top-right img {
+    width: 120px;
+  }
   nav .top-right .container-commands .shown-commands {
     display: none;
   }
   nav .top-right .container-commands .burger-menu {
+    position: relative;
     display: block;
-    height: 15px;
+    height: 17px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10060,7 +10088,81 @@ nav .burger-menu {
   nav .top-right .container-commands .burger-menu .black-bar {
     background-color: black;
     height: 3px;
-    width: 20px;
+    width: 25px;
+  }
+  nav .top-right .container-commands .burger-menu .line.middle {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+  nav .top-right .container-commands .burger-menu .line.upper,
+nav .top-right .container-commands .burger-menu .line.upper {
+    transition: 0.4s;
+  }
+  nav .top-right .container-commands .burger-menu:hover .line.upper, nav .top-right .container-commands .burger-menu:hover .line.lower {
+    transition: 0.4s;
+  }
+  nav .slider-off {
+    z-index: 998;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  nav .slider-toggle {
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  #slider-standard {
+    position: absolute;
+    padding-top: 0rem;
+    margin-top: 2rem;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0px 0px 10px gray;
+    background-color: white;
+  }
+  #slider-standard a {
+    background-color: white;
+    color: black;
+    border: none;
+  }
+  #slider-standard a:hover, #slider-standard a:focus {
+    background-color: none;
+    color: black;
+    border: none;
+  }
+
+  #cross-right {
+    transform: rotate(45deg);
+    transition: 0.5s;
+  }
+
+  #untoggle-cross-right {
+    transform: rotate(0deg);
+    transition: 0.5s;
+  }
+
+  #cross-left {
+    transform: rotate(-45deg);
+    transition: 0.5s;
+  }
+
+  #untoggle-cross-left {
+    transform: rotate(0deg);
+    transition: 0.5s;
+  }
+
+  #upper-bar,
+#lower-bar {
+    opacity: 1;
+  }
+
+  #invisible-upper-bar,
+#invisible-lower-bar {
+    opacity: 0;
   }
 }
 /* ----- JUMBOTRON ----- */
@@ -10086,7 +10188,7 @@ nav .burger-menu {
 .my-jumbotron .my-wrap .left-side h1 {
   font-size: 3rem;
   margin-top: 1rem;
-  color: #6E1916;
+  color: black;
 }
 .my-jumbotron .my-wrap .left-side p {
   padding: 1rem 0;
@@ -10105,7 +10207,7 @@ nav .burger-menu {
 .main-content .container h2 {
   text-align: center;
   padding: 4rem 0 4rem 0;
-  color: #6E1916;
+  color: black;
 }
 .main-content .card-temp {
   text-align: center;
@@ -10119,6 +10221,14 @@ nav .burger-menu {
   width: auto;
   max-height: 150px;
   transition: 0.5s all;
+}
+
+.restaurants-box {
+  padding-top: 5rem;
+  min-height: 100vh;
+}
+.restaurants-box h1 {
+  text-align: center;
 }
 
 /* MEDIA 978*/
@@ -10167,9 +10277,12 @@ nav .burger-menu {
   body .my-jumbotron .my-wrap .right-side #jumbo-img {
     width: 100%;
   }
+  body .card-temp .inner-box .category-img {
+    max-height: 110px;
+  }
 }
 footer {
-  background-color: #6E1916;
+  background-color: black;
   padding: 40px 0;
   color: lightgray;
 }
@@ -10184,9 +10297,6 @@ footer h5 {
   color: lightgray;
   font-weight: bold;
 }
-footer .menu {
-  list-style-type: none;
-}
 footer .menu li {
   padding-top: 10px;
 }
@@ -10194,7 +10304,7 @@ footer .menu li a {
   color: lightgray;
 }
 footer .small-container {
-  border-top: 3px solid #6E1916;
+  border-top: 3px solid white;
   margin-top: 40px;
 }
 footer .small-container .lower-footer {
@@ -10203,7 +10313,6 @@ footer .small-container .lower-footer {
   justify-content: space-between;
 }
 footer .small-container .lower-footer .social-menu {
-  list-style-type: none;
   display: flex;
 }
 footer .small-container .lower-footer .social-menu li {
@@ -10212,15 +10321,22 @@ footer .small-container .lower-footer .social-menu li {
 footer .small-container .lower-footer .social-menu li a {
   width: 40px;
   height: 40px;
-  background-color: #1F5473;
-  display: block;
-  text-align: center;
-  line-height: 40px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  color: #F2A034;
-  text-decoration: none;
+  color: black;
 }
 
+@media screen and (max-width: 524px) {
+  .social-menu li #social-circle-facebook,
+.social-menu li #social-circle-twitter,
+.social-menu li #social-circle-instagram {
+    width: 30px;
+    height: 30px;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -10236,5 +10352,11 @@ body {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1650px;
   }
->>>>>>> origin/sviluppo-front-animations
+}
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
 }
