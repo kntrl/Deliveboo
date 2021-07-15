@@ -10171,6 +10171,38 @@ nav .top-right .container-commands .burger-menu .line.upper {
   background-image: url("../img/banner.svg");
   background-repeat: no-repeat;
   background-position-x: right;
+  position: relative;
+  overflow: hidden;
+}
+.my-jumbotron .jm-img {
+  height: 70px;
+  position: absolute;
+}
+.my-jumbotron .jm-img.milkshake {
+  top: 400px;
+  left: 700px;
+}
+.my-jumbotron .jm-img.panino {
+  top: 140px;
+  right: 270px;
+}
+.my-jumbotron .jm-img.pollo {
+  top: 325px;
+  right: 50px;
+  height: 90px;
+}
+.my-jumbotron .jm-img.ramen {
+  bottom: 40px;
+  left: 500px;
+}
+.my-jumbotron .jm-img.taco {
+  top: 145px;
+  left: 500px;
+}
+.my-jumbotron .jm-img.uovo {
+  top: 250px;
+  right: 500px;
+  height: 40px;
 }
 .my-jumbotron .my-wrap {
   height: calc(100vh);
@@ -10231,8 +10263,114 @@ nav .top-right .container-commands .burger-menu .line.upper {
   text-align: center;
 }
 
+/* MEDIA 1300*/
+@media screen and (max-width: 1300px) {
+  body .my-jumbotron .jm-img {
+    height: 85px;
+  }
+  body .my-jumbotron .jm-img.milkshake {
+    bottom: 66px;
+    left: 410px;
+  }
+  body .my-jumbotron .jm-img.panino {
+    top: 135px;
+    left: 925px;
+  }
+  body .my-jumbotron .jm-img.pollo {
+    top: 325px;
+    right: 50px;
+    height: 90px;
+  }
+  body .my-jumbotron .jm-img.ramen {
+    bottom: 55px;
+    left: 200px;
+  }
+  body .my-jumbotron .jm-img.taco {
+    top: 130px;
+    left: 345px;
+  }
+  body .my-jumbotron .jm-img.uovo {
+    top: 290px;
+    right: 500px;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+  body .my-jumbotron {
+    background-image: url("../img/bkground-bianco.svg");
+  }
+  body .my-jumbotron .jm-img {
+    height: 85px;
+  }
+  body .my-jumbotron .jm-img.milkshake {
+    top: 900px;
+    left: 600px;
+  }
+  body .my-jumbotron .jm-img.panino {
+    top: 440px;
+    left: 200px;
+  }
+  body .my-jumbotron .jm-img.pollo {
+    top: 325px;
+    right: 50px;
+    height: 90px;
+  }
+  body .my-jumbotron .jm-img.ramen {
+    bottom: 55px;
+    left: 200px;
+  }
+  body .my-jumbotron .jm-img.taco {
+    top: 130px;
+    left: 345px;
+  }
+  body .my-jumbotron .jm-img.uovo {
+    top: 520px;
+    right: 500px;
+  }
+  body .my-wrap {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  body .my-wrap .left-side {
+    width: 100%;
+  }
+  body .my-wrap .left-side #main-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  body .my-wrap .right-side #jumbo-img {
+    width: 100%;
+  }
+}
 /* MEDIA 978*/
 @media screen and (max-width: 978px) {
+  body .my-jumbotron .jm-img {
+    height: 85px;
+  }
+  body .my-jumbotron .jm-img.milkshake {
+    top: 86px;
+    left: 250px;
+  }
+  body .my-jumbotron .jm-img.panino {
+    top: 135px;
+    left: 14px;
+  }
+  body .my-jumbotron .jm-img.pollo {
+    top: 435px;
+    left: 50px;
+  }
+  body .my-jumbotron .jm-img.ramen {
+    bottom: 55px;
+    left: 200px;
+  }
+  body .my-jumbotron .jm-img.taco {
+    top: 130px;
+    left: 420px;
+  }
+  body .my-jumbotron .jm-img.uovo {
+    top: 420px;
+    right: 30px;
+  }
   body .my-jumbotron .left-side p {
     text-align: center;
   }
@@ -10251,6 +10389,33 @@ nav .top-right .container-commands .burger-menu .line.upper {
 @media screen and (max-width: 768px) {
   body .my-jumbotron {
     background-image: url("../img/bkground-bianco.svg");
+  }
+  body .my-jumbotron .jm-img {
+    height: 85px;
+  }
+  body .my-jumbotron .jm-img.milkshake {
+    top: 86px;
+    left: 250px;
+  }
+  body .my-jumbotron .jm-img.panino {
+    top: 100px;
+    left: 14px;
+  }
+  body .my-jumbotron .jm-img.pollo {
+    top: 490px;
+    left: 50px;
+  }
+  body .my-jumbotron .jm-img.ramen {
+    bottom: 55px;
+    left: 200px;
+  }
+  body .my-jumbotron .jm-img.taco {
+    top: 130px;
+    left: 420px;
+  }
+  body .my-jumbotron .jm-img.uovo {
+    top: 455px;
+    right: 30px;
   }
   body .my-jumbotron .my-wrap {
     flex-direction: column;
