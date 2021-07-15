@@ -110,15 +110,15 @@
     
                     <ul class="social-menu">
                         <li>
-                            <a href="">F</a>
+                            <a id="social-circle-facebook" href="">F</a>
                         </li>
     
                         <li>
-                            <a href="">T</a>
+                            <a id="social-circle-twitter" href="">T</a>
                         </li>
     
                         <li>
-                            <a href="">I</a>
+                            <a id="social-circle-instagram" href="">I</a>
                         </li>
     
                     </ul>   
