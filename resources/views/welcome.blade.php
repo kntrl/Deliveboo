@@ -4,100 +4,79 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>DeliveBoo</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <!-- Styles --> 
 
-            .full-height {
-                height: 100vh;
-            }
+        {{-- Favicon --}}
+        <link rel="shortcut icon" href="{{asset('/img/fav.ico')}}">
+        
+        {{-- Axios CDN --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        {{-- VUE --}}
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 
-            ul {
-                list-style-type: none;
-                padding: 0;
-            }
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
+
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        
+        @include('partials/header')
+        
+        {{-- VUE ROOT --}}
+        <div id="root">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-                <div class="links ">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            {{-- JUMBOTRON --}}
+            <div class="my-jumbotron">
+                <div class="my-wrap">
+                    <div class="left-side">
+                        <h1 id="main-title">Hungry? You're in the right place</h1>
+                        <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
+                        {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
+                    </div>
                 </div>
             </div>
+    
+    
+            
+            {{-- MAIN CONTENT --}}
+            <div class="content">
+                <main class="main-content">
+                    <div class="container">
+                        {{-- ROW 1 --}}
+                        <h2 id="anim-h2">Categories of Restaurants</h2>
+                        <div id="row1" class="row"> 
+                            <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                                <div class="inner-box">
+                                    <img class="category-img" v-bind:src="`img/img_${index + 1}.png`" alt="">
+                                    <h3>@{{el}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
+    
+        
+
+        @include('partials/footer')
+
+
+
+        
+        {{-- gsap --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+
+        {{-- my script --}}
+        <script src="{{ asset("js/main.js") }}"></script>
+        <script src="{{ asset("js/gsapAnimations.js") }}"></script>
     </body>
 </html>

@@ -1,0 +1,80 @@
+nav{
+    @include h-reset;
+    background-color: white;
+    padding: 1rem 0;
+    box-shadow: 0px 0px 0px rgb(255, 255, 255);
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+
+    a{
+        margin-left: 1rem;
+        color: $secondary-text-color;
+        font-weight: 600;
+        transition: .5s all;
+        text-decoration: none;
+        background-color: #f74543;
+        border-radius: 25px;
+        padding: 10px 20px;
+        border: 1px solid #f74543;
+        &:hover{
+            color: #f74543;
+            background-color: white;
+            border: 1px solid #f74543;
+            text-decoration: none;
+        }
+    }
+    #ghosted-btn{
+        background-color: white;
+        color: #f74543;
+        &:hover{
+            background-color: #f74543;
+            color: white;
+        }
+    }
+    img{
+        width: 200px;
+    }
+    .top-right{
+        @include auto-margin;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .burger-menu{
+        display: none;
+    }
+}
+
+
+
+//media screen 
+@media screen and (max-width: 768px){
+    nav{
+        .top-right{
+            img {
+                width: 120px;
+            }
+            .container-commands{
+                .shown-commands{
+                    display: none;
+                }
+
+                .burger-menu{
+                    display: block;
+                    height: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    .black-bar{
+                        background-color: black;
+                        height: 3px;
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

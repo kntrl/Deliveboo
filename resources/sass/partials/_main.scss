@@ -1,0 +1,147 @@
+
+/* ----- JUMBOTRON ----- */
+.my-jumbotron{
+    background-color: #fcecd5;
+    
+    background-image: url("../img/banner.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    .my-wrap{
+        height: calc(100vh);
+        @include auto-margin;
+        position: relative;
+        display: flex;
+        align-items: center;
+        
+        .left-side{
+            width: 50%;
+            padding-left: 0;
+            h1{
+                font-size: 3rem;
+                margin-top: 1rem;
+                color: $primary-title-color;
+            }
+            p{
+                padding: 1rem 0;
+            }
+        }
+    }
+}
+
+
+
+/* ----- MAIN ----- */
+.main-content{
+    min-height: 100vh;
+    //background-color: aqua;
+    @include auto-margin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container{
+        h2{
+            text-align: center;
+            padding: 4rem 0 4rem 0;
+            color: $primary-title-color;
+        }
+    }
+    .card-temp{
+        //background-color: yellowgreen;
+        text-align: center;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        .inner-box{
+            cursor: pointer;
+            img{
+                width: auto;
+                max-height: 150px;
+                transition: .5s all;
+            }
+        }
+    }
+}
+
+
+
+
+/* MEDIA 978*/
+@media screen and (max-width: 978px){
+    body{
+        .my-jumbotron{
+            .left-side{
+                p{
+                    text-align: center;
+                }
+                #main-title{
+                    text-align: center;
+                }
+            }
+            #reset-align{
+                align-self: center;
+                justify-self: flex-end;
+            }
+            .right-side{
+                #jumbo-img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA 768*/
+@media screen and (max-width: 768px){
+    body{
+        .my-jumbotron{
+            background-image: url("../img/bkground-bianco.svg");
+
+            .my-wrap{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .left-side{
+                    width: 100%;
+                    #main-title{
+                        font-size: 3rem;
+                        text-align: center;
+                    }
+                }
+                .right-side{
+                    #jumbo-img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA 524*/
+@media screen and (max-width: 524px){
+    body{
+        .my-jumbotron{
+            .my-wrap{
+                .left-side{
+                    #main-title{
+                        font-size: 2rem;
+                        text-align: center;
+                    }
+                }
+                .right-side{
+                    #jumbo-img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .card-temp{
+            .inner-box{
+                .category-img{  
+                    max-height: 110px;
+                }
+            }
+        }
+    }
+}
+

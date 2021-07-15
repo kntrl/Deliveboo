@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+/* DAFAULT VARIABLES */
+/* FINE DEFAULT VARIABLES */
+/*  */
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10001,4 +10004,237 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+<<<<<<< HEAD
+=======
+}
+nav {
+  background-color: white;
+  padding: 1rem 0;
+  box-shadow: 0px 0px 0px white;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+nav h1, nav h2, nav h3, nav h4, nav h5, nav h6 {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+nav a {
+  margin-left: 1rem;
+  color: black;
+  font-weight: 600;
+  transition: 0.5s all;
+  text-decoration: none;
+}
+nav a:hover {
+  color: #6E1916;
+}
+nav img {
+  width: 200px;
+}
+nav .top-right {
+  display: block;
+  margin: auto;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .burger-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  nav .top-right .container-commands .shown-commands {
+    display: none;
+  }
+  nav .top-right .container-commands .burger-menu {
+    display: block;
+    height: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .top-right .container-commands .burger-menu .black-bar {
+    background-color: black;
+    height: 3px;
+    width: 20px;
+  }
+}
+/* ----- JUMBOTRON ----- */
+.my-jumbotron {
+  background-color: #fcecd5;
+  background-image: url("../img/banner.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+}
+.my-jumbotron .my-wrap {
+  height: calc(100vh);
+  display: block;
+  margin: auto;
+  width: 85%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.my-jumbotron .my-wrap .left-side {
+  width: 50%;
+  padding-left: 0;
+}
+.my-jumbotron .my-wrap .left-side h1 {
+  font-size: 3rem;
+  margin-top: 1rem;
+  color: #6E1916;
+}
+.my-jumbotron .my-wrap .left-side p {
+  padding: 1rem 0;
+}
+
+/* ----- MAIN ----- */
+.main-content {
+  min-height: 100vh;
+  display: block;
+  margin: auto;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-content .container h2 {
+  text-align: center;
+  padding: 4rem 0 4rem 0;
+  color: #6E1916;
+}
+.main-content .card-temp {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.main-content .card-temp .inner-box {
+  cursor: pointer;
+}
+.main-content .card-temp .inner-box img {
+  width: auto;
+  max-height: 150px;
+  transition: 0.5s all;
+}
+
+/* MEDIA 978*/
+@media screen and (max-width: 978px) {
+  body .my-jumbotron .left-side p {
+    text-align: center;
+  }
+  body .my-jumbotron .left-side #main-title {
+    text-align: center;
+  }
+  body .my-jumbotron #reset-align {
+    align-self: center;
+    justify-self: flex-end;
+  }
+  body .my-jumbotron .right-side #jumbo-img {
+    width: 100%;
+  }
+}
+/* MEDIA 768*/
+@media screen and (max-width: 768px) {
+  body .my-jumbotron {
+    background-image: url("../img/bkground-bianco.svg");
+  }
+  body .my-jumbotron .my-wrap {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  body .my-jumbotron .my-wrap .left-side {
+    width: 100%;
+  }
+  body .my-jumbotron .my-wrap .left-side #main-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  body .my-jumbotron .my-wrap .right-side #jumbo-img {
+    width: 100%;
+  }
+}
+/* MEDIA 524*/
+@media screen and (max-width: 524px) {
+  body .my-jumbotron .my-wrap .left-side #main-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+  body .my-jumbotron .my-wrap .right-side #jumbo-img {
+    width: 100%;
+  }
+}
+footer {
+  background-color: #6E1916;
+  padding: 40px 0;
+  color: lightgray;
+}
+footer .wrapper {
+  width: 85%;
+  margin: auto;
+}
+footer img {
+  width: 100px;
+}
+footer h5 {
+  color: lightgray;
+  font-weight: bold;
+}
+footer .menu {
+  list-style-type: none;
+}
+footer .menu li {
+  padding-top: 10px;
+}
+footer .menu li a {
+  color: lightgray;
+}
+footer .small-container {
+  border-top: 3px solid #6E1916;
+  margin-top: 40px;
+}
+footer .small-container .lower-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+footer .small-container .lower-footer .social-menu {
+  list-style-type: none;
+  display: flex;
+}
+footer .small-container .lower-footer .social-menu li {
+  padding-left: 10px;
+}
+footer .small-container .lower-footer .social-menu li a {
+  width: 40px;
+  height: 40px;
+  background-color: #1F5473;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #F2A034;
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1650px;
+  }
+>>>>>>> origin/sviluppo-front-animations
 }
