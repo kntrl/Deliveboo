@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use Braintree\Gateway as Gateway;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,26 +14,41 @@ use Braintree\Gateway as Gateway;
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+    //GUEST (UI) ROUTES
+        Route::name('guest.')
+            ->group(
+                function() {
+
+                //LANDING ROUTES
+                Route::get('/', function(){
+                    return view('welcome');
+                });
+
+                //QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
+                Route::get('/home', 'HomeController@index')->name('home');
+
+            }
+        );
+        
+        //BRAINTREE ROUTES
+        Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
+        Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
+        Route::get('/checkout/{order:id}',function($order){
+            return redirect()->route('guest.setupPayment',['order'=>$order]);
+        });
 
 
-Route::prefix('admin')
-    ->namespace('Admin')
-    ->middleware('auth')
-    ->name('admin.')
-    ->group(function () {
+    //AUTH (UR) ROUTES
+        Route::prefix('admin')
+            ->namespace('Admin')
+            ->middleware('auth')
+            ->name('admin.')
+            ->group(function () {
                 Route::resource('foods', 'FoodController');
                 Route::get('/orders','OrderController@index');
-    }
-);
-
-
-//BRAINTREE ROUTES
-Route::post('/payment', 'PaymentController@make' )->name('payment');
-Route::post('/payment-checkout', 'PaymentController@pay' )->name('pay');
+            }
+        );

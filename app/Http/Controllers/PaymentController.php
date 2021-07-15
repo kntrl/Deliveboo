@@ -2,35 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use Braintree\Gateway as Gateway;
 use Illuminate\Http\Request;
+use Braintree\Gateway as Gateway;
+use App\Order;
 
 class PaymentController extends Controller
 {
-    public function make(Gateway $gateway)
+    public function setupPayment(Order $order,Gateway $gateway)
     {
+        // if payment is already paid we return home view
+        if ($order->status != "pending" && $order->status != "rejected" ){
+        
+            // WE MAY RETURN THE PAYMENT RECEIPT.
+
+            return view('welcome');
+
+        }
+
         $clientToken = $gateway->clientToken()->generate();
 
-        return view('payments.payment', compact('clientToken'));
+        return view('payments.form', compact('clientToken'),compact('order'));
     }
 
 
-    public function pay(Request $request, Gateway $gateway)
+    public function checkout(Order $order,Request $request, Gateway $gateway)
     {
         $form_data = $request->all();
-
-
+        
         $nonceFromTheClient = $form_data['payment_method_nonce'];
 
+        //creating transaction
         $result = $gateway->transaction()->sale([
-            'amount' => $form_data['amount'],
+            'amount' => $order->price,
             'paymentMethodNonce' => $nonceFromTheClient,
+            'orderId'=> $order->id,
             'options' => [
                 'submitForSettlement' => true
             ]
-
         ]);
 
-        return view('home');
+        //updating order status according to sale result.
+        if ($result->success) {
+            $order->status = "accepted";
+        } else {
+            $order->status ="rejected";
+        }
+        $order->update();
+
+        return view('payments.receipt',compact('result'));
     }
 }
