@@ -19,3 +19,5 @@ class DatabaseSeeder extends Seeder
         RestaurantsCategoryTableSeeder::class]);
     }
 }
+
+// php artisan db:seed

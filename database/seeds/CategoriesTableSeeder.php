@@ -1,4 +1,4 @@
-<?php
+vegano<?php
 
 use Illuminate\Database\Seeder;
 //model
@@ -21,11 +21,11 @@ class CategoriesTableSeeder extends Seeder
             "libanese",
             "americano",
             "sushi",
-            "africano",
+            "vegano",
             "messicano",
             "kebab",
+            "hawaiano",
         ];
-
 
         foreach ($categories as $category) {
             $new_category = new Category();
