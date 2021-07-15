@@ -34,6 +34,14 @@
 
             {{-- JUMBOTRON --}}
             <div class="my-jumbotron">
+                <img class="jm-img milkshake" src="{{ asset('/img/milkshake.svg') }}" alt="">
+                <img class="jm-img panino" src="{{ asset('/img/panino.svg') }}" alt="">
+                <img class="jm-img pollo" src="{{ asset('/img/pollo.svg') }}" alt="">
+                <img class="jm-img ramen" src="{{ asset('/img/ramen.svg') }}" alt="">
+                <img class="jm-img taco" src="{{ asset('/img/taco.svg') }}" alt="">
+                <img class="jm-img uovo" src="{{ asset('/img/uovo.svg') }}" alt="">
+
+
                 <div class="my-wrap">
                     <div class="left-side">
                         <h1 id="main-title">Hungry? You're in the right place</h1>
