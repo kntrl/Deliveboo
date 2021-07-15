@@ -57,3 +57,14 @@ footer{
         }
     }
 }
+
+@media screen and(max-width: 524) {
+    .social-menu{
+        li{
+            a{
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}
