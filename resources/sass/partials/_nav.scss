@@ -34,6 +34,7 @@ nav{
     }
     img{
         width: 200px;
+        cursor: pointer
     }
     .top-right{
         @include auto-margin;
@@ -44,10 +45,18 @@ nav{
 
     .burger-menu{
         display: none;
+        cursor: pointer;
     }
 }
 
-
+@media screen and (min-width: 768px){
+    .slider-off{
+        display: none;
+    }
+    .slider-toggle{
+        display: none;
+    }
+}
 
 //media screen 
 @media screen and (max-width: 768px){
@@ -62,8 +71,9 @@ nav{
                 }
 
                 .burger-menu{
+                    position: relative;
                     display: block;
-                    height: 15px;
+                    height: 17px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -71,10 +81,88 @@ nav{
                     .black-bar{
                         background-color: black;
                         height: 3px;
-                        width: 20px;
+                        width: 25px;
+                    }
+                    .line.middle{
+                        position: absolute;
+                        top: 40%;
+                        transform: translateY(-50%);
+                    }
+
+                    .line.upper,
+                    .line.upper{
+                        transition: .4s;
+                    }
+                    &:hover .line.upper,
+                    &:hover .line.lower{
+                        transition: .4s;
                     }
                 }
             }
         }
+        .slider-off{
+            z-index: 998;
+            transition: .5s;
+            opacity: 0;
+            transform: translateX(100%);    
+        }
+        .slider-toggle{
+            opacity: 1;
+            transition: .5s;
+        }
+    }
+    #slider-standard{
+        position: absolute;
+        padding-top: 0rem;
+        margin-top: 2rem;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0px 0px 10px gray;
+        background-color: white;
+        a{
+            background-color: white;
+            color: black;
+            border: none;
+            &:hover,
+            &:focus{
+                background-color: none;
+                color: black;
+                border: none;
+            }
+        }
+    }
+
+    //cross burger toggles
+    #cross-right{
+        transform: rotate(45deg);
+        transition: .5s;
+    }
+    #untoggle-cross-right{
+        transform: rotate(0deg);
+        transition: .5s;
+    }
+    
+    #cross-left{
+        transform: rotate(-45deg);
+        transition: .5s;
+    }
+    #untoggle-cross-left{
+        transform: rotate(0deg);
+        transition: .5s;
+    }
+    #upper-bar,
+    #lower-bar{
+        opacity: 1;
+    }
+    #invisible-upper-bar,
+    #invisible-lower-bar{
+        opacity: 0;
     }
 }
+
+
+
+
+
