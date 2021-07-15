@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use Braintree\Gateway as Gateway;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,6 @@ Route::prefix('admin')
 );
 
 
-//BRAINTREE TEST ROUTES
-
-Route::get('/client-token','PaymentController@getClientToken');
+//BRAINTREE ROUTES
+Route::post('/payment', 'PaymentController@make' )->name('payment');
+Route::post('/payment-checkout', 'PaymentController@pay' )->name('pay');

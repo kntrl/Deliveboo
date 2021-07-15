@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use Braintree\Gateway as Gateway;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,8 @@ Route::get('/categories/{category:slug}','Api\CategoryController@show');
 Route::get('/restaurants','Api\RestaurantController@index');
 Route::get('/restaurants/search/{queryString}','Api\RestaurantController@search');
 Route::get('/restaurants/{user:slug}','Api\RestaurantController@show');
+
+
 
 
 
