@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 use App\Order;
 
 
@@ -14,20 +14,18 @@ class OrderController extends Controller
 {
     public function index()
     {
+        $orders = Order::join('food_order', 'orders.id', '=', 'food_order.order_id')
+            ->join('foods', 'foods.id', '=', 'food_order.food_id')
+            ->join('users', 'users.id', '=', 'foods.user_id')
+            ->where('users.id','=',Auth::user()->id)
+            ->select('orders.*')
+            ->get();
 
-        //getting all Orders with Foods (where foods belongs to auth user)
-        $orders = Order::with(['foods' => function($query) {
-            $query->where('user_id','=',Auth::user()->id);
-        }])->get();
 
-
-        //removings orders with no foods
-        $currentUserOrder = $orders->filter(function($order){
-            return $order->foods->count() > 0;
-        });
-
+        $orders = $orders->unique();
+      
         $data = [
-            'orders' => $currentUserOrder
+            'orders' => $orders
         ];
         
         return view('admin.orders.index', $data);
