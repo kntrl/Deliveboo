@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'piva' =>['required','string','min:11','max:11'],
             'address'=>['required', 'string', 'max:255'],
             'description'=>['max:1000'],
-            'categories'=>['required','exists:categories,name']
+            'categories'=>['required','exists:categories,id']
         ]);
     }
 
