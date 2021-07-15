@@ -55,10 +55,4 @@ class PaymentController extends Controller
         return view('payments.receipt',compact('result'),compact('transaction'));
     }
 
-    public function receipt($transactionId,Gateway $gateway)
-    {
-        $transaction = $gateway->transaction()->find($transactionId);
-
-        return view('payments.receipt' ,compact('transaction'));
-    }
 }
