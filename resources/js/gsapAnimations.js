@@ -10,6 +10,9 @@ const tl = gsap.timeline({
         start: "top center",
     }
 });
+var currentTimeScale = tl.timeScale();
+//sets timeScale to half-speed
+tl.timeScale(2);
 
 const tl2 = gsap.timeline({
     scrollTrigger: {
