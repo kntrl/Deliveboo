@@ -54,7 +54,7 @@
                         <div id="row1" class="row"> 
                             <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
                                 <div class="inner-box">
-                                    <img v-bind:src="`img/img_${index + 1}.png`" alt="">
+                                    <img class="category-img" v-bind:src="`img/img_${index + 1}.png`" alt="">
                                     <h3>@{{el}}</h3>
                                 </div>
                             </div>
