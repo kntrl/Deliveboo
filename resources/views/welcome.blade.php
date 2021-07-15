@@ -27,46 +27,53 @@
 
     <body>
         
-        @include('partials/header')
         
         {{-- VUE ROOT --}}
         <div id="root">
+            
+            @include('partials/header')
 
-            {{-- JUMBOTRON --}}
-            <div class="my-jumbotron">
-                <div class="my-wrap">
-                    <div class="left-side">
-                        <h1 id="main-title">Hungry? You're in the right place</h1>
-                        <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                        {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
+            <div v-if="!category.length" class="changing-box">
+                {{-- JUMBOTRON --}}
+                <div class="my-jumbotron">
+                    <div class="my-wrap">
+                        <div class="left-side">
+                            <h1 id="main-title">Hungry? You're in the right place</h1>
+                            <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
+                            {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-    
-    
-            
-            {{-- MAIN CONTENT --}}
-            <div class="content">
-                <main class="main-content">
-                    <div class="container">
-                        {{-- ROW 1 --}}
-                        <h2 id="anim-h2">Categories of Restaurants</h2>
-                        <div id="row1" class="row"> 
-                            <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                                <div class="inner-box">
-                                    <img class="category-img" v-bind:src="`img/img_${index + 1}.png`" alt="">
-                                    <h3>@{{el}}</h3>
+        
+                {{-- MAIN CONTENT --}}
+                <div class="content">
+                    <main class="main-content">
+                        <div class="container">
+                            {{-- ROW 1 --}}
+                            <h2 id="anim-h2">Categories of Restaurants</h2>
+                            <div id="row1" class="row"> 
+                                <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
+                                    <div v-on:click="selectCategory(el.name)" class="inner-box">
+                                        <img class="category-img" v-bind:src="`img/${el.slug}.png`" alt="">
+                                        <h3>@{{el.name.charAt(0).toUpperCase() + el.name.slice(1)}}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </div>
+
+            
+            <div v-else class="restaurants-box">
+                <h1>@{{category}}</h1>
+            </div>
+            
+            @include('partials/footer')
         </div>
     
         
 
-        @include('partials/footer')
 
 
 
