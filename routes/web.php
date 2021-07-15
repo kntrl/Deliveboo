@@ -38,10 +38,6 @@ Auth::routes();
         Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
         Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
 
-
-        //TEST ROUTE RECEIPTE
-        Route::get('/receipt/{transactionId}','PaymentController@receipt' )->name('guest.receipt');
-
     //AUTH (UR) ROUTES
         Route::prefix('admin')
             ->namespace('Admin')
