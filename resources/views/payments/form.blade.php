@@ -32,9 +32,12 @@
           </div>
         </div>
         <div class="card-body">
+          {{-- Payment Form --}}
           <form method="post" id="payment-form" action="{{route('guest.checkout',['order'=>$order])}}">
             @csrf
             @method('POST')
+            <label for="address">Indirizzo di consegna</label>
+            <input type="text" name="address" id="address">
             {{-- Droping UI di Braintree --}}
             <div class="bt-drop-in-wrapper">
                 <div id="bt-dropin"></div>

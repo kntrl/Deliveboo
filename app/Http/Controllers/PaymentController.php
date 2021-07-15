@@ -14,7 +14,6 @@ class PaymentController extends Controller
         if ($order->status != "pending" && $order->status != "rejected" ){
         
             // WE MAY RETURN THE PAYMENT RECEIPT.
-
             return view('welcome');
 
         }
@@ -38,6 +37,9 @@ class PaymentController extends Controller
             'orderId'=> $order->id,
             'options' => [
                 'submitForSettlement' => true
+            ],
+            'customFields' => [
+                'shippingAddress' => $form_data['address']
             ]
         ]);
 
@@ -47,8 +49,16 @@ class PaymentController extends Controller
         } else {
             $order->status ="rejected";
         }
-        $order->update();
+        $order->save();
+        $transaction = $result->transaction;
 
-        return view('payments.receipt',compact('result'));
+        return view('payments.receipt',compact('result'),compact('transaction'));
+    }
+
+    public function receipt($transactionId,Gateway $gateway)
+    {
+        $transaction = $gateway->transaction()->find($transactionId);
+
+        return view('payments.receipt' ,compact('transaction'));
     }
 }

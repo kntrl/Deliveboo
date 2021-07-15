@@ -37,10 +37,10 @@ Auth::routes();
         //BRAINTREE ROUTES
         Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
         Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
-        Route::get('/checkout/{order:id}',function($order){
-            return redirect()->route('guest.setupPayment',['order'=>$order]);
-        });
 
+
+        //TEST ROUTE RECEIPTE
+        Route::get('/receipt/{transactionId}','PaymentController@receipt' )->name('guest.receipt');
 
     //AUTH (UR) ROUTES
         Route::prefix('admin')
