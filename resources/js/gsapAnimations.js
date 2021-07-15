@@ -1,7 +1,7 @@
-gsap.registerPlugin(ScrollTrigger);
+/* gsap.registerPlugin(ScrollTrigger); */
 
 /* V1 */
-
+/* 
 const tl = gsap.timeline({
     scrollTrigger: {
         trigger: ".main-content",
@@ -10,18 +10,18 @@ const tl = gsap.timeline({
         start: "top center",
     }
 });
-var currentTimeScale = tl.timeScale();
+var currentTimeScale = tl.timeScale(); */
 //sets timeScale to half-speed
-tl.timeScale(2);
-
+/* tl.timeScale(2); */
+/* 
 const tl2 = gsap.timeline({
     scrollTrigger: {
         trigger: ".main-content",
         //markers: true,
         start: "top 75%",
     }
-});
-
+}); */
+/* 
 const tl3 = gsap.timeline({
     scrollTrigger: {
         trigger: ".my-wrap",
@@ -30,16 +30,15 @@ const tl3 = gsap.timeline({
         start: "15% 10%",
         end: "18%"
     }
-});
+}); */
 
-
+/* 
 tl.from("#row1 div", { y: -50, opacity: 0, stagger: 0.2, duration: 1, ease: "back" })
 
 tl2.from("#anim-h2", {y: -50, opacity: 0, duration: .8})
 
 tl3.to("#nav-id", { backgroundColor: "#ffffff", boxShadow: "1px 1px 10px grey"})
-   
-
+ */
 
 
 
