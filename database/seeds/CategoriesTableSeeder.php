@@ -21,9 +21,10 @@ class CategoriesTableSeeder extends Seeder
             "libanese",
             "americano",
             "sushi",
-            "africano",
+            "vegano",
             "messicano",
             "kebab",
+            "hawaiano"
         ];
 
 
