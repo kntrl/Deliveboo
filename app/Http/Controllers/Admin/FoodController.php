@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 // Validation
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\FoodRequest;
 
 //models
 use App\Food;
@@ -44,7 +42,7 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRequest $request,Slug $slug)
+    public function store(FoodRequest $request,Slug $slug)
     {
 
         $form_data = $request->all();
@@ -105,7 +103,7 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminRequest $request, $id, Slug $slug)
+    public function update(FoodRequest $request, $id, Slug $slug)
     {
 
         $form_data = $request->all();
