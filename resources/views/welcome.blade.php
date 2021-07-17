@@ -92,7 +92,7 @@
 
                     {{-- RESTAURANTS --}}
                     <div class="restaurants-cards-container">
-                        <div v-if="restaurants.length" v-for="(restaurant, index) in this.restaurants[0]" class="restaurant-card">
+                        <div v-if="restaurants[0].length" v-for="(restaurant, index) in restaurants[0]" class="restaurant-card">
                             <h6>@{{restaurant.name}}</h6>
                             <h6>@{{restaurant.address}}</h6>
                             <p>@{{(String(restaurant.description).length > 30) ? restaurant.description.slice(0, 30) + "..." : restaurant.description }}</p>
