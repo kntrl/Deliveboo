@@ -6,6 +6,7 @@ use App\Http\Requests\OrderRequest;
 
 use App\User;
 use App\Order;
+use App\Food;
 
 class OrderController extends Controller
 {
@@ -23,9 +24,9 @@ class OrderController extends Controller
         $idFoodUser = $user->foods->modelKeys();
 
 
-        
+        $order = new Order();
 
-        //checking that each food belongs to $user Restaurant
+        //checking that each food belongs to $user Restaurant and create total price of order
         foreach ( $form_data['foods'] as $food_id) {
 
             if(!in_array($food_id ,$idFoodUser)) {
@@ -36,18 +37,19 @@ class OrderController extends Controller
                 return redirect()->route('create');
             }
 
+            $food = Food::find($food_id);
+            $order->price += $food->price * $form_data['quantity'. $food_id];
+
         }
 
-
-        $order = new Order();
 
         $order->fill($form_data);
 
         $order->status = 'pending';
 
-        $order->price = 0;
-
         $saved = $order->save();
+
+        
 
         // Attach Food_quantity on order
         foreach ($form_data['foods'] as $food_id ) {
@@ -55,7 +57,8 @@ class OrderController extends Controller
             $order->foods()->attach($food_id, ['quantity' => $form_data['quantity'. $food_id] ]);
 
         }
-
+       
+    
 
         if(!$saved) {
             abort('404');

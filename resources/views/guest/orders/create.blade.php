@@ -19,12 +19,14 @@
                         </div>
 
                         <div>
-                            <label for="quantity{{$food->id}}" value="{{old('quantity'.$food->id)}}"  >Quantità :</label>
+                            <label for="quantity{{$food->id}}" value="{{old('quantity'.$food->id)}}">Quantità :</label>
                             <input type="number" class="form-control form-control-sm d-inline" name="quantity{{$food->id}}" id="{{$food->id}}" min="0" style="width: 4em;" value="">
                         </div>
                     </div>
                     @endforeach                       
                 </div>
+
+
               
 
                 {{-- DELIVERY INFO --}}
