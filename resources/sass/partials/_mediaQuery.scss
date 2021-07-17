@@ -1,0 +1,231 @@
+
+/* MEDIA 1300*/
+@media screen and (max-width: 1300px) {
+    body {
+        .my-jumbotron {
+            .jm-img {
+                height: 85px;
+                
+                &.milkshake  {
+                    bottom: 66px;
+                    left: 410px;
+                }
+                &.panino  {
+                    top: 135px;
+                    left: 925px;
+                }
+                &.pollo  {
+                    top: 325px;
+                    right: 50px;
+                    height: 90px;
+                }
+                &.ramen  {
+                    bottom: 55px;
+                    left: 200px;            
+                }
+                &.taco  {
+                    top: 130px;
+                    left: 345px;            
+                }
+                &.uovo  {
+                    top: 290px;
+                    right: 500px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+    body {          
+        
+        .my-jumbotron {
+            background-image: url("../img/bkground-bianco.svg");
+            .jm-img {
+                height: 85px;
+                
+                &.milkshake  {
+                    top: 900px;
+                    left: 600px;
+                }
+                &.panino  {
+                    top: 440px;
+                    left: 200px;
+                }
+                &.pollo  {
+                    top: 325px;
+                    right: 50px;
+                    height: 90px;
+                }
+                &.ramen  {
+                    bottom: 55px;
+                    left: 200px;            
+                }
+                &.taco  {
+                    top: 130px;
+                    left: 345px;            
+                }
+                &.uovo  {
+                    top: 520px;
+                    right: 500px;
+                }
+            }
+        }
+        .my-wrap{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .left-side{
+                width: 100%;
+                #main-title{
+                    font-size: 3rem;
+                    text-align: center;
+                }
+            }
+            .right-side{
+                #jumbo-img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA 978*/
+@media screen and (max-width: 978px){
+    body{
+        .my-jumbotron{
+            .jm-img {
+                height: 85px;
+                
+                &.milkshake  {
+                    top: 86px;
+                    left: 250px;
+                }
+                &.panino  {
+                    top: 135px;
+                    left: 14px;
+                }
+                &.pollo  {
+                    top: 435px;
+                    left: 50px;
+                }
+                &.ramen  {
+                    bottom: 55px;
+                    left: 200px;            
+                }
+                &.taco  {
+                    top: 130px;
+                    left: 420px;            
+                }
+                &.uovo  {
+                    top: 420px;
+                    right: 30px;
+                }
+            }
+            .left-side{
+                p{
+                    text-align: center;
+                }
+                #main-title{
+                    text-align: center;
+                }
+            }
+            #reset-align{
+                align-self: center;
+                justify-self: flex-end;
+            }
+            .right-side{
+                #jumbo-img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA 768*/
+@media screen and (max-width: 768px){
+    body{
+        .my-jumbotron{
+            background-image: url("../img/bkground-bianco.svg");
+            .jm-img {
+                height: 85px;
+                
+                &.milkshake  {
+                    top: 86px;
+                    left: 250px;
+                }
+                &.panino  {
+                    top: 100px;
+                    left: 14px;
+                }
+                &.pollo  {
+                    top: 490px;
+                    left: 50px;
+                }
+                &.ramen  {
+                    bottom: 55px;
+                    left: 200px;            
+                }
+                &.taco  {
+                    top: 130px;
+                    left: 420px;            
+                }
+                &.uovo  {
+                    top: 455px;
+                    right: 30px;
+                }
+            }
+
+            .my-wrap{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .left-side{
+                    width: 100%;
+                    #main-title{
+                        font-size: 3rem;
+                        text-align: center;
+                    }
+                }
+                .right-side{
+                    #jumbo-img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA 524*/
+@media screen and (max-width: 524px){
+    body{
+        .my-jumbotron{
+            
+            .my-wrap{
+                .left-side{
+                    #main-title{
+                        font-size: 2rem;
+                        text-align: center;
+                    }
+                }
+                .right-side{
+                    #jumbo-img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .card-temp{
+            .inner-box{
+                .category-img{  
+                    max-height: 110px;
+                }
+            }
+        }
+    }
+}
