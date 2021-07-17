@@ -26,12 +26,12 @@ class Food extends Model
     
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
     
     public function orders()
     {
-        return $this->belongsToMany('App\Order')->withPivot('quantity', 'note');
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'note');
     }
 
     public function foodTypes()

@@ -39,12 +39,12 @@ class User extends Authenticatable
 
     public function categories() 
     {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany(Category::class);
     }
 
     public function foods() 
     {
-        return $this->hasMany('App\Food');
+        return $this->hasMany(Food::class);
     }
 
     /**
@@ -56,11 +56,11 @@ class User extends Authenticatable
      */
     public function foodOrFail($foodId)
     {
-        if ($food = $this->foods->firstWhere('id',$foodId)){
-            return $food;
-        } else {
-            abort(404);
-        }
+        if (!$food = $this->foods->firstWhere('id',$foodId)){
+            abort(404);  
+        } 
+
+        return $food;
 
     }
 }

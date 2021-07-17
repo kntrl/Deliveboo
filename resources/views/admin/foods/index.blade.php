@@ -23,7 +23,7 @@
                     </div>
                     <div class="row">
                         <div class="pl-3"><strong>Available: </strong></div>
-                        <div class="px-1">{{$food->ingredients == 1 ? 'Yes' : 'No'}}</div>
+                        <div class="px-1">{{$food->available == 1 ? 'Yes' : 'No'}}</div>
                     </div>
                     <div class="row">
                         <div class="pl-3"><strong>Vegan: </strong></div>
