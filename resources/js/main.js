@@ -29,16 +29,12 @@ var app = new Vue({
                 .then(response => {
                     const res = response.data.categories;
                     this.categories = res;
-
-                    console.log(this.categories);
                 });
         },
 
         
         selectCategory(category){
-        
             this.category = category;
-            //console.log(this.category);
             const apiToCall = `${this.url}categories/${category}`;
             Axios
                 .get(apiToCall)
@@ -47,9 +43,17 @@ var app = new Vue({
                     console.log(res.restaurants);
                     this.topFunction();
                     Vue.set(this.restaurants, 0, res.restaurants);  
-                    console.log(this.restaurants[0].length);   
-                });
-
+                })
+                .catch( error => {
+                    console.log("ERRORE");
+                    if (error.response) {
+                        Vue.set(this.restaurants, 0, []);
+                    } else if (error.request) {
+                        Vue.set(this.restaurants, 0, []);
+                    } else {
+                        Vue.set(this.restaurants, 0, []);
+                    }
+                })
         },
 
 
