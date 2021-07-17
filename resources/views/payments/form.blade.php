@@ -37,7 +37,7 @@
             @csrf
             @method('POST')
             <label for="address">Indirizzo di consegna</label>
-            <input type="text" name="address" id="address">
+            <input type="text" name="address" id="address" value="{{ $order->delivery_address }}">
             {{-- Droping UI di Braintree --}}
             <div class="bt-drop-in-wrapper">
                 <div id="bt-dropin"></div>
