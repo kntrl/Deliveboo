@@ -18,13 +18,6 @@ use Illuminate\Support\Facades\Auth;
 /*****************************
 *     PUBLIC ROUTES
 ******************************/
-
-Route::get('/', function(){
-    return view('welcome');
-});
-
-
-
 //GUEST (UI) ROUTES
     Route::name('guest.')
         ->group(
@@ -38,20 +31,16 @@ Route::get('/', function(){
             //QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
             Route::get('/home', 'HomeController@index')->name('home');
 
+            //Order Routes
+            Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
+            Route::post('/restaurants/{user:slug}/store','OrderController@store')->name('orders.store');
+
         }
     );
         
 //BRAINTREE ROUTES
 Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
 Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
-
-
-//Order Routes 
-Route::name('guest.')
-    ->group(function(){
-        Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
-        Route::post('/restaurants/{user:slug}/store','OrderController@store')->name('orders.store');
-    });
 
 
 

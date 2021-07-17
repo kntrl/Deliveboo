@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\User;
 use App\Order;
 use App\Food;
+use Braintree\Gateway as Gateway;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,7 @@ class OrderController extends Controller
         return view('guest.orders.create', compact('user'));
     }
 
-    public function store(OrderRequest $request, User $user)
+    public function store(OrderRequest $request, User $user, Gateway $gateway)
     {
         $form_data = $request->all();
 
@@ -64,5 +65,5 @@ class OrderController extends Controller
             abort('404');
         }
 
-        return view('welcome');
+        return redirect()->route('guest.setupPayment', ['order' => $order])->with('gateway', $gateway );
     }}
