@@ -64,11 +64,11 @@
 
                 {{-- ADDRESS --}}
                 <div class="form-group row">
-                    <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
+                    <label for="delivery_address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
 
                     <div class="col-md-6">
 
-                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                        <input id="delivery_address" type="text" class="form-control @error('delivery_address') is-invalid @enderror" name="delivery_address" value="{{ old('delivery_address') }}" required autocomplete="delivery_address" autofocus>
 
                     </div>
                 </div>

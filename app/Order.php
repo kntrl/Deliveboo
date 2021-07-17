@@ -11,7 +11,7 @@ class Order extends Model
         'name',
         'last_name',
         'email',
-        'address'
+        'delivery_address'
     ];
 
     public function foods()

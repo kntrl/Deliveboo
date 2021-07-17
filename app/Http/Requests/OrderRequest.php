@@ -27,7 +27,7 @@ class OrderRequest extends FormRequest
             'name' => 'required|string| min: 2| max: 255',
             'last_name' => 'required|string| min: 2| max: 255',
             'email' =>'required| email| string | max: 255',
-            'address'=> 'required| string |min: 10| max: 255',
+            'delivery_address'=> 'required| string |min: 5| max: 255',
         ];
     }
 }
