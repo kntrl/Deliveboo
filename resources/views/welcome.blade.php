@@ -35,7 +35,7 @@
 
             <div v-if="!category.length" class="changing-box">
                 {{-- JUMBOTRON --}}
-                <div class="my-jumbotron">
+                <section class="my-jumbotron">
                     <img class="jm-img milkshake" src="{{ asset('/img/milkshake.svg') }}" alt="">
                     <img class="jm-img panino" src="{{ asset('/img/panino.svg') }}" alt="">
                     <img class="jm-img pollo" src="{{ asset('/img/pollo.svg') }}" alt="">
@@ -48,12 +48,13 @@
                         <div class="left-side">
                             <h1 id="main-title">Hungry? You're in the right place</h1>
                             <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                            {{-- <input type="text" name="" id="" placeholder="Cosa vorresti mangiare?"> --}}
+                            <a href="#order-now">Order Now</a>
                         </div>
                     </div>
-                </div>
+                </section>
+
                 {{-- MAIN CONTENT --}}
-                <div class="content">
+                <div id="order-now" class="content">
                     <main class="main-content">
                         <div class="container">
                             {{-- ROW 1 --}}
@@ -73,7 +74,32 @@
 
             
             <div v-else class="restaurants-box">
-                <h1>@{{category}}</h1>
+                <div class="">
+                    {{-- <img src="" alt=""> --}}
+                    <h1>Ordina @{{category}}</h1>
+                    {{-- <select v-on:change="selectCategory(category)" v-model="category" id="" name="">
+                        <option v-for="category in categories">@{{category.name}}</option>
+                    </select> --}}
+                </div>
+
+                <div class="double-box">
+                    {{-- RIBBONS --}}
+                    <div class="ribbons-box">
+                        <div v-for="categoria in categories" class="container-ribbon">
+                            <span v-on:click="selectCategory(categoria.name)" v-bind:class="categoria.name == category ? activeRibbon : ''" class="pointy">@{{categoria.name.charAt(0).toUpperCase() + categoria.name.slice(1)}}</span>
+                        </div>
+                    </div>
+
+                    {{-- RESTAURANTS --}}
+                    <div class="restaurants-cards-container">
+                        <div v-if="restaurants.length" v-for="(restaurant, index) in this.restaurants[0]" class="restaurant-card">
+                            <h6>@{{restaurant.name}}</h6>
+                            <h6>@{{restaurant.address}}</h6>
+                            <p>@{{(String(restaurant.description).length > 30) ? restaurant.description.slice(0, 30) + "..." : restaurant.description }}</p>
+                            <button>Menù</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             @include('partials/footer')
