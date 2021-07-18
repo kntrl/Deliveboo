@@ -38,9 +38,6 @@ class PaymentController extends Controller
             'options' => [
                 'submitForSettlement' => true
             ],
-            'customFields' => [
-                'shippingAddress' => $form_data['address']
-            ]
         ]);
 
         //updating order status according to sale result.
