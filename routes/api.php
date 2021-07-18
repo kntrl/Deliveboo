@@ -24,7 +24,8 @@ Route::get('/restaurants','Api\RestaurantController@index');
 Route::get('/restaurants/search/{queryString}','Api\RestaurantController@search');
 Route::get('/restaurants/{user:slug}','Api\RestaurantController@show');
 
-
+//Orders API
+Route::post('/orders/validate-order','Api\OrderController@validateOrder');
 
 
 
