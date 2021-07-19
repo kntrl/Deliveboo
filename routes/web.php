@@ -33,6 +33,6 @@ Route::prefix('admin')
                 Route::resource('foods', 'FoodController');
                 
                 //Order Routes
-                Route::get('/orders','OrderController@index');
+                Route::get('/orders','OrderController@index')->name('orders.index');
     }
 );
