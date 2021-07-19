@@ -143,6 +143,7 @@ class OrderController extends Controller
             return response()->json(["messagge"=>"Order not found","order"=>$order],404);
         }
         
+        //checking order status not being already completed.
         if ((!$order->status == "pending" || !$order->status == "rejected")){
             return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
         }
