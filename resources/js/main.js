@@ -1,4 +1,5 @@
 const { default: Axios } = require("axios");
+const { isSet, functionsIn } = require("lodash");
 
 
 var app = new Vue({
@@ -7,6 +8,7 @@ var app = new Vue({
     
     data: {
         
+    
         url: "http://127.0.0.1:8000/api/",
 
         activeRibbon: "selected-pointy",
@@ -18,11 +20,103 @@ var app = new Vue({
 
         toggledSlider: "slider-off",
         category: "",
+        slug: "",
         restaurants: [],
         categories: [],
+        restaurantDetails : {},
+        restaurantMenu : [],
+
+
+        carrello : {},
+        
+        submittedCart : true,
+        foods: [],
+        cartToPay : {},
+        personalInfo : {
+            "name": "",
+            "last_name": "",
+            "email": "",
+            "delivery_address" : "",
+        },
+        orderDetails: {},
+
+
     },
     
     methods: {
+        submitPersonalOrderInfo(){
+            //console.log(this.personalInfo);
+            this.personalInfo = { 
+                                ...this.personalInfo,
+                                "order": this.orderDetails
+                                }
+            console.log(this.personalInfo);
+            this.frontToBack();
+        },
+
+        frontToBack(){
+            const data = JSON.stringify(this.personalInfo);
+            const config = {
+                "method": "post",
+                'url': 'http://127.0.0.1:8000/api/orders/validate-order',
+                "headers": {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                "data": data
+            }
+
+            Axios(config)
+                .then(function (response) {
+                    //console place holder
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        },
+
+
+        submitCart(restaurantSlug){
+            this.submittedCart = false;
+            this.cartToPay = this.carrello[restaurantSlug];
+            console.log("sono cart to pay", this.cartToPay);
+            const apiToCall = `${this.url}restaurants/${restaurantSlug}`;
+            Axios
+                .get(apiToCall)
+                .then(response => {
+                    const res = response.data;
+                    console.log("sono res.foods", res.restaurant.foods);
+
+                    for (const iterator of res.restaurant.foods) {
+                        console.log(iterator);
+                        if (this.cartToPay[iterator.slug]) {
+                            this.foods.push(
+                                {
+                                    "id": iterator.id,
+                                    "name" : iterator.name,
+                                    "quantity" : this.cartToPay[iterator.slug],
+                                }
+                            );
+                        }
+                    }
+                    this.orderDetails = {
+                        "restaurant" : restaurantSlug,
+                        "foods" : this.foods,
+                    }
+                    console.log(this.orderDetails);
+                    console.log(this.foods);
+                });
+        },
+        setCart(restaurantSlug){
+            localStorage.setItem("carrello", JSON.stringify(this.carrello));
+            this.setCartData(restaurantSlug);
+        },
+        setCartData(restaurantSlug){
+            let tempCart = JSON.parse(localStorage.getItem("carrello"));
+            this.carrello[restaurantSlug] = tempCart[restaurantSlug];
+            console.log(this.carrello)
+        },
         getCategories() {
             Axios
                 .get("http://127.0.0.1:8000/api/categories")
@@ -31,18 +125,15 @@ var app = new Vue({
                     this.categories = res;
                 });
         },
-
-        
-        selectCategory(category){
+        setCategory(category){
             this.category = category;
             const apiToCall = `${this.url}categories/${category}`;
             Axios
                 .get(apiToCall)
                 .then(response => {
                     const res = response.data;
-                    console.log(res.restaurants);
                     this.topFunction();
-                    Vue.set(this.restaurants, 0, res.restaurants);  
+                    Vue.set(this.restaurants, 0, res.restaurants);
                 })
                 .catch( error => {
                     console.log("ERRORE");
@@ -55,10 +146,24 @@ var app = new Vue({
                     }
                 })
         },
+        getMenu(slug){
+            this.slug = slug;
+            const apiToCall = `${this.url}restaurants/${slug}`;
+            Axios
+                .get(apiToCall)
+                .then(response => {
+                    const res = response.data;
+                    this.restaurantDetails = res.restaurant;
+                    this.restaurantMenu = this.restaurantDetails.foods;
 
-
-        resetCategory(){
+                    if (!this.carrello[slug]) {
+                        this.carrello[slug] = {};                
+                    }
+                });
+        },
+        resetCategoryAndSlug(){
             this.category = "";
+            this.slug = "";
         },
         //riporta l'utente in cima alla pagina
         topFunction() {
@@ -89,7 +194,10 @@ var app = new Vue({
                 this.upperBar = "upper-bar";
                 this.lowerBar = "lower-bar";
             }
-
+            //slider anim
+            this.sliderOnOff();
+        },
+        sliderOnOff(){
             //slider anim
             if (this.toggledSlider === "slider-off") {
                 this.toggledSlider = "slider-toggle";
@@ -98,13 +206,16 @@ var app = new Vue({
                 this.toggledSlider = "slider-off";
             }
         },
-
-
-
     },
 
 
     mounted(){
+        let storedData = JSON.parse(localStorage.getItem("carrello"));
+        if (storedData) {
+            this.carrello = storedData;
+            console.log(this.carrello);
+        }
+
         this.getCategories();
 
         function rand(min, max) {
@@ -173,6 +284,3 @@ var app = new Vue({
 
     },
 })
-
-
-    //`img/avatar${obj.avatar}.jpg`
