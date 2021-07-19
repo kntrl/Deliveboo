@@ -2,7 +2,7 @@
     <nav id="nav-id">
         @if (Route::has('login'))
             <div class="top-right links">
-                <img v-on:click="resetCategory()" src="{{ asset("/img/logo.png") }}" alt="Deliveboo logo">
+                <img v-on:click="resetCategoryAndSlug()" src="{{ asset("/img/logo.png") }}" alt="Deliveboo logo">
     
                 <div class="container-commands">
                     <div class="shown-commands">
