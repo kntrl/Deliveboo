@@ -12,6 +12,7 @@ use Braintree\Gateway as Gateway;
 use App\User;
 use App\Food;
 use App\Order;
+use Illuminate\Auth\Access\Gate;
 
 class OrderController extends Controller
 {
@@ -35,7 +36,6 @@ class OrderController extends Controller
                 'clientToken'=> $gateway->clientToken()->generate()
             ]
         ];
-
 
         //retrieving user and checking it exists
         if (!$restaurant =  User::where('slug','=',$order['restaurant'])->first()) {
@@ -65,11 +65,22 @@ class OrderController extends Controller
 
     }
 
+
+    /**
+     * receives order details (customer infos + order content) and 
+     * after validating it throught validateCart creates the new order
+     * attachs cart's foods and returns an Order model (and his foods)
+     * via json
+     * 
+     * @param OrderRequest,Gateway [json and Braintree Gateway]
+     *  
+     * @return Order as json
+     * 
+     */
     public function validateOrder(OrderRequest $request, Gateway $gateway)
     {
         //validating Order data
         $clientTokenJson = $this->validateCart($request,$gateway);
-    
         //if validation fails it returns validateCart response
         if(!isset(json_decode($clientTokenJson->content())->data->clientToken)){
             return response()->json(json_decode($clientTokenJson->content()),404);
@@ -84,6 +95,7 @@ class OrderController extends Controller
         //creating the order
         $order = new Order();
         $order->price = 0;
+        $order->status="pending";
         $order->fill($request->all());
 
         $order->save();
@@ -97,6 +109,8 @@ class OrderController extends Controller
             //attaching to food_order table
             $order->foods()->attach($food->id, ['quantity' => $cartFood['quantity']]);
         }
+        //saving order new price.
+        $order->save();
 
         //loading order foods for response
         $order->foods;
@@ -111,5 +125,51 @@ class OrderController extends Controller
         return response()->json($response);
 
     }
+
+    /**
+     * Generates tr ansaction from order.
+     * Checks if order is already paid, if so returns json error and status 404.
+     * 
+     * @param Request,Gateway (Request contains order and payment_method_nonce)
+     * 
+     * @return Order json
+     */
+    
+    public function createTransaction(Request $request,Gateway $gateway)
+    {
+
+        $data = $request->all();
+        if(!$order = Order::find($data['order_id'])) {
+            return response()->json(["messagge"=>"Order not found","order"=>$order],404);
+        }
+        
+        if ((!$order->status == "pending" || !$order->status == "rejected")){
+            return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
+        }
+        //creating transaction
+        $result = $gateway->transaction()->sale([
+            'amount' => $order->price,
+            'paymentMethodNonce' => $data['nonceFromTheClient'],
+            'orderId'=> $order->id,
+            'options' => [
+                'submitForSettlement' => true
+            ],
+        ]);
+
+        //updating order status according to sale result.
+        if (!$result->success) {
+            $order->status ="rejected";
+            return response()->json(["messagge"=>$result->message,"order"=>$order],400);
+        }
+
+        $order->status = "accepted";
+
+        $order->braintree_transaction_id = $result->transaction->orderId;
+
+        $order->save();
+
+        return response()->json(["messagge"=>$result->message,"order"=>$order],200);
+    }
+
 
 }
