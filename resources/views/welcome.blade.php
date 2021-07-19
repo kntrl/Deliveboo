@@ -61,7 +61,7 @@
                             <h2 id="anim-h2">Categories of Restaurants</h2>
                             <div id="row1" class="row"> 
                                 <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
-                                    <div v-on:click="selectCategory(el.name)" class="inner-box">
+                                    <div v-on:click="setCategory(el.name)" class="inner-box">
                                         <img class="category-img" v-bind:src="`img/${el.slug}.png`" alt="">
                                         <h3>@{{el.name.charAt(0).toUpperCase() + el.name.slice(1)}}</h3>
                                     </div>
@@ -72,35 +72,9 @@
                 </div>
             </div>
 
+            {{-- v-else --}}
+            @include('partials/categoryRestaurants')
             
-            <div v-else class="restaurants-box">
-                <div class="">
-                    {{-- <img src="" alt=""> --}}
-                    <h1>Ordina @{{category}}</h1>
-                    {{-- <select v-on:change="selectCategory(category)" v-model="category" id="" name="">
-                        <option v-for="category in categories">@{{category.name}}</option>
-                    </select> --}}
-                </div>
-
-                <div class="double-box">
-                    {{-- RIBBONS --}}
-                    <div class="ribbons-box">
-                        <div v-for="categoria in categories" class="container-ribbon">
-                            <span v-on:click="selectCategory(categoria.name)" v-bind:class="categoria.name == category ? activeRibbon : ''" class="pointy">@{{categoria.name.charAt(0).toUpperCase() + categoria.name.slice(1)}}</span>
-                        </div>
-                    </div>
-
-                    {{-- RESTAURANTS --}}
-                    <div class="restaurants-cards-container">
-                        <div v-if="restaurants[0].length" v-for="(restaurant, index) in restaurants[0]" class="restaurant-card">
-                            <h6>@{{restaurant.name}}</h6>
-                            <h6>@{{restaurant.address}}</h6>
-                            <p>@{{(String(restaurant.description).length > 30) ? restaurant.description.slice(0, 30) + "..." : restaurant.description }}</p>
-                            <button>Menù</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             @include('partials/footer')
         </div>
