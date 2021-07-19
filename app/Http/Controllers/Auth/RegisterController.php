@@ -7,9 +7,11 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Mail\DelivebooMail;
 
 class RegisterController extends Controller
 {
@@ -87,6 +89,11 @@ class RegisterController extends Controller
         $user->slug = Str::slug($user->name);
         $user->save();
         $user->categories()->attach($data['categories']);
+
+        if($user->save()) {
+            Mail::to($user->email)->send(new DelivebooMail($user));
+        }
+
         return $user;
     }
 }
