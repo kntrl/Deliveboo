@@ -1,0 +1,167 @@
+
+// Dashboard wrapper
+.dashboard-wrapper {
+    padding: 40px 0;    
+    background-color: $secondary-color;
+    .welcome {
+        @include auto-margin;
+        display:flex;
+        align-items: center;
+        .user {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 20px;
+        }       
+    }
+    
+    .dashboard-content {
+        width: 85%;        
+        margin: 30px auto;          
+    
+        .dish-and-order {
+            display: flex;
+            justify-content: space-between;                       
+            margin-bottom: 20px;
+               
+            .dashboard-dish,
+            .dashboard-order {
+                width: 48%;
+                padding: 20px;
+                border-radius: 15px;                
+                background-color: $secondary-text-color;
+                
+                .menu {  
+                    display: flex;  
+                    flex-wrap: wrap; 
+                    justify-content: space-between; 
+                    margin-top: 40px;              
+                    li {
+                        width: calc( 100% / 3 - 15px);
+                        margin-bottom: 10px;
+                        background: $secondary-text-color;
+                        padding: 10px;  
+                        border-radius: 10px;                                    
+                    }                    
+                }
+                .manage-btn {
+                    text-align: right;                        
+                    a {
+                        background-color: $primary-color;
+                        border-radius: 22px;
+                        padding: 10px;                            
+                        color: $secondary-text-color;
+                        text-decoration: none;
+                        font-weight: bold;
+                        border: 1px solid $primary-color;
+                        transition: .5s all;
+                        &:hover{
+                            color: $primary-color;
+                            background-color: $secondary-text-color;
+                            border: 1px solid $primary-color;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    
+        .dashboard-order-trend {
+            width: 100%;            
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;            
+            background-color: $secondary-text-color;
+            h2 {
+                margin: 20px 0;
+                width: 200px;
+            }
+
+            a {
+                background-color: $primary-color;
+                border-radius: 22px;
+                padding: 10px;                            
+                color: $secondary-text-color;
+                font-weight: bold;
+                transition: .5s all;
+                text-decoration: none;
+                &:hover{
+                    color: $primary-color;
+                    background-color: $secondary-text-color;
+                    border: 1px solid $primary-color;
+                    text-decoration: none;
+                }
+            }
+        
+            .order-trend {
+                display: flex;
+                
+                
+                .order {
+                    border: 1px solid $primary-color;
+                    background-color: $secondary-color;
+                    margin-bottom: 30px;
+                    padding: 20px;
+                    border-radius: 25px;
+                    margin-right: 40px;
+                    span {
+                        font-size: 50px;
+                    }
+                }
+            }
+        }
+    }    
+}
+
+@media screen and (max-width: 978px) {
+    body {
+        .dashboard-wrapper{
+            .dashboard-content { 
+                .dish-and-order{
+                    .dashboard-dish,
+                    .dashboard-order {            
+
+                        .menu {
+                            display: block;
+                            li {
+                                width: 100%;
+                            }
+                            
+                        }
+                    }
+                }             
+            }            
+        }       
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        .dashboard-wrapper{
+            .dashboard-content {
+                .dish-and-order {
+                    display:block;
+    
+                    .dashboard-dish,
+                    .dashboard-order {
+                        width: 100%;                       
+
+                        .menu {
+                            display: block;
+                            li {
+                                width: 100%;
+                            }
+                        }
+                    } 
+                    .dashboard-dish {
+                        margin-bottom: 20px;
+                    }                 
+                }
+            }            
+        }       
+    }
+}
+
+
