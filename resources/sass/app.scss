@@ -10,10 +10,13 @@
 
 @import 'partials/mixins';
 
-
+@import 'partials/mediaQuery';
 @import 'partials/nav';
 @import 'partials/header';
 @import 'partials/main';
 @import 'partials/footer';
 @import 'partials/dashboard';
+
+
 @import 'partials/commons';
+@import 'partials/login';
