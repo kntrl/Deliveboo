@@ -1,12 +1,79 @@
 .mylogin {
+   
     background-color: #fcecd5;
+    background-image: url(../img/ominilogin.svg);
     background-repeat: no-repeat;
-    background-position-x: right;
+    background-position-x: left;
     position: relative;
     overflow: hidden;
-    height: 100vh;
+    background-size: 1150px;
 
+    
     .container{
         width: 85%;
+        height: calc(100vh);
+        display: block;
+        margin: auto;
+        position: relative;
+
+
+        
+        .card {
+            margin-top: 150px;
+
+            .card-header {
+                background-color: white;
+                font-size: 20px;
+            }
+        }
+    }
+
+
+    .form-control {
+        &:focus {
+      
+            border-color: #fd9b9a;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(247 69 67 / 25%);
+        }
+    }
+
+    .btn-primary {
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+        font-weight: 600;
+
+        &:hover {
+            background-color: #fdb302;
+            border: 2px solid #fdb302;
+            text-decoration: none;
+        
+        }
+    }
+    .forgot {
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
+        text-align: left;
+        color: $primary-color;
+        
+        &:hover {
+            color: #fdb302;
+            text-decoration: none;
+        }
+    }
+
+}
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .mylogin {
+        background-image: url(../img/ominaalogin.svg);
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
+    .mylogin {
+        background-image: none;
     }
 }
