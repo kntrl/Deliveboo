@@ -36,44 +36,72 @@
     
     {{-- SPECIFIC RESTAURANT MENU --}}
     <div v-else>
-        {{-- menu ristorante e potenziale conferma ordine --}}
-        <div v-if="submittedCart">
-            <h2 v-if="">@{{restaurantDetails.name}}</h2>
-            <div>
-                <form action="">
-                    <div v-for="dish in restaurantMenu">
-                        <label for="quantity">@{{dish.name}}</label>
-                        <p>@{{dish.ingredients}}</p>
-                        <label for="quantity">@{{dish.price}}</label>
-                        <input v-on:change="setCart(restaurantDetails.slug)"
-                                v-model.number="carrello[restaurantDetails.slug][dish.slug]"
-                                type="number" id="quantity" 
-                                name="quantity" min="0" max="15"
-                        >
-                    </div>
+
+        <div v-if="!toPayment">
+            {{-- menu ristorante e potenziale conferma ordine --}}
+            <div v-if="submittedCart">
+                <h2 v-if="">@{{restaurantDetails.name}}</h2>
+                <div>
+                    <form action="">
+                        <div v-for="dish in restaurantMenu">
+                            <label for="quantity">@{{dish.name}}</label>
+                            <p>@{{dish.ingredients}}</p>
+                            <label for="quantity">@{{dish.price}}</label>
+                            <input v-on:change="setCart(restaurantDetails.slug)"
+                                    v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                    type="number" id="quantity" 
+                                    name="quantity" min="0" max="15"
+                            >
+                        </div>
+        
+                        <button v-on:click.prevent="submitCart(restaurantDetails.slug)">Go to Checkout</button>
+                    </form>
+                </div>
+            </div>
     
-                    <button v-on:click.prevent="submitCart(restaurantDetails.slug)">Go to Checkout</button>
-                </form>
+            {{-- inserimento ulteriori informazioni per la consegna dell'ordine --}}
+            <div v-else>
+                <form action="">
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" name="fname" v-model="personalInfo.name"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input type="text" id="lname" name="lname" v-model="personalInfo.last_name"><br><br>
+    
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="" v-model="personalInfo.email"><br>
+    
+                    <label for="address">Address</label><br>
+                    <input type="text" name="" id="" v-model="personalInfo.delivery_address"><br><br>
+    
+                    <input class="brainClick" v-on:click.prevent="submitPersonalOrderInfo()" type="submit" value="Submit">
+                </form> 
             </div>
         </div>
 
-        {{-- inserimento ulteriori informazioni per la consegna dell'ordine --}}
         <div v-else>
-            <form action="/action_page.php">
-                <label for="fname">First name:</label><br>
-                <input type="text" id="fname" name="fname" v-model="personalInfo.name"><br>
-                <label for="lname">Last name:</label><br>
-                <input type="text" id="lname" name="lname" v-model="personalInfo.last_name"><br><br>
+            
+            <form method="" id="payment-form">
+                
+                <div class="bt-drop-in-wrapper">
+                    <div id="bt-dropin"></div>
+                </div>
+        
+                <input id="nonce" name="payment_method_nonce" type="hidden" />
+                <button class="btn btn-primary" type="submit"><span>Paga ora</span></button>
 
-                <label for="email">Email</label><br>
-                <input type="email" name="email" id="" v-model="personalInfo.email"><br>
+                
+                <div>
+                    <small>Metodo di pagamento sicuro gestito da Braintree</small>
+                </div>
+            </form>
 
-                <label for="address">Address</label><br>
-                <input type="text" name="" id="" v-model="personalInfo.delivery_address"><br><br>
 
-                <input v-on:click.prevent="submitPersonalOrderInfo()" type="submit" value="Submit">
-            </form> 
+            
+
         </div>
     </div>
 </div>
+
+{{-- braintree --}}
+<script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
 
