@@ -39,12 +39,11 @@ var app = new Vue({
 
         backResponse : {},
         clientToken: "",
-        orderID: "",
     },
     
     methods: {
         
-        brainTreeFunction(){
+        brainTreeFunction(orderID){
             var form = document.querySelector('#payment-form');
             braintree.dropin.create({
                 authorization: this.clientToken,
@@ -71,7 +70,7 @@ var app = new Vue({
                         
                         const toBack = 
                             {
-                                "order_id": this.orderID,
+                                "order_id": orderID,
                                 "nonceFromTheClient": payload.nonce,
                             }
                         const config = {
@@ -120,16 +119,13 @@ var app = new Vue({
                     const res = JSON.stringify(response.data);
                     this.backResponse = JSON.parse(res);
                     this.clientToken = this.backResponse.data.clientToken;
-                   
-                    this.orderID = this.backResponse.data.order.id;
-                    this.brainTreeFunction();
+                
+                    this.brainTreeFunction(this.backResponse.data.order.id);
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
         },
-
-
         submitCart(restaurantSlug){
             this.submittedCart = false;
             this.cartToPay = this.carrello[restaurantSlug];
@@ -263,34 +259,6 @@ var app = new Vue({
 
 
     mounted(){
-        
-        /* var form = document.querySelector('#payment-form');
-        var client_token = this.clientToken;
-        braintree.dropin.create({
-            authorization: client_token,
-            selector: '#bt-dropin',
-            paypal: {
-                flow: 'vault'
-            }
-        }, function (createErr, instance) {
-            if (createErr) {
-                console.log('Create Error', createErr);
-                return;
-            }
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-                instance.requestPaymentMethod(function (err, payload) {
-                    if (err) {
-                        console.log('Request Payment Method Error', err);
-                        return;
-                    }
-                    // Add the nonce to the form and submit
-                    document.querySelector('#nonce').value = payload.nonce;
-                    form.submit();
-                });
-            });
-        }); */
-        
         //
         let storedData = JSON.parse(localStorage.getItem("carrello"));
         if (storedData) {
@@ -304,8 +272,6 @@ var app = new Vue({
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-
-        
         //GSAP
         gsap.registerPlugin(ScrollTrigger);
         /* V1 */

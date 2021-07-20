@@ -148,6 +148,11 @@
 /* MEDIA 768*/
 @media screen and (max-width: 768px){
     body{
+        .my-jumbotron .my-wrap .left-side a{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         .my-jumbotron{
             background-image: url("../img/bkground-bianco.svg");
             .jm-img {
@@ -203,6 +208,12 @@
 /* MEDIA 524*/
 @media screen and (max-width: 524px){
     body{
+        .my-jumbotron .my-wrap .left-side a{
+            width: 150px;
+            font-size: 14px;
+            padding: 10px 5px;
+           text-align: center;
+        }
         .my-jumbotron{
             
             .my-wrap{
