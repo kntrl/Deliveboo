@@ -1,0 +1,138 @@
+//ADMIN FOOD CREATE and EDIT
+
+.admin-create {
+    
+    .create-form {
+        @include auto-margin;
+        
+        .create-form-title {
+            text-align: center;
+            padding: 20px 0;            
+        }        
+    }
+    .form-create-body {
+        padding: 30px 0;
+        box-shadow: rgba(0, 0, 0, 0.60) 0px 3px 8px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .btn-create,
+        .btn-edit {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+
+    .delete-form {
+        text-align: center;
+    }
+}
+
+//ADMIN FOOD INDEX
+
+.admin-food-index {
+    .food-collection {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px 0;
+        .single-food {
+            width: calc( 100% / 2 - 20px );
+            border-radius: 10px;  
+            padding: 20px; 
+            margin-bottom: 30px;  
+            box-shadow: rgba(0, 0, 0, 0.60) 0px 3px 8px;
+
+            h4 {
+                margin-bottom: 10px;
+            }
+            .food-details {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                border-bottom: 1px solid lightgrey;
+                &.ingredient {
+                    display: block;                
+                    margin-bottom: 40px;
+                    border-bottom: 0
+                }
+                
+            }
+            .edit-btn {
+                a {
+                    background-color: $primary-color;
+                    border-radius: 22px;
+                    padding: 10px;                            
+                    color: $secondary-text-color;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border: 1px solid $primary-color;
+                    transition: .5s all;                    
+                    display: block;
+                    text-align: center;                    
+                    &:hover{
+                        color: $primary-color;
+                        background-color: $secondary-text-color;
+                        border: 1px solid $primary-color;
+                        text-decoration: none;
+                    }
+                }
+            }
+            .delete-form {
+                .delete-btn {
+                    background-color: $secondary-text-color;
+                    border-radius: 22px;
+                    padding: 10px;                            
+                    color: $primary-color;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border: 1px solid $primary-color;
+                    transition: .5s all;                    
+                    display: block;
+                    width: 100%;
+                    margin-top: 20px;
+                    &:hover{
+                        color: $secondary-text-color;
+                        background-color: $primary-color;
+                        border: 1px solid $primary-color;
+                        text-decoration: none;
+                    } 
+
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .admin-food-index {
+        .food-collection {
+            display: block;
+            .single-food {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+
+
+//media 768
+
+@media screen and (max-width: 768px) {
+    .admin-create {
+        .create-form {
+            .form-create-body{
+                padding: 30px;
+
+                .str-label {
+                    font-weight: bold;
+                }          
+            }            
+        }
+    }
+}

@@ -21,9 +21,15 @@
 
             {{-- DASHBOARD --}}
             <div class="welcome">
-                <div class="user"></div>
-                <h1>{{ Auth::user()->name }}</h1>
+                
+                <div class="user-info">
+                    <div class="user"></div>
+                    <h1>{{ Auth::user()->name }}</h1>    
+                </div>     
+                <img src="{{ asset('/img/board..img.svg') }}" alt="">                                 
+                
             </div>
+            
             {{-- {{ __('You are logged in!') }} --}}
         </div>    
     </div>   
@@ -36,89 +42,156 @@
 
     <div class="dashboard-content">
 
-        <div class="dish-and-order">
+        {{-- Dish and trend  --}}
+        <div class="dish-and-trend">
 
+            {{-- Dish --}}
             <div class="dashboard-dish">
-                <h2>Il Tuo Menù</h2>
+                <h2>My Foods</h2>
 
-                <ul class="menu">
-                    <li>
-                        <h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>
+                <div class="dish-details">
 
-                    <li>
-                        <h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>
+                    <div>Numero totale piatti</div>
+                    <span>20</span>                   
 
-                    <li>
-                        <h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>
-                                     
-                </ul>
-                <div class="manage-btn">
-                    <a href="{{ route('admin.foods.index') }}">Gestisci il tuo menù</a>
                 </div>
 
+                <div class="dish-details">
+
+                    <div>Numero piatti non disponibili</div>
+                    <span>20</span>                   
+
+                </div>
+                
+                <div class="manage-btn">
+                    <a href="{{ route('admin.foods.index') }}">Gestisci i tuoi piatti</a>
+                    <a href="{{ route('admin.foods.create') }}">Aggiungi un piatto</a>
+                </div>          
+
             </div>
+            {{-- end dish --}}
 
-            <div class="dashboard-order">
-                <h2>I Tuoi Ordini</h2>
 
-                <ul class="menu">
-                    <li>
-                        <h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>
+            {{-- Trend --}}
+            <div class="dashboard-order-trend">
+                
+                <h2>Order Trend</h2>  
+                  
+                <div class="dish-details">
 
-                    <li><h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>
+                    <div>Numero di ordini per mesi</div>
+                    <span>20</span>                   
 
-                    <li>
-                        <h5>Zuppa di miso</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        <div>€ <span>6.30</span></div>
-                    </li>              
-                                   
+                </div>   
 
-                </ul>
+                <div class="dish-details">
+
+                    <div>Numero di ordini per anni</div>
+                    <span>20</span>                   
+
+                </div> 
+
+                <div class="dish-details">
+
+                    <div>totale vendite</div>
+                    <span>20</span>                   
+
+                </div>   
+                 
 
                 <div class="manage-btn">
-                    <a href="{{ route('admin.orders.index') }}">Gestisci i tuoi ordini</a>
-                </div>
-
+                    <a href="">Mostra grafico</a>     
+                    <a href="{{ route('admin.orders.index') }}">Vai ai tuoi ordini</a>
+                   
+                </div>           
+                
             </div>
-
-        </div>
-
-        <div class="dashboard-order-trend">
-            <div>
-                <h2>Order Trend</h2>
-                <a href="">Mostra grafico</a>
-            </div>
+            {{-- end Trend --}}
             
 
-            <div class="order-trend">
-                <div class="order per-month">
-                    per month <span>69%</span>
+        </div>
+        {{-- end Dish and trend --}}
+
+        {{-- Order --}}
+        <div class="dashboard-order">
+            <h2>Ultimi ordini ricevuti</h2>
+
+            {{-- single order --}}
+            
+            <div class="single-order">
+                
+                {{-- order title --}}
+                <div class="order-title">
+
+                    <div>Numero ordine: 12</div>
+
+                    <div>19/07/2021 - 17.28</div>
+
+                    <div>Totale: € 11,90</div>            
+
                 </div>
+                {{-- end order title --}}
+
+                {{-- order details --}}
+                <div class="order-details">
+
+                    <ul class="dish-name">
+                        <li>
+                            <h5>Nome piatto</h5>
+                        </li>
+
+                        <li>Miso soup</li>
+
+                        <li>Miso soup</li>
+
+                        <li>Miso soup</li>
+                    </ul>
+
+                    <ul class="dish-quantity">
+                        <li>
+                            <h5>Quantità</h5>
+                        </li>
+
+                        <li>1</li>
+
+                        <li>1</li>
+
+                        <li>1</li>
+                    </ul>
+
+                    
+
+                    <ul class="dish-price">
+                        <li>
+                            <h5>prezzo</h5>
+                        </li>
+
+                        <li>€ 3.90</li>
+
+                        <li>€ 3.90</li>
+
+                        <li>€ 3.90</li>
+
+                    </ul>
+
+                </div>
+                {{-- end order details --}}
+
+                <div class="note">
+                    Note: 
+                </div>
+                                           
+                            
+
+            </div>  
+            {{-- end single order --}}
+
+        </div>
+            
+
+    </div>   
     
-                <div class="order per-year">
-                    per year <span>87%</span>
-                </div>
-            </div>           
-            
-        </div>
-
-    </div>        
+    
     {{-- end My dashboard --}}
 
     
