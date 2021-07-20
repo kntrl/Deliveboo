@@ -1,24 +1,21 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
+@import "partials/mixins";
 
-@import 'partials/mixins';
+@import "partials/mediaQuery";
+@import "partials/nav";
+@import "partials/header";
+@import "partials/main";
+@import "partials/footer";
+@import "partials/dashboard";
 
-@import 'partials/mediaQuery';
-@import 'partials/nav';
-@import 'partials/header';
-@import 'partials/main';
-@import 'partials/footer';
-@import 'partials/dashboard';
-
-
-@import 'partials/commons';
-@import 'partials/login';
-@import 'partials/admin';
-
+@import "partials/commons";
+@import "partials/login";
+@import "partials/admin";
