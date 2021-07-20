@@ -137,16 +137,20 @@ class OrderController extends Controller
     
     public function createTransaction(Request $request,Gateway $gateway)
     {
-
         $data = $request->all();
+
         if(!$order = Order::find($data['order_id'])) {
             return response()->json(["messagge"=>"Order not found","order"=>$order],404);
         }
-        
+
+
         //checking order status not being already completed.
         if ((!$order->status == "pending" || !$order->status == "rejected")){
             return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
         }
+
+    
+
         //creating transaction
         $result = $gateway->transaction()->sale([
             'amount' => $order->price,
@@ -157,10 +161,11 @@ class OrderController extends Controller
             ],
         ]);
 
+
         //updating order status according to sale result.
         if (!$result->success) {
             $order->status ="rejected";
-            return response()->json(["messagge"=>$result->message,"order"=>$order],400);
+            return response()->json(["message"=>$result->message,"order"=>$order],400);
         }
 
         $order->status = "accepted";
@@ -169,7 +174,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        return response()->json(["messagge"=>$result->message,"order"=>$order],200);
+        return response()->json(["message"=>"Pagamento effettuato con successo","order"=>$order],200);
     }
 
 
