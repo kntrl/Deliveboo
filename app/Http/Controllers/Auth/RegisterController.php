@@ -90,10 +90,6 @@ class RegisterController extends Controller
         $user->save();
         $user->categories()->attach($data['categories']);
 
-        if($user->save()) {
-            Mail::to($user->email)->send(new DelivebooMail($user));
-        }
-
         return $user;
     }
 }
