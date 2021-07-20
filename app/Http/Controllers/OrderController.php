@@ -34,7 +34,7 @@ class OrderController extends Controller
             }
 
             if(!$form_data['quantity'. $food_id] > 0) {
-                return redirect()->route('create');
+                return redirect()->route('guest.orders.create',["user"=>$user]);
             }
 
             $food = Food::find($food_id);

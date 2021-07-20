@@ -49,7 +49,7 @@ class PaymentController extends Controller
         $order->save();
         $transaction = $result->transaction;
 
-        return view('payments.receipt',compact('result'),compact('transaction'));
+        return view('payments.receipt',compact('result'),compact('order'));
     }
 
 }
