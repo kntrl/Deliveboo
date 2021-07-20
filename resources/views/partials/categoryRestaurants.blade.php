@@ -78,10 +78,8 @@
             </div>
         </div>
 
-        <div v-else>
-            
+        <div v-else>    
             <form method="" id="payment-form">
-                
                 <div class="bt-drop-in-wrapper">
                     <div id="bt-dropin"></div>
                 </div>
@@ -89,15 +87,10 @@
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
                 <button class="btn btn-primary" type="submit"><span>Paga ora</span></button>
 
-                
                 <div>
                     <small>Metodo di pagamento sicuro gestito da Braintree</small>
                 </div>
             </form>
-
-
-            
-
         </div>
     </div>
 </div>

@@ -5,11 +5,8 @@ var app = new Vue({
     el: "#root",    
 
     data: {
-        
         url: "http://127.0.0.1:8000/api/",
-
         activeRibbon: "selected-pointy",
-
         crossRightBurgerBar: "untoggle-cross-right",
         crossLeftBurgerBar: "untoggle-cross-left",
         upperBar: "upper-bar",
@@ -91,7 +88,6 @@ var app = new Vue({
                 });
             });
         },
-
         submitPersonalOrderInfo(){
             //console.log(this.personalInfo);
             this.toPayment = true;
@@ -256,7 +252,6 @@ var app = new Vue({
             }
         },
     },
-
 
     mounted(){
         //
