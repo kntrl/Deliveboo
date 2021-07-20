@@ -1,14 +1,11 @@
 const { default: Axios } = require("axios");
 const { isSet, functionsIn } = require("lodash");
 
-
 var app = new Vue({
     el: "#root",    
 
-    
     data: {
         
-    
         url: "http://127.0.0.1:8000/api/",
 
         activeRibbon: "selected-pointy",
@@ -28,7 +25,7 @@ var app = new Vue({
 
 
         carrello : {},
-        
+        toPayment: false,
         submittedCart : true,
         foods: [],
         cartToPay : {},
@@ -40,20 +37,73 @@ var app = new Vue({
         },
         orderDetails: {},
 
-
+        backResponse : {},
+        clientToken: "",
+        orderID: "",
     },
     
     methods: {
+        
+        brainTreeFunction(){
+            var form = document.querySelector('#payment-form');
+            braintree.dropin.create({
+                authorization: this.clientToken,
+                selector: '#bt-dropin',
+                paypal: {
+                    flow: 'vault'
+                }
+            }, function (createErr, instance) {
+                if (createErr) {
+                    console.log('Create Error', createErr);
+                    return;
+                }
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    instance.requestPaymentMethod(function (err, payload) {
+                        if (err) {
+                            console.log('Request Payment Method Error', err);
+                            return;
+                        }
+                        // Add the nonce to the form and submit
+                        
+                        document.querySelector('#nonce').value = payload.nonce;
+                        
+                        
+                        const toBack = 
+                            {
+                                "order_id": this.orderID,
+                                "nonceFromTheClient": payload.nonce,
+                            }
+                        const config = {
+                            "method": "post",
+                            'url': 'http://127.0.0.1:8000/api/orders/create-transaction',
+                            "headers": {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            "data": toBack
+                        }
+                    
+                        Axios(config)
+                            .then((response) => {
+                                console.log(response.data);
+                            });
+                    });
+                });
+            });
+        },
+
         submitPersonalOrderInfo(){
             //console.log(this.personalInfo);
+            this.toPayment = true;
             this.personalInfo = { 
                                 ...this.personalInfo,
                                 "order": this.orderDetails
                                 }
             console.log(this.personalInfo);
             this.frontToBack();
-        },
 
+        },
         frontToBack(){
             const data = JSON.stringify(this.personalInfo);
             const config = {
@@ -65,11 +115,14 @@ var app = new Vue({
                 },
                 "data": data
             }
-
             Axios(config)
-                .then(function (response) {
-                    //console place holder
-                    console.log(JSON.stringify(response.data));
+                .then((response) => {
+                    const res = JSON.stringify(response.data);
+                    this.backResponse = JSON.parse(res);
+                    this.clientToken = this.backResponse.data.clientToken;
+                   
+                    this.orderID = this.backResponse.data.order.id;
+                    this.brainTreeFunction();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -210,6 +263,35 @@ var app = new Vue({
 
 
     mounted(){
+        
+        /* var form = document.querySelector('#payment-form');
+        var client_token = this.clientToken;
+        braintree.dropin.create({
+            authorization: client_token,
+            selector: '#bt-dropin',
+            paypal: {
+                flow: 'vault'
+            }
+        }, function (createErr, instance) {
+            if (createErr) {
+                console.log('Create Error', createErr);
+                return;
+            }
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (err) {
+                        console.log('Request Payment Method Error', err);
+                        return;
+                    }
+                    // Add the nonce to the form and submit
+                    document.querySelector('#nonce').value = payload.nonce;
+                    form.submit();
+                });
+            });
+        }); */
+        
+        //
         let storedData = JSON.parse(localStorage.getItem("carrello"));
         if (storedData) {
             this.carrello = storedData;
