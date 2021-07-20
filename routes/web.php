@@ -38,6 +38,10 @@ Route::name('guest.')
 }
 );
 
+//AUTH ROUTES
+Auth::routes(['verify' => true]);
+Auth::routes();
+
 //BRAINTREE ROUTES
 Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
 Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
@@ -47,7 +51,7 @@ Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.c
 /*****************************
 *  AUTH DASHBOARD ROUTES
 ******************************/
-Auth::routes();
+
 
 Route::prefix('admin')
 ->namespace('Admin')
