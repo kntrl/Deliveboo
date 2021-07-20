@@ -5,8 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\VerifyEmailNotification;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -61,6 +62,13 @@ class User extends Authenticatable
         } 
 
         return $food;
+    }
 
+    /**
+     * Sending custom Email Verification mail to last registered user
+     */
+    public function sendEmailVerificationNotification()
+    {
+    $this->notify(new VerifyEmailNotification());
     }
 }
