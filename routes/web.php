@@ -20,12 +20,14 @@ Route::get('/', function(){
 
 Auth::routes(['verify' => true]);
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 //Dashboard Routes
 Route::prefix('admin')
     ->namespace('Admin')
+    ->middleware('verified')
     ->middleware('auth')
     ->name('admin.')
     ->group(function () {
