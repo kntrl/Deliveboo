@@ -7,7 +7,7 @@
     background-position-x: left;
     position: relative;
     overflow: hidden;
-    background-size: 1150px;
+    background-size: 1250px;
 
     
     .container{
@@ -20,7 +20,7 @@
 
         
         .card {
-            margin-top: 80px;
+            margin-top: 185px;
             border: none;
 
             .card-header {
@@ -92,11 +92,11 @@
 
 //pagina register//
 .myregister {
-
     background-color: $secondary-color;
     background-image: url(../img/registerpc.svg);
     background-repeat: no-repeat;
     background-position-x: left;
+    background-position-y: 120px;
     position: relative;
     overflow: hidden;
     background-size: 1150px;
@@ -109,7 +109,7 @@
         position: relative;
 
         .card {
-            margin-top: 80px;
+            margin-top: 185px;
             margin-bottom: 80px;
             border: none;
 
