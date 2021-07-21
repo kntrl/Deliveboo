@@ -64,5 +64,6 @@ Route::prefix('dashboard')
         
         //Order Routes
         Route::get('/orders','OrderController@index')->name('orders.index');
+        Route::get('/orders/stats','OrderController@stats')->name('orders.stats');
     }
 );

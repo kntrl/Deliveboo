@@ -22,7 +22,7 @@ class OrdersTableSeeder extends Seeder
             5=>'completed'
         ];
 
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 5000; $i++) { 
 
             $new_order = new Order();
 
@@ -36,6 +36,10 @@ class OrdersTableSeeder extends Seeder
             $new_order->status = $temp_status_array[$faker->numberBetween(0,5)];
             $new_order->price = $faker->randomFloat(2, 1, 50);
          
+            $new_order->save();
+
+            $new_order->created_at = $faker->dateTimeBetween('-2 years','-1 day');
+
             $new_order->save();
         }
     }
