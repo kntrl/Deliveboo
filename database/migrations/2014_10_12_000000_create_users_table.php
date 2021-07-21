@@ -12,10 +12,12 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name','70');
             $table->string('piva','11')->unique();
+            $table->string('phone','10')->unique();
             $table->string('address');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('email')->unique();
+            $table->decimal('vote',2,1)->default(null)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

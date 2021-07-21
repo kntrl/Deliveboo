@@ -30,7 +30,7 @@ class OrdersTableSeeder extends Seeder
             $new_order->name = $faker->firstName(); 
             $new_order->last_name = $faker->lastName();
             $new_order->email = $faker->safeEmail();
-
+            $new_order->phone = '3' . $faker->shuffle('012345678');
             //address infos
             $new_order->delivery_address = $faker->address();
             $new_order->status = $temp_status_array[$faker->numberBetween(0,5)];
