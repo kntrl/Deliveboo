@@ -4,7 +4,7 @@
 <div class="mylogin">
     <div class="container">
         <div class="row justify-content-end right">
-            <div class="col-md-7 col-lg-6 col-xl-6">
+            <div class="col-md-7 col-lg-6 col-xl-5">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
                     
