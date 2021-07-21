@@ -31,6 +31,7 @@ var app = new Vue({
             "last_name": "",
             "email": "",
             "delivery_address" : "",
+            "phone" : "",
         },
         orderDetails: {},
 
@@ -91,6 +92,7 @@ var app = new Vue({
         submitPersonalOrderInfo(){
             //console.log(this.personalInfo);
             this.toPayment = true;
+            //this.personalInfo.phone = parseInt(this.personalInfo.phone);
             this.personalInfo = { 
                                 ...this.personalInfo,
                                 "order": this.orderDetails
