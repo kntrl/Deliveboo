@@ -19422,7 +19422,8 @@ var app = new Vue({
       "name": "",
       "last_name": "",
       "email": "",
-      "delivery_address": ""
+      "delivery_address": "",
+      "phone": ""
     },
     orderDetails: {},
     backResponse: {},
@@ -19475,7 +19476,8 @@ var app = new Vue({
     },
     submitPersonalOrderInfo: function submitPersonalOrderInfo() {
       //console.log(this.personalInfo);
-      this.toPayment = true;
+      this.toPayment = true; //this.personalInfo.phone = parseInt(this.personalInfo.phone);
+
       this.personalInfo = _objectSpread(_objectSpread({}, this.personalInfo), {}, {
         "order": this.orderDetails
       });

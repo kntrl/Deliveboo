@@ -30,7 +30,7 @@ class OrderController extends Controller
         foreach ( $form_data['foods'] as $food_id) {
 
             if(!in_array($food_id ,$idFoodUser)) {
-                return redirect()->route('home');
+                return redirect()->route('welcome');
             }
 
             if(!$form_data['quantity'. $food_id] > 0) {
