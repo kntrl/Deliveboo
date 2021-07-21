@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\VerifyEmailNotification;
+use App\Providers\RouteServiceProvider;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -59,12 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * if true,returns the food 
      * if false aborts(404)
      * @param foodId
-     * @return App\Food or 404
+     * @return App\Food or redirects to previews page.
      */
     public function foodOrFail($foodId)
     {
         if (!$food = $this->foods->firstWhere('id',$foodId)){
-            abort(404);  
+            abort(403);
         } 
 
         return $food;
