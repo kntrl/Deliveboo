@@ -134,13 +134,11 @@
             }
         }
     }
-
 }
 
 
 @media screen and (max-width: 978px) {
     .dashboard-wrapper {       
-        
         .auth-default-tag {
             .welcome {
                 img {
@@ -169,6 +167,32 @@
             }
         }        
     }   
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-wrapper {
+        .auth-default-tag {
+            .welcome {
+                .user {
+                    display: none;
+                }
+            }
+        }
+        .dashboard-content {            
+            .dish-and-trend {                
+                .dashboard-dish,
+                .dashboard-order-trend {
+                    .manage-btn {
+                        text-align: center;
+                        a {
+                            display: block;                                                       
+                        }
+                    }
+                }                
+            }            
+        }       
+    }
+
 }
 
 
