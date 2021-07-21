@@ -85,11 +85,9 @@
 
         {{-- braintree --}}
         <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
-        
         {{-- gsap --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
-
         {{-- my script --}}
         <script src="{{ asset("js/main.js") }}"></script>
         <script src="{{ asset("js/gsapAnimations.js") }}"></script>
