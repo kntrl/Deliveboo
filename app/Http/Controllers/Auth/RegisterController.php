@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'piva' =>['required','string','min:11','max:11','unique:users'],
             'address'=>['required', 'string', 'max:255'],
-            'phone'=>['required','digits:8,10','unique:users'],
+            'phone'=>['required','regex:/[0-9]{8,10}/','unique:users'],
             'description'=>['max:1000'],
             'categories'=>['required','exists:categories,id']
         ]);
@@ -80,8 +80,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data,Slug $slug)
+    protected function create(array $data)
     {
+        $slug = new Slug();
         $user = new User();
         $data['password'] = Hash::make($data['password']);
         $user->fill($data);
