@@ -29,7 +29,7 @@ Route::name('guest.')
     })->name('welcome');
 
 
-    //Order Routes
+    //Order Routes => used for testing only. REMOVE BEFORE PRODUCTION
     Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
     Route::post('/restaurants/{user:slug}/store','OrderController@store')->name('orders.store');
 
