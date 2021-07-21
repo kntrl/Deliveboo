@@ -7,12 +7,10 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use App\Mail\DelivebooMail;
 
+Use App\Services\Slug;
 class RegisterController extends Controller
 {
     /*
@@ -81,12 +79,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data,Slug $slug)
     {
         $user = new User();
         $data['password'] = Hash::make($data['password']);
         $user->fill($data);
-        $user->slug = Str::slug($user->name);
+        $user->slug = $slug($user->name,'users');;
         $user->save();
         $user->categories()->attach($data['categories']);
 
