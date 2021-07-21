@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'piva' =>['required','string','min:11','max:11','unique:users'],
             'address'=>['required', 'string', 'max:255'],
+            'phone'=>['required','[0-9]{10}','unique:users'],
             'description'=>['max:1000'],
             'categories'=>['required','exists:categories,id']
         ]);
