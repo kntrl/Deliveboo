@@ -84,8 +84,8 @@
                         {{-- category list column --}}
                         <div class="col-md-6 ml-2 d-flex flex-wrap justify-content-between">
                             
-                            <div class="col-5">
-
+                            <div class="col-5 categories">
+                                <img src="{{asset('/img/vegan1.png') }}" alt="">
                                 <input class="custom-control-input" name="is_vegan" type="checkbox" value="1" id="is_vegan" {{ old('is_vegan', $food->is_vegan) ? 'checked' : '' }} >
                                 <label class="custom-control-label" for="is_vegan">
                                     Vegano
@@ -93,8 +93,8 @@
                                 
                             </div>
 
-                            <div class="col-5">
-                                
+                            <div class="col-5 categories">
+                                <img src="{{asset('/img/vegetarian.png') }}" alt="">
                                 <input class="custom-control-input" name="is_veggy" type="checkbox" value="1" id="is_veggy" {{ old('is_veggy', $food->is_veggy) ? 'checked' : '' }} >
                                 <label class="custom-control-label" for="is_veggy">
                                     Vegetariano
@@ -102,8 +102,8 @@
                                 
                             </div>
 
-                            <div class="col-5">
-                                
+                            <div class="col-5 categories">
+                                <img src="{{asset('/img/spicy1.jpg') }}" alt="">
                                 <input class="custom-control-input" name="is_hot" type="checkbox" value="1" id="is_hot" {{ old('is_hot', $food->is_hot) ? 'checked' : '' }} >
                                 <label class="custom-control-label" for="is_hot">
                                     Piccante
@@ -111,8 +111,8 @@
                                 
                             </div>
 
-                            <div class="col-5">
-                                
+                            <div class="col-5 categories">
+                                <img src="{{asset('/img/no-lactose.png') }}" alt="">
                                 <input class="custom-control-input" name="is_lactose_free" type="checkbox" value="1" id="is_lactose_free" {{ old('is_lactose_free', $food->is_lactose_free) ? 'checked' : '' }} >
                                 <label class="custom-control-label" for="is_lactose_free">
                                     Senza Lattosio
@@ -120,8 +120,8 @@
                                 
                             </div>
 
-                            <div class="col-5">
-                                
+                            <div class="col-5 categories">
+                                <img src="{{asset('/img/no-gluten.png') }}" alt="">
                                 <input class="custom-control-input" name="is_gluten_free" type="checkbox" value="1" id="is_gluten_free" {{ old('is_gluten_free', $food->is_gluten_free) ? 'checked' : '' }} >
                                 <label class="custom-control-label" for="is_gluten_free">
                                     Senza Glutine
