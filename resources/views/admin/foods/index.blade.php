@@ -60,7 +60,7 @@
                     </div>
                 @endif
 
-                @if ($food->iis_lactose_free == 1)   
+                @if ($food->is_lactose_free == 1)   
                     <div class="food-details">
                         <div class="food-key"><strong>Lactose Free: </strong></div>
                         <div class="food-value">{{$food->is_lactose_free == 1 ? 'Yes' : 'No'}}</div>
