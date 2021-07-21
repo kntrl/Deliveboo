@@ -20,7 +20,7 @@
 
         
         .card {
-            margin-top: 150px;
+            margin-top: 80px;
             border: none;
 
             .card-header {
@@ -94,7 +94,7 @@
 .myregister {
 
     background-color: $secondary-color;
-    
+    background-image: url(../img/registerpc.svg);
     background-repeat: no-repeat;
     background-position-x: left;
     position: relative;
@@ -109,8 +109,8 @@
         position: relative;
 
         .card {
-            margin-top: 150px;
-            margin-bottom: 150px;
+            margin-top: 80px;
+            margin-bottom: 80px;
             border: none;
 
             .card-header {
@@ -165,5 +165,25 @@
         &:active {
             box-shadow: 0 0 0 0.2rem rgb(253 179 2/ 25%);
         }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .myregister {
+        background-image: url(../img/registeripadpro.svg);
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 950px) {
+    .myregister {
+        background-image: url(../img/registeripad.svg);
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .myregister {
+        background-image: none;
     }
 }
