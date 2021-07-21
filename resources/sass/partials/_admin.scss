@@ -15,6 +15,14 @@
         box-shadow: rgba(0, 0, 0, 0.60) 0px 3px 8px;
         margin-bottom: 20px;
         border-radius: 10px;
+        .categories {
+            display: flex;
+            align-items: center;
+            img {
+                width: 100px;
+                margin-right: 30px;
+            }
+        }
         .btn-create,
         .btn-edit {
             text-align: center;
@@ -117,6 +125,19 @@
         }
     }
 
+}
+@media screen and (max-width: 978px) {
+    .admin-create {
+        .create-form {
+            .form-create-body{
+                .categories {
+                    img {
+                        display: none;
+                    }
+                }         
+            }            
+        }
+    }
 }
 
 
