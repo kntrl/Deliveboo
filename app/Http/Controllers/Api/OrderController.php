@@ -54,22 +54,20 @@ class OrderController extends Controller
             return response()->json($response,404);
         } 
 
-        //checking that foods in the request belongs to user
+        //checking that foods in the request belongs to user and quantity is greater than 0
         $restaurantFoodsID = $restaurant->foods->modelKeys();
         foreach ($order['foods'] as $food) {
-            if(!in_array($food['id'],$restaurantFoodsID)) {
+            if(!in_array($food['id'],$restaurantFoodsID) || !$food['quantity'] < 1) {
                 $response = [
                     'data' => [
-                        'error' => 'Food \''.$food['name']. '\' doesn\'t belong to\''.$restaurant->name.'\''
+                        'error' => 'Food \''.$food['name']. '\' doesn\'t belong to\''.$restaurant->name.'\' or has invalid quantity.'
                     ]
                 ];
                 return response()->json($response,404);
             }
         }
-
         //returning Client Token
         return response()->json($response);
-
     }
 
 
@@ -88,7 +86,7 @@ class OrderController extends Controller
     {
         //validating Order data
         $clientTokenJson = $this->validateCart($request,$gateway);
-        //if validation fails it returns validateCart response
+        //if validation fails it returns 404 response
         if(!isset(json_decode($clientTokenJson->content())->data->clientToken)){
             return response()->json(json_decode($clientTokenJson->content()),404);
         }
@@ -108,7 +106,7 @@ class OrderController extends Controller
         $order->save();
 
 
-      //calculating order total price and attaching to food_order table
+        //calculating order total price and attaching to food_order table
         foreach($cartFoods as $cartFood) {
             $food = Food::find($cartFood['id']);
             $order->price += $food->price * $cartFood['quantity'];
@@ -155,8 +153,7 @@ class OrderController extends Controller
         if ((!$order->status == "pending" || !$order->status == "rejected")){
             return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
         }
-
-    
+   
 
         //creating transaction
         $result = $gateway->transaction()->sale([
