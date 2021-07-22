@@ -26,12 +26,10 @@ Route::name('guest.')
     //LANDING ROUTES
     Route::get('/', function(){
         return view('welcome');
-    });
+    })->name('welcome');
 
-    //QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
-    Route::get('/home', 'HomeController@index')->name('home');
 
-    //Order Routes
+    //Order Routes => used for testing only. REMOVE BEFORE PRODUCTION
     Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
     Route::post('/restaurants/{user:slug}/store','OrderController@store')->name('orders.store');
 
@@ -48,21 +46,24 @@ Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.c
 
 
 
+//QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
+Route::get('/dashboard', 'HomeController@index')->name('admin.home')->middleware('verified');
+
 /*****************************
 *  AUTH DASHBOARD ROUTES
 ******************************/
-
-
-Route::prefix('admin')
+Route::prefix('dashboard')
 ->namespace('Admin')
-->middleware('verified')
 ->middleware('auth')
+->middleware('verified')
 ->name('admin.')
 ->group(function () {
+
         //Foods Routes
         Route::resource('foods', 'FoodController');
         
         //Order Routes
         Route::get('/orders','OrderController@index')->name('orders.index');
+        Route::get('/orders/stats','OrderController@stats')->name('orders.stats');
     }
 );

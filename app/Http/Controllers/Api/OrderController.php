@@ -9,9 +9,16 @@ use App\Http\Requests\OrderRequest;
 
 use Braintree\Gateway as Gateway;
 
+//mails
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Mail;
+
+//models
 use App\User;
 use App\Food;
 use App\Order;
+
+
 use Illuminate\Auth\Access\Gate;
 
 class OrderController extends Controller
@@ -174,6 +181,7 @@ class OrderController extends Controller
 
         $order->save();
 
+        Mail::to($order->email)->send(new OrderConfirmationMail($order));
         return response()->json(["message"=>"Pagamento effettuato con successo","order"=>$order],200);
     }
 

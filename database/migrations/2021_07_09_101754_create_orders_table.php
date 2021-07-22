@@ -13,6 +13,7 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->string('name');
             $table->string('last_name');
+            $table->string('phone','10');
             $table->string('delivery_address');
             $table->string('status');
             $table->float('price',7,2);

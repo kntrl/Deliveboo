@@ -7,7 +7,7 @@
     {{-- Food collection --}}
     <div class="food-collection">
         
-        @foreach (Auth::user()->foods as $food)
+        @foreach (Auth::user()->foods->sortBy('name') as $food)
 
             <div class="single-food">
                 

@@ -13,21 +13,41 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::join('food_order', 'orders.id', '=', 'food_order.order_id')
-            ->join('foods', 'foods.id', '=', 'food_order.food_id')
-            ->join('users', 'users.id', '=', 'foods.user_id')
-            ->where('users.id','=',Auth::user()->id)
-            ->select('orders.*')
-            ->get();
+        $orders = new Order();
 
+        $orders = $orders->getOrderByUser(Auth::user()->id);
 
-        $orders = $orders->unique();
-      
-        $data = [
-            'orders' => $orders
-        ];
-        
-        return view('admin.orders.index', $data);
+        if ($orders->isEmpty()) {
+            return view('admin.orders.index',["message"=>"Non hai ancora ricevuto nessun ordine."]);
+        }
 
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function stats(Order $userOrders)
+    {
+
+        $userOrders = new Order();
+
+        $userOrders = $userOrders->getOrderByUser(Auth::user()->id);
+        if ($userOrders->isEmpty()) {
+            return view('admin.orders.stats',["message"=>"Non hai ancora ricevuto nessun ordine."]);
+        }
+        //retrieves (unique results) all years with at least 1 order for this user
+        $yearsWithOrders = $userOrders->toQuery()->selectRaw('YEAR(orders.created_at) as year')->groupBy('year')
+        ->get();
+
+        //foreach year we retrieve number of order PER MONTH in that year
+        foreach ($yearsWithOrders as $year) {
+            $orderByMonth = $userOrders->toQuery()
+                        ->selectRaw('count(orders.id) as order_count, DATE_FORMAT(created_at, \'%m) %M\') as month')->orderBy('month')->groupBy('month')
+                        ->whereYear('created_at',date($year->year))->get();
+            foreach ($orderByMonth as $month) {
+                $monthlyStatsForYears[$year->year]["labels"][]= $month->month;
+                $monthlyStatsForYears[$year->year]["data"][]= $month->order_count;
+            }
+        }
+
+       return view('admin.orders.stats',compact('monthlyStatsForYears'));
     }
 }
