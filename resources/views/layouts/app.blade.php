@@ -62,7 +62,7 @@
                         @else                       
 
                             <li>
-                                <a  class="nav-link dashboard-link" href="{{ url('home') }}">
+                                <a  class="nav-link dashboard-link" href="{{ url('dashboard') }}">
                                     Dashboard
                                 </a>
                             </li>
