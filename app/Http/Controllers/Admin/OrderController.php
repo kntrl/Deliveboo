@@ -6,21 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\User;
+use App\Services\Paginate;
 
 
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Paginate $paginate,$page = 1)
     {
         $orders = new Order();
 
-        $orders = $orders->getOrderByUser(Auth::user()->id);
+        $allOrders = $orders->getOrderByUser(Auth::user()->id);
+        $orders = $paginate($allOrders,10);
 
         if ($orders->isEmpty()) {
             return view('admin.orders.index',["message"=>"Non hai ancora ricevuto nessun ordine."]);
         }
-
+        
         return view('admin.orders.index', compact('orders'));
     }
 

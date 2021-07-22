@@ -34,6 +34,7 @@ class Order extends Model
         ->join('users', 'users.id', '=', 'foods.user_id')
         ->where('users.id','=',$userID)
         ->select('orders.*')
+        ->orderBy('id','desc')
         ->get()->unique();
 
         return $orders;
