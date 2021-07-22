@@ -1,0 +1,34 @@
+//ORDERS CRUD
+
+.order-list {
+    .my_accordion {
+        .card {
+            border-color: $secondary-color;
+            .card-header {
+                background-color: lighten($secondary-color, 7%);
+                border-bottom: none;
+                padding: 0.25rem 1.25rem;
+            }
+        }
+    }
+}
+
+.my_paginate {
+    color: black;
+    .page-link {
+        color: black;
+        background-color: lighten($secondary-color, 7%);
+        border-color: $secondary-color;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .order-list .card-header {
+        .order-info div {
+            display: none;
+        }
+    }
+    .my_paginate {
+        justify-content: center !important;
+    }
+}

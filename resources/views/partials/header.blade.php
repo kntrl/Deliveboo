@@ -7,7 +7,7 @@
                 <div class="container-commands">
                     <div class="shown-commands">
                         @auth
-                            <a href="{{ route('admin.home') }}">Dashboard</a>
+                            <a href="{{ url('dashboard') }}">Dashboard</a>
                         @else
                             <a id="ghosted-btn" href="{{ route('login') }}">Login</a>
     

@@ -109,12 +109,22 @@
                     justify-content: space-between;
                     font-size: 18px;
                     font-weight: bold;
+                    .order-date {
+                        div {
+                            text-align: center;
+                        }
+                    }                    
                 }
                 .order-details {
                     padding: 15px;
                     display: flex;
                     justify-content: space-between;              
                     border-bottom: 1px solid lightgrey;
+                    ul {
+                        &.dish-quantity {
+                            text-align: center;
+                        }
+                    }
                 }
                 .note {
                     padding: 10px;
@@ -188,11 +198,36 @@
                             display: block;                                                       
                         }
                     }
-                }                
-            }            
+                }                              
+            } 
+            .dashboard-order {
+                .single-order {
+                    .order-title {
+                        font-size: 12px;
+                        padding: 10px;
+                        .order-date {
+                            margin: 0 15px;
+                        }
+                    }  
+                    .order-details {
+                        padding: 10px;
+                        li {
+                            font-size: 10px;
+                            h5 {
+                                font-size: 10px;
+                                font-weight: bold;
+                            }
+                        }
+                        ul {
+                            &.dish-quantity {
+                                text-align: center;
+                            }
+                        }
+                    }  
+                }
+            }             
         }       
     }
-
 }
 
 
