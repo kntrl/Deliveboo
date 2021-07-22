@@ -125,7 +125,7 @@
 
                     <div>Numero ordine: 12</div>
 
-                    <div>19/07/2021 - 17.28</div>
+                    <div class="order-date">19/07/2021 <div>17.28</div></div>
 
                     <div>Totale: € 11,90</div>            
 
