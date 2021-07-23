@@ -102,7 +102,7 @@ class OrderController extends Controller
         //creating the order
         $order = new Order();
         $order->price = 0;
-        $order->status="pending";
+        $order->status_id=0;
         $order->fill($request->all());
 
         $order->save();
@@ -151,8 +151,8 @@ class OrderController extends Controller
         }
 
 
-        //checking order status not being already completed.
-        if ((!$order->status == "pending" || !$order->status == "rejected")){
+        //checking order status not being already completed (status > 2).
+        if (!$order->status_id < 3){
             return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
         }
 
@@ -171,11 +171,11 @@ class OrderController extends Controller
 
         //updating order status according to sale result.
         if (!$result->success) {
-            $order->status ="rejected";
+            $order->status =2;
             return response()->json(["message"=>$result->message,"order"=>$order],400);
         }
 
-        $order->status = "accepted";
+        $order->status = 3;
 
         $order->braintree_transaction_id = $result->transaction->orderId;
 
