@@ -47,7 +47,7 @@ Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.c
 
 
 //QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
-Route::get('/dashboard', 'HomeController@index')->name('admin.home');//->middleware('verified');
+Route::get('/dashboard', 'HomeController@index')->name('admin.home')/*->middleware('verified')*/;
 
 /*****************************
 *  AUTH DASHBOARD ROUTES
@@ -55,7 +55,7 @@ Route::get('/dashboard', 'HomeController@index')->name('admin.home');//->middlew
 Route::prefix('dashboard')
 ->namespace('Admin')
 ->middleware('auth')
-// ->middleware('verified')
+/*->middleware('verified')*/
 ->name('admin.')
 ->group(function () {
 

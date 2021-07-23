@@ -1,18 +1,40 @@
 //ADMIN FOOD CREATE and EDIT
 
-.admin-create {
+.admin-create{
+
+    background-image: url(../img/createimg.svg);
+    background-repeat: no-repeat;
+    background-position-x: left;
+    position: relative;
+    overflow: hidden;
+    background-size: 1250px;
     
     .create-form {
         @include auto-margin;
         
         .create-form-title {
             text-align: center;
-            padding: 20px 0;            
+            padding: 20px 0;   
+            
+            h4 {
+                margin-top: 100px;
+                text-transform:uppercase ;
+            }
         }        
+    }
+
+    .card {
+        border: none;
+        box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+        margin-bottom: 30px;
+    }
+
+    .description {
+        font-size: 9px;
     }
     .form-create-body {
         padding: 30px 0;
-        box-shadow: rgba(0, 0, 0, 0.60) 0px 3px 8px;
+        box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
         margin-bottom: 20px;
         border-radius: 10px;
         .categories {
@@ -23,6 +45,12 @@
                 margin-right: 30px;
             }
         }
+
+        .custom-control-label {
+            margin-bottom: 4px;
+            margin-top: 2px;
+        }
+
         .btn-create,
         .btn-edit {
             text-align: center;
@@ -33,6 +61,153 @@
     .delete-form {
         text-align: center;
     }
+
+    .custom-control-label {
+        margin-bottom: 4px;
+        margin-top: 2px;
+
+        &:before {
+            top: 0rem;
+        }
+    }
+
+    .form-control, .custom-select {
+        &:focus {
+      
+            border-color: #fd9b9a;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(247 69 67 / 25%);
+        }
+    }
+
+    .btn-primary {
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+        font-weight: 600;
+
+        &:hover {
+            background-color: #fdb302;
+            border: 2px solid #fdb302;
+            text-decoration: none;
+        
+        }
+
+        &:focus {
+      
+            border-color: #fcce63;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(253 179 2/ 25%);
+        }
+    }
+}
+
+//edit
+.admin-create-edit {
+    background-image: url(../img/edit.svg);
+    background-repeat: no-repeat;
+    background-position-x: left;
+    position: relative;
+    overflow: hidden;
+    background-size: 1250px;
+    
+    .create-form {
+        @include auto-margin;
+        
+        .create-form-title {
+            text-align: center;
+            padding: 20px 0;   
+            
+            h4 {
+                margin-top: 100px;
+                text-transform:uppercase ;
+            }
+        }        
+    }
+
+
+    .card {
+        border: none;
+        box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+        margin-bottom: 30px;
+        .card-body{
+            .btn_green {
+                text-align: end;
+            }
+        }
+    }
+
+    .description {
+        font-size: 10px;
+    }
+    .form-create-body {
+        padding: 30px 0;
+        box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .categories {
+            display: flex;
+            align-items: center;
+            img {
+                width: 100px;
+                margin-right: 30px;
+            }
+        }
+
+        .custom-control-label {
+            margin-bottom: 4px;
+            margin-top: 2px;
+        }
+
+        
+        .btn-create,
+        .btn-edit {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+
+    .delete-form {
+        text-align: end;
+    }
+
+    .custom-control-label {
+        margin-bottom: 4px;
+        margin-top: 2px;
+
+        &:before {
+            top: 0rem;
+        }
+    }
+
+    .form-control, .custom-select {
+        &:focus {
+      
+            border-color: #fd9b9a;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(247 69 67 / 25%);
+        }
+    }
+
+    .btn-primary {
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+        font-weight: 600;
+
+        &:hover {
+            background-color: #fdb302;
+            border: 2px solid #fdb302;
+            text-decoration: none;
+        
+        }
+
+        &:focus {
+      
+            border-color: #fcce63;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgb(253 179 2/ 25%);
+        }
+    }
+
 }
 
 //ADMIN FOOD INDEX
@@ -115,6 +290,7 @@
 
 
 
+
 @media screen and (max-width: 1024px) {
     .admin-food-index {
         .food-collection {
@@ -124,8 +300,30 @@
             }
         }
     }
+    
 
 }
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .admin-create {
+        background-image: url(../img/createimg-ipadpro.svg);
+    }
+    .admin-create-edit {
+        background-image: url(../img/editipadpro.svg);
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+    .admin-create  {
+        background-image: url(../img/createimg-ipad.svg);
+    }
+    .admin-create-edit {
+        background-image: url(../img/editipad.svg);
+    }
+
+}
+
 @media screen and (max-width: 978px) {
     .admin-create {
         .create-form {
@@ -144,8 +342,9 @@
 
 //media 768
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 765px) {
     .admin-create {
+        background-image: none;
         .create-form {
             .form-create-body{
                 padding: 30px;
@@ -155,5 +354,8 @@
                 }          
             }            
         }
+    }
+    .admin-create-edit {
+        background-image: none;
     }
 }
