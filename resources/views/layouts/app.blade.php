@@ -65,7 +65,7 @@
                                 <a  class="nav-link dashboard-link" href="{{ url('dashboard') }}">
                                     Dashboard
                                 </a>
-                            </li>
+                            </li> 
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle dashboard-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
