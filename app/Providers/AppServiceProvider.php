@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Braintree\Gateway;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Collection;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(Gateway::class, function($app){
             return new Gateway($app['config']['braintree']);
+        });
+
+        Collection::macro('byStatus', function ($status) {
+            return $this->filter(function ($value) use ($status) {
+                return $value->status_id == $status;
+            });
         });
     }
 }
