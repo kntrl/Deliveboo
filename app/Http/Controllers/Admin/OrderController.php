@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
-use App\User;
+use App\Status;
 use App\Services\Paginate;
 
 
@@ -18,12 +18,16 @@ class OrderController extends Controller
 
         $allOrders = $orders->getOrderByUser(Auth::user()->id);
         $orders = $paginate($allOrders,10);
+        
+        if (isset($_GET['filter']) && $orders->unique('status_id')->contains('status_id','=',$_GET['filter'])) {
+            $orders = $orders->byStatus($_GET['filter']);
+        }
 
         if ($orders->isEmpty()) {
-            return view('admin.orders.index',["message"=>"Non hai ancora ricevuto nessun ordine."]);
+            return view('admin.orders.index',["message"=>"Qui non c'è nessun ordine"]);
         }
-        
-        return view('admin.orders.index', compact('orders'));
+        $statuses = Status::all();
+        return view('admin.orders.index',compact('orders'),compact('statuses'));
     }
 
     public function stats(Order $userOrders)

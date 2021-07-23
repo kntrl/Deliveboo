@@ -12,7 +12,8 @@ class Order extends Model
         'last_name',
         'email',
         'delivery_address',
-        'phone'
+        'phone',
+        'status'
     ];
 
     public function foods()
@@ -20,6 +21,10 @@ class Order extends Model
         return $this->belongsToMany(Food::class)->withPivot('quantity','note');
     }
 
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 
     /**
      * retrives all Orders for a given user Id
