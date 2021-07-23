@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration
             $table->string('last_name');
             $table->string('phone','10');
             $table->string('delivery_address');
-            $table->string('status');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->float('price',7,2);
             $table->timestamps();
         });

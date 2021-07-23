@@ -14,7 +14,7 @@ class AddBraintreeIdToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('braintree_transaction_id','64')->after('status')->nullable()->default(null);
+            $table->string('braintree_transaction_id','64')->after('status_id')->nullable()->default(null);
         });
     }
 
