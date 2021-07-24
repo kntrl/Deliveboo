@@ -22,6 +22,18 @@
     background-color: #55e29c;
 }
 
+@media screen and (max-width: 1200px) {
+    .dashboard-wrapper {
+        padding-top: 75px;
+        .welcome {
+            display: none;
+        }
+        .dashboard-content {
+            width: 100%;
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
     .paginated-list .card-header {
         flex-wrap: wrap;

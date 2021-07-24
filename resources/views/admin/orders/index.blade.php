@@ -3,6 +3,8 @@
 @section('content')
 {{-- {{dd($orders)}}
 {{dd($orders->where('status_id','=',1))}} --}}
+{{-- {{dd(app('request')->input('filter') )}} --}}
+
 <div class="orders container">
   <div class="dashboard-wrapper">
         {{-- DASHBOARD --}}
@@ -31,23 +33,12 @@
                 <a href="{{route('admin.orders.index')}}"><span class="badge badge-no-filter">MOSTRA TUTTI <i class="fas fa-stream"></i></span></a>
               @endif
               @foreach ($statuses as $status)
-                <a href="{{route('admin.orders.index')}}?filter={{$status->id}}"><span class="badge" style="background-color: {{$status->color}}">{{strtoupper($status->name)}} <i class="{{$status->icon}}"></i></span></a>
+                <a href="{{route('admin.orders.index',['filter'=>$status->id])}}"><span class="badge" style="background-color: {{$status->color}}">{{strtoupper($status->name)}} <i class="{{$status->icon}}"></i></span></a>
               @endforeach
             </div>  
           </div>
-
-            @if($orders instanceof \Illuminate\Pagination\LengthAwarePaginator )
-            @if ($orders->lastPage() != 1)
-              <ul class="pagination my_paginate justify-content-end">
-                <li class="page-item">
-                  <a class="page-link {{ $orders->currentPage() == 1 ? 'disabled' : ''}}" href="{{route('admin.orders.index')}}?page={{$orders->currentPage() -1}}">Precedenti</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link  {{ $orders->currentPage() == $orders->lastPage() ? 'disabled' : ''}}" href="{{route('admin.orders.index')}}?page={{$orders->currentPage()+1}}">Successivi</a>
-                </li>
-              </ul>
-            @endif
-            @endif
+          {{-- Paginate links --}}
+          @include('admin.orders.partials.paginate-links')
           <div id="accordion" class="my_accordion">
             {{-- Single Card --}}
             @foreach ($orders as $order)
@@ -153,23 +144,12 @@
               {{-- ORDER BODY ENDS --}}
              
               </div>
-            </div>
-                       
+            </div>       
             @endforeach
-            <ul class="pagination my_paginate justify-content-start mt-3">
-              @if($orders instanceof \Illuminate\Pagination\LengthAwarePaginator )
-              @if ($orders->lastPage() != 1)
-                <ul class="pagination my_paginate justify-content-end">
-                  <li class="page-item">
-                    <a class="page-link {{ $orders->currentPage() == 1 ? 'disabled' : ''}} " href="{{route('admin.orders.index')}}?page={{$orders->currentPage() -1}}">Precedenti</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link  {{ $orders->currentPage() == $orders->lastPage() ? 'disabled' : ''}}" href="{{route('admin.orders.index')}}?page={{$orders->currentPage()+1}}">Successivi</a>
-                  </li>
-                </ul>
-              @endif
-            @endif
-            {{-- End Single Card --}}
+          </div>
+          {{-- Paginate links --}}
+          @include('admin.orders.partials.paginate-links')
+
         </div>
       </div>
         @endif 
