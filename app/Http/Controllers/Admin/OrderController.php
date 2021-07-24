@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\Status;
 use App\Services\Paginate;
-
-
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -16,8 +15,7 @@ class OrderController extends Controller
     {
         $orders = new Order();
 
-        $allOrders = $orders->getOrderByUser(Auth::user()->id);
-        $orders = $paginate($allOrders,10);
+        $orders = $orders->getOrderByUser(Auth::user()->id);
         
         if (isset($_GET['filter']) && $orders->unique('status_id')->contains('status_id','=',$_GET['filter'])) {
             $orders = $orders->byStatus($_GET['filter']);
@@ -27,6 +25,9 @@ class OrderController extends Controller
             return view('admin.orders.index',["message"=>"Qui non c'è nessun ordine"]);
         }
         $statuses = Status::all();
+        
+        $orders = $paginate($orders,10);
+
         return view('admin.orders.index',compact('orders'),compact('statuses'));
     }
 
@@ -56,4 +57,19 @@ class OrderController extends Controller
 
        return view('admin.orders.stats',compact('monthlyStatsForYears'));
     }
+
+    /**
+     * Marks the posted Order as completed
+     * 
+     * return redirect to orders.index route with filter/page parameters
+     */
+    public function markAsComplete(Request $request)
+    {
+        $order = Order::find($request->orderid);
+        $order->status_id = 4;
+        $order->save();
+        parse_str($request->uri,$queryStringParams);        
+        return redirect()->route('admin.orders.index',$queryStringParams);
+    }
+
 }

@@ -78,6 +78,7 @@ Route::prefix('dashboard')
         
         //Order Routes
         Route::get('/orders','OrderController@index')->name('orders.index');
+        Route::put('/orders','OrderController@markAsComplete')->name('orders.complete');
         Route::get('/orders/stats','OrderController@stats')->name('orders.stats');
     }
 );
