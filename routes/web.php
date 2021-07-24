@@ -28,6 +28,20 @@ Route::name('guest.')
         return view('welcome');
     })->name('welcome');
 
+    // route provvisorie per vedere la vista delle mail
+    Route::get('/registermail', function(){
+        return view('email.register');
+    })->name('registermail');
+
+    Route::get('/confirmation', function(){
+        return view('email.orders.confirmation');
+    })->name('confirmation');
+
+    Route::get('/verify', function(){
+        return view('email.verify');
+    })->name('verify');
+
+
 
     //Order Routes => used for testing only. REMOVE BEFORE PRODUCTION
     Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
