@@ -31,11 +31,12 @@
                             <i class="fas fa-star" style="font-size: 13px; color: #f74542"></i>
                         </span>
                     </h5>
-                    <h5 style="font-size: 13px; color: grey">@{{restaurant.phone}}</h5>
-                    <h6>@{{restaurant.address}}</h6>
+                    <h5 style="font-size: 13px; color: grey"><i class="fas fa-phone-alt"></i> @{{restaurant.phone}}</h5>
+                    <h6><i class="fas fa-map-marked-alt"></i> @{{restaurant.address}}</h6>
+                    <hr>
                     <ul>
                         <li v-for="item in restaurant.categories">
-                            <span>- <b>@{{item.name}}</b></span>
+                            <span style="display: inline-block"><i class="fas fa-utensils"></i> <b>@{{item.name}}</b></span>
                         </li>
                     </ul>
                     <p>@{{(String(restaurant.description).length > 30) ? restaurant.description.slice(0, 30) + "..." : restaurant.description }}</p>
@@ -87,6 +88,28 @@
                         <hr>
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Contorno' || dish.course == 'contorno'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
+                        </div>
+
+                        <h4>Piatto Unico</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Piatto Unico' || dish.course == 'piatto unico'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
                                 <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
                                 <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
