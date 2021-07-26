@@ -27,6 +27,9 @@ class HomeController extends Controller
         $order = new \App\Order;
         
         $userOrders = $order->getOrderByUser(Auth::user()->id);
+        if (!($userOrders->count() > 0)) {
+            return view ('home',compact('userOrders'));
+        }
         $orderTrendChart =  $order->getTrendChart($userOrders);
         $coursePieChart = $order->getCoursePieChart($userOrders);
         $yearlyOrderChart = $order->getYearlyChart($userOrders);
@@ -34,9 +37,10 @@ class HomeController extends Controller
             'coursePieChart'=>$coursePieChart,
             'yearlyOrderChart'=>$yearlyOrderChart,
             'orderTrendChart'=>$orderTrendChart,
-            'userOrders'=>$userOrders,
             'bestSellerFood'=> Auth::user()->bestSellers(1)->first()
         ];
+
+
         return view('home',$data);
     }
 }

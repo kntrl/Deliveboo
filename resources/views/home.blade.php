@@ -61,12 +61,14 @@
 
                 </div>
 
-                <div class="dish-details">
+                @if($userOrders->count())
+                    <div class="dish-details">
 
-                    <div>Best seller</div>
-                    <span><a href="{{route('admin.foods.edit',['food'=>$bestSellerFood])}}">{{$bestSellerFood->name}} ({{$bestSellerFood->orderedTimes}} pz.)</a></span>                   
+                        <div>Best seller</div>
+                        <span><a href="{{route('admin.foods.edit',['food'=>$bestSellerFood])}}">{{$bestSellerFood->name}} ({{$bestSellerFood->orderedTimes}} pz.)</a></span>                   
 
-                </div>
+                    </div>
+                @endif
                 
                 <div class="manage-btn">
                     <a href="{{ route('admin.foods.index') }}">Gestisci i tuoi piatti</a>
@@ -127,6 +129,7 @@
         {{-- STATS --}}
         <div class="dashboard-order">
             <h2>Statistiche</h2>
+            @if($userOrders->count())
             <div class="charts-container d-flex flex-wrap justify-content-around">
                     {{-- Monthly order Graph --}}
                     <div class="chart-yearly col-12 col-md-7">
@@ -151,8 +154,13 @@
                             {!! $orderTrendChart->render() !!}
                         </div>
                     </div>
-    
             </div>
+            @else
+            <div>
+                Le statistiche saranno disponibili non appena avrai ricevuto degli ordini.
+            </div>
+
+            @endif
         </div>
         {{-- STATS ENDS --}}
 
