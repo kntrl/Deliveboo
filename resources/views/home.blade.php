@@ -114,9 +114,7 @@
                  
 
                 <div class="manage-btn">
-                    <a href="">Mostra grafico</a>     
                     <a href="{{ route('admin.orders.index') }}">Vai ai tuoi ordini</a>
-                   
                 </div>           
                 
             </div>
