@@ -49,9 +49,22 @@ footer{
                         align-items: center;
                         justify-content: center;
                         border-radius: 50%;
-                        color: $primary-title-color;
-                                               
+                        color: $primary-title-color; 
+                        font-size: 20px;
+                        &:hover {
+                            text-decoration: none;
+                        }                                   
                     }
+                    #social-circle-facebook {
+                        background-color: #4867aa;
+                    }
+                    #social-circle-instagram {
+                        background-color: #bb5287;
+                    }
+                    #social-circle-twitter {
+                        background-color: #1da1f2;
+                    }
+
                 }
             }
         }
