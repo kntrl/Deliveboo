@@ -51,25 +51,141 @@
         <div v-if="toPayment == false">
             {{-- menu ristorante e potenziale conferma ordine --}}
             <div v-if="submittedCart == false">
-                <h2 id="restaurant-name">@{{restaurantDetails.name}}</h2>
+                <div class="category-banner-box" v-bind:class="bannerColor">
+                    <img class="category-banner" v-bind:src="`img/banner_${category}.png`" alt="" >
+                </div>
                 <div class="restaurant-menu-box">
-                    <form action="">
-                        <div v-for="dish in restaurantMenu" class="dish-info">
-                            <h5>@{{dish.name}}</h5>
-                            <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                            <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
-                            <div class="allergenic-box">
-                                <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
-                                <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
-                                <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
-                                <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                    <h2 style="margin-top: 12rem" id="restaurant-name">@{{restaurantDetails.name}}</h2>
+                    <form action="" id="form-menu">
+                        <h4>Antipasti</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Antipasto'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
                             </div>
-                            <input 
-                                    v-on:change="setCart(restaurantDetails.slug)"
-                                    v-model.number="carrello[restaurantDetails.slug][dish.slug]"
-                                    type="number" id="quantity" 
-                                    name="quantity" min="0" max="15"
-                            >
+                        </div>
+
+                        <h4>Contorno</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Contorno' || dish.course == 'contorno'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
+                        </div>
+
+                        <h4>Primi</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Primo' || dish.course == 'primo'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
+                        </div>
+
+                        <h4>Secondi</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Secondo' || dish.course == 'secondo'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
+                        </div>
+                        <h4>Dolci</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Dolce'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
+                        </div>
+                        
+                        <h4>Bevande</h4>
+                        <hr>
+                        <div class="category-course">
+                            <div v-for="dish in restaurantMenu" v-if="dish.course == 'Bevande'" class="dish-info">
+                                <h5>@{{dish.name}}</h5>
+                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <div class="allergenic-box">
+                                    <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
+                                    <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
+                                    <span v-if="dish.is_vegan"><i class="fas fa-seedling"></i></span>
+                                    <span v-if="dish.is_veggy"><i class="fas fa-egg"></i></span>
+                                </div>
+                                <input 
+                                        v-on:change="setCart(restaurantDetails.slug)"
+                                        v-model.number="carrello[restaurantDetails.slug][dish.slug]"
+                                        type="number" id="quantity" 
+                                        name="quantity" min="0" max="15"
+                                >
+                            </div>
                         </div>
                     </form>
                     <button v-on:click.prevent="submitCart(restaurantDetails.slug)">Order Now</button>
