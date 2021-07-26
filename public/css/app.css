@@ -10979,6 +10979,7 @@ nav .top-right .container-commands .burger-menu .line.upper {
   padding: 1rem 0 1rem 0;
   margin-right: 1rem;
   display: flex;
+  flex-wrap: wrap;
 }
 .restaurants-box .restaurant-menu-box #form-menu .category-course .dish-info {
   width: 40%;
