@@ -198,3 +198,20 @@
         background-image: none;
     }
 }
+
+//RESET password email.blade
+.reset-pw-cont {
+    width: 60%;
+    margin: auto;
+    padding-top: 125px;
+    
+    .bg-reset-pw {
+        background-color: $secondary-color;
+        border-radius: 10px;
+    }
+    .send-pw {
+        background-color: $primary-color;
+        color: white;
+        font-weight: bold;
+    }
+}
