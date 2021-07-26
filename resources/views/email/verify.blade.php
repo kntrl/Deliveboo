@@ -38,15 +38,17 @@
                 <h5 style="margin-top: 50px;">Gentile {{$userName}},</h5>
                 <p>Per completare la registrazione è necessario verificare la tua email <a href="{{$url}}">cliccando qui</a> .</p>
                
+                <p>Qualora il link non funzionasse copia e incolla questo indirizzo nel tuo broswer : </p>
+                
+                <code>{{$url}}</code>
             </div>
             
             
         </div>
         
-        
+
     </div>
-    <p>Qualora il link non funzionasse copia e incolla questo indirizzo nel tuo broswer : </p>
-    {{$url}}
+
     
 </body>
 </html>
