@@ -19,10 +19,10 @@
             <div class="reg-email-container">
                 <img src="{{asset('img/logo-piccolo-nero.svg')}}" alt="Deliveboo - Logo">
                 <h1>Verifica la tua mail</h1>
-                <h5>{{--{{$userName}}--}}Ernesto,</h5>
-                <p>Per completare la registrazione è necessario verificare la tua email <a href="{{--{{$url}}--}}">cliccando qui</a> .</p>
+                <h5>{{$userName}}</h5>
+                <p>Per completare la registrazione è necessario verificare la tua email <a href="{{$url}}">cliccando qui</a> .</p>
                 <p>Qualora il link non funzionasse copia e incolla questo indirizzo nel tuo broswer : </p>
-                {{--{{$url}}--}}
+                {{$url}}
             </div>         
             
         </div>        
