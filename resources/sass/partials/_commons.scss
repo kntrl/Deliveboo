@@ -24,9 +24,24 @@ ul {
 a {
     text-decoration: none;    
 }
+button{
+    @include my-btn;
+}
 
+/* #quantity::-webkit-outer-spin-button,
+#quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
 
-
-
-
-
+/* #quantity[type=number] {
+    -moz-appearance: textfield;
+} */
+#quantity{
+    color: transparent;
+    text-shadow: 0 0 0 #343536;
+    font-size: bold;
+}
+#quantity[type="number"] {
+  text-align: center;
+}

@@ -12,3 +12,11 @@
     margin: auto;
     width: 85%;
 }
+
+@mixin my-btn{
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    padding: 10px 25px;
+    transition: .5s;
+}

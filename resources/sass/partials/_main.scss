@@ -79,7 +79,28 @@
     }
 }
 
-
+#root{
+    position: relative;
+    overflow-x: hidden;
+    .transition-page-right{
+        transform: translateX(200vw);
+        
+    }
+    .transition-page-left{
+        transform: translateX(-200vw);
+    }  
+    .transition-page{
+        transition: 2s;
+        width: 200vw;
+        height: 100%;
+        z-index: 1000;
+        background-color: #f74542;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+    
 
 /* ----- MAIN ----- */
 .main-content{
@@ -112,32 +133,146 @@
     }
 }
 
+/* ---- CATEGORY RESTAURANTS leading to PAYMENT ---- */
 //restaurants correspondig to selected category
+
+
 .restaurants-box{
     padding-top: 5rem;
+    padding-bottom: 3rem;
     min-height: 100vh;
     @include auto-margin;
-    h1{
-        text-align: center;
+    position: relative;
+    .italiano{
+    background-color: #c1734a;
     }
+    .cinese{
+        background-color: #9966ff;
+    }
+    .indiano{
+        background-color: #4750f5;
+    }
+    .hamburger{
+        background-color: #fb975c;
+    }
+    .pizza{
+        background-color: #22b3b2;
+    }
+    .libanese{
+        background-color: #cee0ee;
+    }
+    .americano{
+        background-color: #ffb13d;
+    }
+    .sushi{
+        background-color: #edf7c8;
+    }
+    .vegano{
+        background-color: #e7acff;
+    }
+    .messicano{
+        background-color: #949124;
+    }
+    .kebab{
+        background-color: #ffb34f;
+    }
+    .hawaiano{
+        background-color: #a8dcc6;
+    }
+    .category-banner-box{
+        right: -12vw;
+        top: 45px;
+        width: 130%;
+        position: absolute;
+        height: 200px;
+        
+        .category-banner{
+            padding-left: 70rem;
+            /* transition: .500s; */
+            height: 200px;
+            width: auto;
+            right: 15px;
+            position: absolute;
+        }
+    }
+    #restaurant-name{
+        font-size: 22px;
+        display: block;
+    }
+    .previous-page-btn{
+        z-index: 999;
+        background-color: black;
+        color: white;
+        padding: 5px 25px 5px 100px;
+        position: fixed;
+        top: 11.5%;
+        left: -90px;
+        &:hover{
+            background-color: #f74542;
+        }
+    }
+    h2{
+        text-align: center;
+        display: inline-block;
+        text-transform: uppercase;
+    }
+
+    .media-category-select{
+        display: none;
+        button{
+            padding: .2rem .6rem;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            outline: none;
+            border-radius: 25px;
+            &:hover{
+                background-color: white;
+                border: 2px solid black;
+                color: black;
+            }
+        }
+    }
+
 
     .double-box{
         display: flex;
         .ribbons-box{
-            min-width: 15%;
+            position: fixed;
+            top: 60%;
+            transform: translateY(-50%);
             border-right: 2px solid black;
             margin-right: 2rem;
         }
-
         .restaurants-cards-container{
+            margin-top: 10rem;
+            margin-left: 250px;
             padding: 2rem 0;
             display: flex;
             flex-wrap: wrap;
             .restaurant-card{
-                padding: 0 3rem 0.5rem 0;
-                width: 100%;
-                padding-bottom: 4rem;
-                button{
+                cursor: pointer;
+                //padding: 0 3rem 0.5rem 0;
+                border-radius: 10px;
+                width: 45%;
+                margin-bottom: 1rem;
+                margin-right: 1rem;                
+                transition: .5s;
+                padding: 1rem 2rem;
+                &:hover{
+                    box-shadow: 1px 1px 45px #bfbfbf;
+                }
+                &:hover #hidden-menu-btn{
+                    opacity: 1;
+                }
+                h5{
+                    text-transform: uppercase;
+                }
+                h6{
+                    color: rgb(126, 126, 126);
+                }
+                #hidden-menu-btn{
+                    opacity: 0;
                     margin-top: .5rem;
                     border-radius: 25px;
                     background-color: #f74542;
@@ -145,8 +280,164 @@
                     outline: none;
                     border: none;
                     padding: 10px 25px;
+                    &:hover{
+                        background-color: black;
+                    }
                 }
             }
+        }
+    }
+
+    .restaurant-menu-box{
+        padding-bottom: 6rem;
+        position: relative;
+        #quantity{
+            outline: none;
+            border: 2px solid #f74542;
+            border-radius: 10px;
+        }
+        form{
+            padding-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            div{
+                width: 30%;
+                padding: 1rem 0 1rem 0;
+                margin-right: 1rem;
+            }
+            .dish-info{
+                margin-bottom: 3rem;
+                
+                .allergenic-box{
+                    padding-bottom: .5rem;    
+                }
+            }
+        }
+        button{
+            border: none;
+            background-color: #f74542;
+            font-weight: 600;
+            color: white;
+            padding: 10px 45px;
+            margin-top: 2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: .5s;
+            border-radius: 25px;
+            &:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+
+    #shipping-info-box{
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        form{
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            label{
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            input{
+                outline: none;
+                border: none;
+                background-color: white;
+                padding: .5rem 1rem;
+                border-bottom: 2px solid #f74542;
+                max-width: 300px;
+                margin-bottom: 1rem;
+                
+                //trick to avoid autofill color
+                &:-webkit-autofill {
+                    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+                }
+            }
+            #button-input{
+                @include my-btn;
+                margin-top: 2rem;
+                font-weight: bold;
+                background-color: #f74542;
+                color: white;
+                &:hover{
+                    background-color: black;
+                    color: white;
+                }
+                &:focus{
+                    background-color: white;
+                }
+
+            }
+        }
+    }
+    .final-page{
+        margin-top: 5rem;
+        display: flex;
+        
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        .order-recap{
+            width: 38%;
+        }
+        #braintree-box{
+            width: 55%;
+        }
+        .order-recap,
+        #braintree-box{
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 1px 1px 45px #bebebe;
+            #braintree-btn{
+                @include my-btn;
+                background-color: black;
+                color: white;
+
+                &:hover{
+                    background-color: #f74542;
+                    color: white;
+                }
+            }
+        }
+
+        /* #braintree-box{
+            width: 50%;
+        } */
+
+        #back-to-home{
+            margin-top: 2rem;
+            background-color: #f74542;
+            color: white;
+            &:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+
+    #incoming-delivery{
+        height: 80vh;
+        width: 100%;
+        background-image: url("../img/paginaspedizioni.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 525px;
+        h2{
+            text-align: center;
+            display: block;
+            font-weight: bolder;
+            font-size: 40px;
+            padding-bottom: 2rem;
         }
     }
 }
@@ -171,18 +462,20 @@
         cursor: pointer;
 		position: relative;
 		background-color: black;
-		margin: 0 20px;
+		margin: 0 10px;
 		display: inline-block;
 		font-family: arial;
 		font-weight: bold;
 		font-size: 13px;
 		line-height: 20px;
 		color: white;
-		min-width: 80px;
-		border-radius: 0px 25px 25px 0;
+		min-width: 95px;
+		border-radius: 25px;
         transition: .5s;
-
-		&:after{
+        padding-left: 10px;
+        
+        text-align: left;
+		/* &:after{
             transition: .5s;
 			position: absolute;
 			content: "";
@@ -207,7 +500,7 @@
 			border-bottom: 10px solid black;
 			border-right: 10px solid black;
 			border-left: 10px solid transparent;
-		}
+		} */
         &:hover {
             background-color: #f74542;
             &::after{
