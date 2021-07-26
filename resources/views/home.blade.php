@@ -114,7 +114,7 @@
                  
 
                 <div class="manage-btn">
-                    <a href="{{ route('admin.orders.index') }}">Vai ai tuoi ordini</a>
+                    <a href="{{ route('admin.orders.index') }}">Gestisci ordini</a>
                 </div>           
                 
             </div>

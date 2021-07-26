@@ -105,13 +105,9 @@
                                         </a>
     
                                         <a class="dropdown-item dashboard-drop-link" href="{{ route('admin.orders.index') }}">
-                                            Vai ai tuoi ordini
+                                            Gestisci ordini
                                         </a>
-    
-                                        <a class="dropdown-item dashboard-drop-link" href="#">
-                                            Mostra grafico
-                                        </a>
-    
+        
     
                                         <a class="dropdown-item dashboard-drop-link" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
