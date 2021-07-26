@@ -93,15 +93,15 @@
     
                     <ul class="social-menu">
                         <li>
-                            <a id="social-circle-facebook" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a style="background-color: white" id="social-circle-facebook" href=""><i class="fab fa-facebook-f"></i></a>
                         </li>
     
                         <li>
-                            <a id="social-circle-instagram" href=""><i class="fab fa-instagram"></i></a>
+                            <a style="background-color: white" id="social-circle-instagram" href=""><i class="fab fa-instagram"></i></a>
                         </li>
     
                         <li>
-                            <a id="social-circle-twitter" href=""><i class="fab fa-twitter"></i></a>
+                            <a style="background-color: white" id="social-circle-twitter" href=""><i class="fab fa-twitter"></i></a>
                         </li>
     
                     </ul>   

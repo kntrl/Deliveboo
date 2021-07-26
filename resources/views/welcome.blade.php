@@ -62,7 +62,7 @@
                     <main class="main-content">
                         <div class="container">
                             {{-- ROW 1 --}}
-                            <h2 id="anim-h2">Cucine da Tutto il Mondo</h2>
+                            <h2 id="anim-h2">Cucine Da Tutto Il Mondo</h2>
                             <div id="row1" class="row"> 
                                 <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
                                     <div v-on:click="setCategory(el.name)" class="inner-box">
