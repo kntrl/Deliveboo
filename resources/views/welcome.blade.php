@@ -50,9 +50,9 @@
 
                     <div class="my-wrap">
                         <div class="left-side">
-                            <h1 id="main-title">Hungry? You're in the right place</h1>
+                            <h1 id="main-title">Hai fame? Sei decisamente nel posto giusto</h1>
                             <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                            <a href="#order-now">Order Now</a>
+                            <a href="#order-now">Ordina Ora</a>
                         </div>
                     </div>
                 </section>
@@ -62,7 +62,7 @@
                     <main class="main-content">
                         <div class="container">
                             {{-- ROW 1 --}}
-                            <h2 id="anim-h2">Categories of Restaurants</h2>
+                            <h2 id="anim-h2">Cucine da Tutto il Mondo</h2>
                             <div id="row1" class="row"> 
                                 <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
                                     <div v-on:click="setCategory(el.name)" class="inner-box">

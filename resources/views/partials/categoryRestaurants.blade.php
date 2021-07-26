@@ -66,8 +66,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Antipasto'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -88,8 +88,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Contorno' || dish.course == 'contorno'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -110,8 +110,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Primo' || dish.course == 'primo'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -132,8 +132,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Secondo' || dish.course == 'secondo'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -153,8 +153,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Dolce'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -175,8 +175,8 @@
                         <div class="category-course">
                             <div v-for="dish in restaurantMenu" v-if="dish.course == 'Bevande'" class="dish-info">
                                 <h5>@{{dish.name}}</h5>
-                                <p><b>Ingredients: </b>@{{dish.ingredients}}</p>
-                                <label for="quantity"><b>Price: </b>@{{dish.price}}€</label><br>
+                                <p><b>Ingredienti: </b>@{{dish.ingredients}}</p>
+                                <label for="quantity"><b>Prezzo: </b>@{{dish.price}}€</label><br>
                                 <div class="allergenic-box">
                                     <span v-if="dish.is_gluten_free"><i class="fas fa-bread-slice"></i></span>
                                     <span v-if="dish.is_hot"><i class="fas fa-pepper-hot"></i></span>
@@ -199,21 +199,21 @@
             {{-- inserimento ulteriori informazioni per la consegna dell'ordine --}}
             <div v-else id="shipping-info-box">
                 <form action="">
-                    <label for="fname">First name:</label>
+                    <label for="fname">Nome:</label>
                     <input type="text" id="fname" name="fname" v-model="personalInfo.name" >
-                    <label for="lname">Last name:</label>
+                    <label for="lname">Cognome:</label>
                     <input type="text" id="lname" name="lname" v-model="personalInfo.last_name" >
     
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="" v-model="personalInfo.email" >
     
-                    <label for="address">Address</label>
+                    <label for="address">Indirizzo</label>
                     <input type="text" name="" id="" v-model="personalInfo.delivery_address">
 
-                    <label for="address">Phone</label>
+                    <label for="address">Telefono</label>
                     <input type="number" name="" id="" v-model="personalInfo.phone" max="10">
     
-                    <input id="button-input" class="brainClick" v-on:click.prevent="submitPersonalOrderInfo()" type="submit" value="Order Now">
+                    <input id="button-input" class="brainClick" v-on:click.prevent="submitPersonalOrderInfo()" type="submit" value="Ordina Ora">
                 </form> 
             </div>
         </div>
@@ -224,7 +224,7 @@
                     <h3>ORDER RECAP</h3>
                     <ul>
                         <li>
-                            <span>Address: @{{this.orderRecap.delivery_address}}</span>
+                            <span>Indirizzo: @{{this.orderRecap.delivery_address}}</span>
                         </li>
 
                         <li>
@@ -232,15 +232,15 @@
                         </li>
 
                         <li>
-                            <span>Name: @{{this.orderRecap.name}}</span>
+                            <span>Nome: @{{this.orderRecap.name}}</span>
                         </li>
 
                         <li>
-                            <span>Lastname: @{{this.orderRecap.last_name}}</span>
+                            <span>Cognome: @{{this.orderRecap.last_name}}</span>
                         </li>
 
                         <li>
-                            <span>Phone: @{{this.orderRecap.phone}}</span>
+                            <span>Telefono: @{{this.orderRecap.phone}}</span>
                         </li>
 
                         <hr>
@@ -257,7 +257,7 @@
                         <hr>
 
                         <li>
-                            <span>Total price: @{{this.totalPrice}}€</span>
+                            <span>Totale: @{{this.totalPrice}}€</span>
                         </li>
                     </ul>
                     
@@ -270,7 +270,7 @@
                         </div>
                 
                         <input id="nonce" name="payment_method_nonce" type="hidden" required/>
-                        <button v-on:click="goHome()" v-if="payButton" id="braintree-btn" type="submit"><span>Pay Now</span></button>
+                        <button v-on:click="goHome()" v-if="payButton" id="braintree-btn" type="submit"><span>Paga Ora</span></button>
                         
                         <button id="back-to-home" v-if="payButton == false" v-on:click.prevent="clearStorage()">HOMEPAGE</button>
 

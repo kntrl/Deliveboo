@@ -11,10 +11,10 @@
                         @auth
                             <a href="{{ url('dashboard') }}">Dashboard</a>
                         @else
-                            <a id="ghosted-btn" href="{{ route('login') }}">Login</a>
+                            <a id="ghosted-btn" href="{{ route('login') }}">Accedi</a>
     
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
+                                <a href="{{ route('register') }}">Registrati</a>
                             @endif
                         @endauth
                     </div>
