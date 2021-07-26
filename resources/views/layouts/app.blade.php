@@ -81,40 +81,39 @@
                             @else                       
     
                                 
-                                <li class="nav-item dropdown drop-display-none">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <li class="nav-item drop-display-none" v-on:click="sliderOnOff()">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>                               
-    
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-    
-                                        <a  class="dropdown-item dashboard-drop-link" href="{{ url('dashboard') }}">
+                                    <div id="slider-standard-desktop" class="dash-slider" v-bind:class="toggledSlider">
+                                    
+                                        <a  class="" href="{{ url('dashboard') }}">
                                             Torna alla Dashboard
                                         </a>
-    
-                                        <a class="dropdown-item dashboard-drop-link" href="{{ route('admin.foods.index') }}">
+        
+                                        <a class="" href="{{ route('admin.foods.index') }}">
                                             Gestisci i tuoi piatti
                                         </a>
-    
-                                        <a class="dropdown-item dashboard-drop-link" href="{{ route('admin.foods.create') }}">
+        
+                                        <a class="" href="{{ route('admin.foods.create') }}">
                                             Aggiungi un piatto
                                         </a>
-    
-                                        <a class="dropdown-item dashboard-drop-link" href="{{ route('admin.orders.index') }}">
+        
+                                        <a class="" href="{{ route('admin.orders.index') }}">
                                             Gestisci ordini
                                         </a>
         
-    
-                                        <a class="dropdown-item dashboard-drop-link" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                        <a class="" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-    
+        
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
-                                        </form>                           
-                                    </div>                              
+                                        </form>   
+                                    </div>         
+                                                  
                                 </li>                             
                                 
                                 <div v-on:click="toggleCrossBurger()" class="burger-menu">
