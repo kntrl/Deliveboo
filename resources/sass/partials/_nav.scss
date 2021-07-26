@@ -57,6 +57,7 @@ nav{
     }
     .slider-toggle{
         opacity: 1;
+        transform: translateX(0px);
         transition: .5s;
     }
 }

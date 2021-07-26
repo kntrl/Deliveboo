@@ -212,10 +212,24 @@
                 }
             } 
             .restaurant-menu-box{
-                form{
-                    div{
-                        width: 50%;
-                        margin-right: 0;
+                 #form-menu{
+                    padding-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    .category-course{
+                        width: 100%;
+                        padding: 1rem 0 1rem 0;
+                        margin-right: 1rem;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .dish-info{ 
+                            width: 45%;
+                            margin-bottom: 3rem;
+                            .allergenic-box{
+                                padding-bottom: .5rem;    
+                            }
+                        }
                     }
                 }
             }
@@ -311,9 +325,24 @@
                 }
             }
             .restaurant-menu-box{
-                form{
-                    div{
+                #form-menu{
+                    padding-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    .category-course{
                         width: 100%;
+                        padding: 1rem 0 1rem 0;
+                        margin-right: 1rem;
+                        display: flex;
+                        
+                        .dish-info{
+                            width: 100%;
+                            margin-bottom: 3rem;
+                            .allergenic-box{
+                                padding-bottom: .5rem;    
+                            }
+                        }
                     }
                 }
             }
