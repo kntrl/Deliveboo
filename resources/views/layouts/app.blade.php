@@ -40,27 +40,23 @@
                     <a class="navbar-logo" href="{{ url('/') }}">
                         <img src="{{ asset("/img/logo.png") }}" alt="">
                     </a>
-                    {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> --}}
+                    
     
-                    <div class="nav-left-side{{--collapse navbar-collapse--}}">
+                    <div class="nav-left-side">
                         <!-- Left Side Of Navbar -->
-                        <ul class=" {{--mr-auto--}}">
-    
-                        </ul>
+                        
     
                         <!-- Right Side Of Navbar -->
-                        <ul class="nav-left-link{{--navbar-nav ml-auto--}}">
+                        <ul class="nav-left-link">
                             <!-- Authentication Links -->
                             @guest
     
-                                <li class="drop-display-none{{--nav-item--}}">
-                                    <a class="{{--nav-link--}}" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="drop-display-none">
+                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
-                                    <li class="drop-display-none{{--nav-item--}}">
-                                        <a class="{{--nav-link--}}" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <li class="drop-display-none">
+                                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
 
