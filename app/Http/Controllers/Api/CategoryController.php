@@ -35,12 +35,12 @@ class CategoryController extends Controller
                 }
                 $restaurant = [
                     'id' => $element->id,
-                    'name' => $element->name,
+                    'name' => ucfirst($element->name),
                     'slug' => $element->slug,
                     'vote' => round($element->vote,0,PHP_ROUND_HALF_DOWN),
                     'phone' => $element->phone,
-                    'address' => $element->address,
-                    'description' => $element->description,
+                    'address' => ucfirst($element->address),
+                    'description' => ucfirst($element->description),
                     'piva' => $element->piva,
                     'categories' => $elementCategories
                 ];  
