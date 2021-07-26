@@ -34,10 +34,11 @@ class HomeController extends Controller
         $coursePieChart = $order->getCoursePieChart($userOrders);
         $yearlyOrderChart = $order->getYearlyChart($userOrders);
         $data =[
+            'userOrders'=>$userOrders,
             'coursePieChart'=>$coursePieChart,
             'yearlyOrderChart'=>$yearlyOrderChart,
             'orderTrendChart'=>$orderTrendChart,
-            'bestSellerFood'=> Auth::user()->bestSellers(1)->first()
+            'bestSellerFood'=> Auth::user()->bestSellers(1)->first(),
         ];
 
 
