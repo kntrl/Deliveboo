@@ -142,14 +142,9 @@
                                     </a>
     
                                     <a class="" href="{{ route('admin.orders.index') }}">
-                                        Vai ai tuoi ordini
+                                        Gestisci ordini
                                     </a>
-    
-                                    <a class="" href="#">
-                                        Mostra grafico
-                                    </a>
-    
-    
+      
                                     <a class="" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
