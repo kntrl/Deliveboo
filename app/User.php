@@ -76,6 +76,24 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-    $this->notify(new VerifyEmailNotification());
+        $this->notify(new VerifyEmailNotification());
+    }
+
+
+    /**
+     * retrieves $limit number of most sold foods
+     * @param int results number
+     * @return Collection
+     * 
+     */
+    public function bestSellers($limit)
+    {
+        return $this->foods->toQuery()
+        ->join('food_order','foods.id','=','food_order.food_id')
+        ->selectRaw('foods.id,foods.name,sum(food_order.quantity) as orderedTimes')
+        ->groupBy('foods.id')
+        ->orderByDesc('orderedTimes')
+        ->limit($limit)
+        ->get();
     }
 }

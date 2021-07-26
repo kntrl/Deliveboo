@@ -30,7 +30,7 @@ class DelivebooMail extends Mailable
     public function build()
     {
         
-        return $this->view('email.register')
+        return $this->view('email.register') ->subject('Conferma registrazione')
             ->with([
                 'userName' => $this->user->name
             ]);

@@ -12,15 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UsersTableSeeder::class, 
+            // UsersTableSeeder::class, 
             CategoriesTableSeeder::class, 
             StatusesTableSeeder::class, 
             RestaurantsCategoryTableSeeder::class,
-            FoodsTableSeeder::class, 
+            // FoodsTableSeeder::class, 
             OrdersTableSeeder::class, 
             FoodOrderTableSeeder::class
         ]);
     }
 }
-
-// php artisan db:seed

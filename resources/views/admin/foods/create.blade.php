@@ -59,10 +59,10 @@
             
                                     <div class="col-md-6">
                                         <select name="course" class="custom-select" id="course">
-            
-                                            <option value="primo" {{ old('course') == 'primo' ? 'selected' : '' }}>Primo</option>
-                                            <option value="secondo" {{ old('course') == 'secondo' ? 'selected' : '' }}>Secondo</option>
-                                            <option value="contorno" {{ old('course') == 'contorno' ? 'selected' : '' }}>Contorno</option>
+                                            
+                                            @foreach ($courses as $course)
+                                            <option value={{$course}} {{ old('course') ? 'selected' : '' }}>{{$course}}</option>
+                                            @endforeach
             
                                         </select>
                                     </div>

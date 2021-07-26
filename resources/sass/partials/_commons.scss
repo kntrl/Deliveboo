@@ -1,18 +1,22 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+html {
     scroll-behavior: smooth;
 }
-body{
+body {
     background-color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-@media (min-width: 1200px){
-    .container-xl, .container-lg, .container-md, .container-sm, .container {
+@media (min-width: 1200px) {
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
         max-width: 1650px;
     }
 }
@@ -22,20 +26,118 @@ ul {
 }
 
 a {
-    text-decoration: none;    
+    text-decoration: none;
 }
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
+//DASHBOARD COMPONENTS DI LORE
+.date-badge {
+    background-color: #ffe092;
+}
 
+.complete-btn {
+    background-color: #63c9c9;
+    border-radius: 22px;
+    padding: 10px;
+    color: $secondary-text-color;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #63c9c9;
+    transition: 0.5s all;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    &:hover {
+        color: #63c9c9;
+        background-color: $secondary-text-color;
+        border: 1px solid #63c9c9;
+        text-decoration: none;
+    }
+}
+.paginated-list {
+    .my_paginate {
+        color: black;
+        .page-link {
+            color: black;
+            background-color: lighten($secondary-color, 7%);
+            border-color: $secondary-color;
+            &.disabled {
+                background-color: #e9ecef;
+                border-color: #ced4da;
+                color: #495057;
+                cursor: not-allowed;
+            }
+        }
+    }
 
+    @media screen and (max-width: 767px) {
+        .my_paginate {
+            justify-content: center !important;
+        }
+    }
+
+    .my_accordion {
+        .card {
+            border-color: $secondary-color;
+            .card-header {
+                background-color: lighten($secondary-color, 7%);
+                border-bottom: none;
+                padding: 0.25rem 1.25rem;
+
+                [data-toggle="collapse"] .fa:before {
+                    content: "\f146";
+                    margin-right: 0.5rem;
+                }
+
+                [data-toggle="collapse"].collapsed .fa:before {
+                    content: "\f0fe";
+                    margin-right: 0.5rem;
+                }
+
+                .info {
+                    max-width: 500px;
+                    flex-grow: 1;
+                    justify-content: space-between;
+                    > div {
+                        flex-basis: 30%;
+                        text-align: right;
+                    }
+                    > div ~ div {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .filters {
+        padding: 1rem 0;
+        .badge {
+            margin: 5px 0.25rem;
+            padding: 0.3rem;
+        }
+        .badge-no-filter {
+            background-color: $secondary-color;
+        }
+    }
+
+    @media screen and (max-width: 300px) {
+        .filters {
+            span.badge {
+                margin: 0.25rem 0;
+                display: block;
+            }
+        }
+    }
+}

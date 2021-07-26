@@ -1,0 +1,80 @@
+//****EMAIL/REGISTER.BLADE*****//
+//****EMAIL/VERIFY.BLADE*****//
+//****EMAIL/ORDERS/CONFIRMATION.BLADE*****//
+
+//COMMON     
+.email-container {
+    width: 70%;
+    margin: auto;  
+    .bg-email {
+        height: 240px;
+        background-color: $secondary-color;
+    }   
+}
+
+//****EMAIL/REGISTER.BLADE*****//
+.reg-email-container {
+    width: 70%;
+    margin: auto;     
+    text-align: center;
+    background-color: white;
+    position: relative;
+    top: 115px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    img {
+        width: 180px;
+        margin-top: 30px; 
+    }
+    h1 {
+        text-transform: uppercase;
+        width: 50%;
+        margin: auto; 
+             
+    }
+    h5 {
+        margin-top: 50px;
+    }
+}
+
+
+
+
+
+
+
+//****EMAIL/ORDERS/CONFIRMATION.BLADE*****//
+
+.conf-email-container {
+    width: 90%;
+    margin: auto;  
+    .logo-mail-cont {
+        position: relative;
+        img {
+            width: 180px;
+            margin-top: 30px; 
+        }
+        .logo-row {
+            border-bottom: 1px solid black;
+            width: calc( 100% - 230px);
+            position: absolute;
+            top: 73px;
+            left: 230px;
+        }
+    }
+    h1,
+    .sub-n {
+        text-align: right;
+    }
+    
+    h4 {
+        border-bottom: 1px solid #e7e5d9;         
+        padding: 5px 1px;
+    }
+    .your-dish {
+        background-color: lightgrey;
+    }
+    
+}
+
+

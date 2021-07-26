@@ -14,7 +14,7 @@
             return new \Illuminate\Pagination\LengthAwarePaginator(
                 $items->forPage($page,$itemsPerPage)->values(),
                 $items->count(),
-                15,
+                $itemsPerPage,
                 \Illuminate\Pagination\Paginator::resolveCurrentPage(),
                 ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
             );

@@ -122,17 +122,17 @@
                                 <div class="categorie col-md-6 ml-2 d-flex flex-wrap ">
                                     @foreach ($categories as $category)
                                         <div class="{{ $loop->last ? 'col-6' : 'col-6'}}">
-                                        <input class="custom-control-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="{{$category->id}}" id="category-{{$category->id}}" >
-                                        <label class="custom-control-label" for="category-{{$category->id}}">
-                                            {{$category->name}}
-                                        </label>        
-                                        @if ($loop->last)
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>At least one category has to be checked</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                @endforeach
+                                            <input class="custom-control-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="{{$category->id}}" id="category-{{$category->id}}" >
+                                            <label class="custom-control-label" for="category-{{$category->id}}">
+                                                {{$category->name}}
+                                            </label>        
+                                            @if ($loop->last)
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>At least one category has to be checked</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    @endforeach
                                 </div>   
                             </div>
                            

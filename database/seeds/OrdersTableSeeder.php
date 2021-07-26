@@ -32,7 +32,7 @@ class OrdersTableSeeder extends Seeder
          
             $new_order->save();
 
-            $new_order->created_at = $faker->dateTimeBetween('-1 years','-1 day');
+            $new_order->created_at = $faker->dateTimeBetween('-2 years','-1 day');
 
             $new_order->save();
             

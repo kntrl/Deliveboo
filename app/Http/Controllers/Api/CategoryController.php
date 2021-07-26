@@ -26,11 +26,11 @@ class CategoryController extends Controller
         $responseRestaurants = [];
         if ($restaurants->count() !=0 ) {
             foreach ($restaurants as $element) {
- 
-                foreach ($element->categories as $category) {
+                $elementCategories=[];
+                foreach ($element->categories->unique() as $restCategory) {
                     $elementCategories[] = [
-                        'name' => $category->name,
-                        'slug' => $category->slug,
+                        'name' => $restCategory->name,
+                        'slug' => $restCategory->slug,
                     ];
                 }
                 $restaurant = [
