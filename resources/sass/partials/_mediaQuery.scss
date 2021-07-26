@@ -95,6 +95,28 @@
 /* MEDIA 978*/
 @media screen and (max-width: 978px){
     body{
+        .restaurant-menu-box{
+            #form-menu{
+                padding-top: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                .category-course{
+                    width: 100%;
+                    padding: 1rem 0 1rem 0;
+                    margin-right: 1rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .dish-info{ 
+                        width: 45%;
+                        margin-bottom: 3rem;
+                        .allergenic-box{
+                            padding-bottom: .5rem;    
+                        }
+                    }
+                }
+            }
+        }
         .my-jumbotron{
             .jm-img {
                 height: 85px;
@@ -212,7 +234,7 @@
                 }
             } 
             .restaurant-menu-box{
-                 #form-menu{
+                #form-menu{
                     padding-top: 2rem;
                     display: flex;
                     flex-wrap: wrap;
