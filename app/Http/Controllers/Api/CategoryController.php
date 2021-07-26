@@ -37,6 +37,8 @@ class CategoryController extends Controller
                     'id' => $element->id,
                     'name' => $element->name,
                     'slug' => $element->slug,
+                    'vote' => $element->vote,
+                    'phone' => $element->phone,
                     'address' => $element->address,
                     'description' => $element->description,
                     'piva' => $element->piva,
