@@ -80,7 +80,8 @@ var app = new Vue({
             if (this.personalInfo["name"] != "" && 
                 this.personalInfo["last_name"] != "" && 
                 this.personalInfo["email"] != "" && 
-                this.personalInfo["delivery_address"] != "") {
+                this.personalInfo["delivery_address"] != "" &&
+                this.personalInfo["phone"] != "") {
                 
                     
                     this.submittedInfo = true;
@@ -188,7 +189,7 @@ var app = new Vue({
                                 }
             console.log(this.personalInfo);
             this.frontToBack();
-
+        },
         submitCart(restaurantSlug){
             /* this.isWhatPage(); */
             setTimeout(() => {
@@ -201,6 +202,7 @@ var app = new Vue({
             Axios
                 .get(apiToCall)
                 .then(response => {
+                    this.topFunction();
                     const res = response.data;
                     //console.log("sono res.foods", res.restaurant.foods);
 

@@ -19378,6 +19378,8 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var _methods;
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -19400,22 +19402,36 @@ var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.
 var app = new Vue({
   el: "#root",
   data: {
-    url: "http://127.0.0.1:8000/api/",
+    /* style data */
     activeRibbon: "selected-pointy",
     crossRightBurgerBar: "untoggle-cross-right",
     crossLeftBurgerBar: "untoggle-cross-left",
     upperBar: "upper-bar",
     lowerBar: "lower-bar",
     toggledSlider: "slider-off",
+    toggledCategoriesSlider: "",
+    togCardMargin: "",
+    transitionClass: "transition-page-left",
+    isHomePage: true,
+    menuPage: false,
+    bannerColor: "",
+
+    /* navigation data */
+    url: "http://127.0.0.1:8000/api/",
     category: "",
     slug: "",
     restaurants: [],
     categories: [],
     restaurantDetails: {},
     restaurantMenu: [],
+    orderPaid: false,
+    payButton: true,
+
+    /* communication data */
+    submittedInfo: false,
     carrello: {},
     toPayment: false,
-    submittedCart: true,
+    submittedCart: false,
     foods: [],
     cartToPay: {},
     personalInfo: {
@@ -19427,9 +19443,76 @@ var app = new Vue({
     },
     orderDetails: {},
     backResponse: {},
-    clientToken: ""
+    clientToken: "",
+    orderResponse: {},
+    orderRecap: {},
+    totalPrice: ""
   },
-  methods: {
+  methods: (_methods = {
+    /* communication functions */
+    goHome: function goHome() {
+      var _this = this;
+
+      console.log("ciao ora torno alla homepage");
+      setTimeout(function () {
+        _this.payButton = false;
+      }, 1000);
+    },
+    clearStorage: function clearStorage() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.orderPaid = true;
+        localStorage.clear();
+        /* this.isWhatPage(); */
+      }, 500);
+      setTimeout(function () {
+        _this2.orderRecap = {};
+        window.location.reload();
+      }, 3000);
+    },
+    submitPersonalOrderInfo: function submitPersonalOrderInfo() {
+      if (this.personalInfo["name"] != "" && this.personalInfo["last_name"] != "" && this.personalInfo["email"] != "" && this.personalInfo["delivery_address"] != "" && this.personalInfo["phone"] != "") {
+        this.submittedInfo = true;
+        this.toPayment = true;
+        this.personalInfo = _objectSpread(_objectSpread({}, this.personalInfo), {}, {
+          "order": this.orderDetails
+        }); //console.log(this.personalInfo);
+
+        this.frontToBack();
+      } else {
+        //da convertire con un MODAL
+        alert("All fields are required!");
+      }
+    },
+    frontToBack: function frontToBack() {
+      var _this3 = this;
+
+      var data = JSON.stringify(this.personalInfo);
+      var config = {
+        "method": "post",
+        'url': 'http://127.0.0.1:8000/api/orders/validate-order',
+        "headers": {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        "data": data
+      };
+      Axios(config).then(function (response) {
+        var res = JSON.stringify(response.data);
+        _this3.backResponse = JSON.parse(res);
+        _this3.clientToken = _this3.backResponse.data.clientToken; //QUESTI SONO I DATI PER IL RIEPILOGO ORDINE
+
+        console.log("order data to show for recap", _this3.backResponse.data.order);
+        _this3.orderRecap = _this3.backResponse.data.order;
+        _this3.totalPrice = _this3.orderRecap.price.toFixed(2);
+        console.log("order data to show for recap", _this3.orderRecap);
+
+        _this3.brainTreeFunction(_this3.backResponse.data.order.id);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     brainTreeFunction: function brainTreeFunction(orderID) {
       var form = document.querySelector('#payment-form');
       braintree.dropin.create({
@@ -19466,194 +19549,303 @@ var app = new Vue({
                 'Content-Type': 'application/json'
               },
               "data": toBack
-            };
+            }; //stampa la risposta da brain tree
+
             Axios(config).then(function (response) {
               console.log(response.data);
             });
           });
         });
       });
-    },
-    submitPersonalOrderInfo: function submitPersonalOrderInfo() {
-      //console.log(this.personalInfo);
-      this.toPayment = true; //this.personalInfo.phone = parseInt(this.personalInfo.phone);
+    }
+  }, _defineProperty(_methods, "submitPersonalOrderInfo", function submitPersonalOrderInfo() {
+    //console.log(this.personalInfo);
+    this.toPayment = true; //this.personalInfo.phone = parseInt(this.personalInfo.phone);
 
-      this.personalInfo = _objectSpread(_objectSpread({}, this.personalInfo), {}, {
-        "order": this.orderDetails
-      });
-      console.log(this.personalInfo);
-      this.frontToBack();
-    },
-    frontToBack: function frontToBack() {
-      var _this = this;
+    this.personalInfo = _objectSpread(_objectSpread({}, this.personalInfo), {}, {
+      "order": this.orderDetails
+    });
+    console.log(this.personalInfo);
+    this.frontToBack();
+  }), _defineProperty(_methods, "submitCart", function submitCart(restaurantSlug) {
+    var _this4 = this;
 
-      var data = JSON.stringify(this.personalInfo);
-      var config = {
-        "method": "post",
-        'url': 'http://127.0.0.1:8000/api/orders/validate-order',
-        "headers": {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        "data": data
-      };
-      Axios(config).then(function (response) {
-        var res = JSON.stringify(response.data);
-        _this.backResponse = JSON.parse(res);
-        _this.clientToken = _this.backResponse.data.clientToken;
+    /* this.isWhatPage(); */
+    setTimeout(function () {
+      _this4.submittedCart = true;
+    }, 500);
+    this.isWhatPage();
+    this.cartToPay = this.carrello[restaurantSlug]; //console.log("sono cart to pay", this.cartToPay);
 
-        _this.brainTreeFunction(_this.backResponse.data.order.id);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    submitCart: function submitCart(restaurantSlug) {
-      var _this2 = this;
+    var apiToCall = "".concat(this.url, "restaurants/").concat(restaurantSlug);
+    Axios.get(apiToCall).then(function (response) {
+      _this4.topFunction();
 
-      this.submittedCart = false;
-      this.cartToPay = this.carrello[restaurantSlug];
-      console.log("sono cart to pay", this.cartToPay);
-      var apiToCall = "".concat(this.url, "restaurants/").concat(restaurantSlug);
-      Axios.get(apiToCall).then(function (response) {
-        var res = response.data;
-        console.log("sono res.foods", res.restaurant.foods);
+      var res = response.data; //console.log("sono res.foods", res.restaurant.foods);
 
-        var _iterator = _createForOfIteratorHelper(res.restaurant.foods),
-            _step;
+      var _iterator = _createForOfIteratorHelper(res.restaurant.foods),
+          _step;
 
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var iterator = _step.value;
-            console.log(iterator);
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var iterator = _step.value;
 
-            if (_this2.cartToPay[iterator.slug]) {
-              _this2.foods.push({
-                "id": iterator.id,
-                "name": iterator.name,
-                "quantity": _this2.cartToPay[iterator.slug]
-              });
-            }
+          //console.log(iterator);
+          if (_this4.cartToPay[iterator.slug]) {
+            _this4.foods.push({
+              "id": iterator.id,
+              "name": iterator.name,
+              "quantity": _this4.cartToPay[iterator.slug]
+            });
           }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
         }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
 
-        _this2.orderDetails = {
-          "restaurant": restaurantSlug,
-          "foods": _this2.foods
-        };
-        console.log(_this2.orderDetails);
-        console.log(_this2.foods);
-      });
-    },
-    setCart: function setCart(restaurantSlug) {
-      localStorage.setItem("carrello", JSON.stringify(this.carrello));
-      this.setCartData(restaurantSlug);
-    },
-    setCartData: function setCartData(restaurantSlug) {
-      var tempCart = JSON.parse(localStorage.getItem("carrello"));
-      this.carrello[restaurantSlug] = tempCart[restaurantSlug];
-      console.log(this.carrello);
-    },
-    getCategories: function getCategories() {
-      var _this3 = this;
+      _this4.orderDetails = {
+        "restaurant": restaurantSlug,
+        "foods": _this4.foods
+      };
+    });
+  }), _defineProperty(_methods, "setCart", function setCart(restaurantSlug) {
+    localStorage.setItem("carrello", JSON.stringify(this.carrello));
+    this.setCartData(restaurantSlug);
+  }), _defineProperty(_methods, "setCartData", function setCartData(restaurantSlug) {
+    var tempCart = JSON.parse(localStorage.getItem("carrello"));
+    this.carrello[restaurantSlug] = tempCart[restaurantSlug]; //console.log(this.carrello)
+  }), _defineProperty(_methods, "getCategories", function getCategories() {
+    var _this5 = this;
 
-      Axios.get("http://127.0.0.1:8000/api/categories").then(function (response) {
-        var res = response.data.categories;
-        _this3.categories = res;
-      });
-    },
-    setCategory: function setCategory(category) {
-      var _this4 = this;
+    Axios.get("http://127.0.0.1:8000/api/categories").then(function (response) {
+      var res = response.data.categories;
+      console.log(res);
+      _this5.categories = res;
+    });
+  }), _defineProperty(_methods, "setCategory", function setCategory(category) {
+    var _this6 = this;
 
+    if (this.isHomePage == true) {
+      this.isWhatPage();
+      setTimeout(function () {
+        _this6.isHomePage = false;
+        _this6.menuPage = true;
+        _this6.category = category;
+        var apiToCall = "".concat(_this6.url, "categories/").concat(category);
+
+        _this6.toggleCategoriesSlider();
+
+        Axios.get(apiToCall).then(function (response) {
+          var res = response.data;
+
+          _this6.topFunction();
+
+          Vue.set(_this6.restaurants, 0, res.restaurants);
+
+          _this6.pickBannerColor(category);
+        })["catch"](function (error) {
+          console.log("ERRORE");
+
+          if (error.response) {
+            Vue.set(_this6.restaurants, 0, []);
+          } else if (error.request) {
+            Vue.set(_this6.restaurants, 0, []);
+          } else {
+            Vue.set(_this6.restaurants, 0, []);
+          }
+        });
+      }, 500);
+    } else {
       this.category = category;
       var apiToCall = "".concat(this.url, "categories/").concat(category);
+      this.toggleCategoriesSlider();
       Axios.get(apiToCall).then(function (response) {
         var res = response.data;
 
-        _this4.topFunction();
+        _this6.topFunction();
 
-        Vue.set(_this4.restaurants, 0, res.restaurants);
+        Vue.set(_this6.restaurants, 0, res.restaurants);
+
+        _this6.pickBannerColor(category); //console.log(this.restaurants);
+
       })["catch"](function (error) {
         console.log("ERRORE");
 
         if (error.response) {
-          Vue.set(_this4.restaurants, 0, []);
+          Vue.set(_this6.restaurants, 0, []);
         } else if (error.request) {
-          Vue.set(_this4.restaurants, 0, []);
+          Vue.set(_this6.restaurants, 0, []);
         } else {
-          Vue.set(_this4.restaurants, 0, []);
+          Vue.set(_this6.restaurants, 0, []);
         }
       });
-    },
-    getMenu: function getMenu(slug) {
-      var _this5 = this;
+    }
+  }), _defineProperty(_methods, "getMenu", function getMenu(slug) {
+    var _this7 = this;
 
-      this.slug = slug;
-      var apiToCall = "".concat(this.url, "restaurants/").concat(slug);
+    this.isWhatPage();
+    setTimeout(function () {
+      _this7.slug = slug;
+      var apiToCall = "".concat(_this7.url, "restaurants/").concat(slug);
       Axios.get(apiToCall).then(function (response) {
         var res = response.data;
-        _this5.restaurantDetails = res.restaurant;
-        _this5.restaurantMenu = _this5.restaurantDetails.foods;
+        _this7.restaurantDetails = res.restaurant;
+        _this7.restaurantMenu = _this7.restaurantDetails.foods;
 
-        if (!_this5.carrello[slug]) {
-          _this5.carrello[slug] = {};
+        if (!_this7.carrello[slug]) {
+          _this7.carrello[slug] = {};
+
+          var _iterator2 = _createForOfIteratorHelper(_this7.restaurantMenu),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var iterator = _step2.value;
+              _this7.carrello[slug] = _objectSpread(_objectSpread({}, _this7.carrello[slug]), {}, _defineProperty({}, iterator.slug, 0));
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
         }
+
+        console.log(_this7.restaurantMenu);
       });
-    },
-    resetCategoryAndSlug: function resetCategoryAndSlug() {
-      this.category = "";
+    }, 500);
+  }), _defineProperty(_methods, "previousPage", function previousPage() {
+    if (this.toPayment == true) {
+      this.personalInfo = {
+        "name": "",
+        "last_name": "",
+        "email": "",
+        "delivery_address": ""
+      };
+      this.toPayment = false;
+    } else if (this.submittedCart) {
+      this.submittedCart = false;
+    } else if (this.category.length && this.slug.length) {
       this.slug = "";
-    },
-    //riporta l'utente in cima alla pagina
-    topFunction: function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    },
-    toggleSlider: function toggleSlider() {
-      if (this.toggledSlider === "slider-off") {
-        this.toggledSlider = "slider-toggle";
-      } else {
-        this.toggledSlider = "slider-off";
-      }
-    },
-    toggleCrossBurger: function toggleCrossBurger() {
-      // cross on the burger menu when clicking to toggle the slide nav
-      if (this.crossRightBurgerBar === "untoggle-cross-right") {
-        this.crossRightBurgerBar = "cross-right";
-        this.crossLeftBurgerBar = "cross-left"; //remove the upper and lower bar when cross toggled
-
-        this.upperBar = "invisible-upper-bar";
-        this.lowerBar = "invisible-lower-bar";
-      } else {
-        this.crossRightBurgerBar = "untoggle-cross-right";
-        this.crossLeftBurgerBar = "untoggle-cross-left"; //show upper and lower bar
-
-        this.upperBar = "upper-bar";
-        this.lowerBar = "lower-bar";
-      } //slider anim
-
-
-      this.sliderOnOff();
-    },
-    sliderOnOff: function sliderOnOff() {
-      //slider anim
-      if (this.toggledSlider === "slider-off") {
-        this.toggledSlider = "slider-toggle";
-      } else {
-        this.toggledSlider = "slider-off";
-      }
+    } else if (this.category.length) {
+      this.menuPage = false;
+      this.isHomePage = true;
+      this.category = "";
     }
-  },
+  }), _defineProperty(_methods, "resetCategoryAndSlug", function resetCategoryAndSlug() {
+    this.category = "";
+    this.slug = "";
+  }), _defineProperty(_methods, "topFunction", function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }), _defineProperty(_methods, "toggleSlider", function toggleSlider() {
+    if (this.toggledSlider === "slider-off") {
+      this.toggledSlider = "slider-toggle";
+    } else {
+      this.toggledSlider = "slider-off";
+    }
+  }), _defineProperty(_methods, "toggleCrossBurger", function toggleCrossBurger() {
+    // cross on the burger menu when clicking to toggle the slide nav
+    if (this.crossRightBurgerBar === "untoggle-cross-right") {
+      this.crossRightBurgerBar = "cross-right";
+      this.crossLeftBurgerBar = "cross-left"; //remove the upper and lower bar when cross toggled
+
+      this.upperBar = "invisible-upper-bar";
+      this.lowerBar = "invisible-lower-bar";
+    } else {
+      this.crossRightBurgerBar = "untoggle-cross-right";
+      this.crossLeftBurgerBar = "untoggle-cross-left"; //show upper and lower bar
+
+      this.upperBar = "upper-bar";
+      this.lowerBar = "lower-bar";
+    } //slider anim
+
+
+    this.sliderOnOff();
+  }), _defineProperty(_methods, "sliderOnOff", function sliderOnOff() {
+    //slider anim
+    if (this.toggledSlider === "slider-off") {
+      this.toggledSlider = "slider-toggle";
+    } else {
+      this.toggledSlider = "slider-off";
+    }
+  }), _defineProperty(_methods, "toggleCategoriesSlider", function toggleCategoriesSlider() {
+    this.toggledCategoriesSlider == "" ? this.toggledCategoriesSlider = "toggled-cat-slider" : this.toggledCategoriesSlider = "";
+    this.togCardMargin == "" ? this.togCardMargin = "toggled-cards-margin" : this.togCardMargin = "";
+  }), _defineProperty(_methods, "animatePageTransition", function animatePageTransition() {
+    if (this.transitionClass == "transition-page-right") {
+      this.transitionClass = "transition-page-left";
+    } else if (this.transitionClass == "transition-page-left") {
+      this.transitionClass = "transition-page-right";
+    }
+  }), _defineProperty(_methods, "isWhatPage", function isWhatPage() {
+    if (this.isHomePage == true && this.menuPage == false) {
+      this.animatePageTransition();
+    } else if (this.menuPage == true && this.isHomePage == false) {
+      this.animatePageTransition();
+    } else if (this.submittedCart == true) {
+      this.animatePageTransition();
+    } else if (this.orderPaid == true) {
+      this.animatePageTransition();
+    }
+  }), _defineProperty(_methods, "pickBannerColor", function pickBannerColor(category) {
+    switch (category) {
+      case "italiano":
+        this.bannerColor = "italiano";
+        break;
+
+      case "cinese":
+        this.bannerColor = "cinese";
+        break;
+
+      case "indiano":
+        this.bannerColor = "indiano";
+        break;
+
+      case "hamburger":
+        this.bannerColor = "hamburger";
+        break;
+
+      case "pizza":
+        this.bannerColor = "pizza";
+        break;
+
+      case "libanese":
+        this.bannerColor = "libanese";
+        break;
+
+      case "americano":
+        this.bannerColor = "americano";
+        break;
+
+      case "sushi":
+        this.bannerColor = "sushi";
+        break;
+
+      case "vegano":
+        this.bannerColor = "vegano";
+        break;
+
+      case "messicano":
+        this.bannerColor = "messicano";
+        break;
+
+      case "kebab":
+        this.bannerColor = "kebab";
+        break;
+
+      case "hawaiano":
+        this.bannerColor = "hawaiano";
+        break;
+    }
+  }), _methods),
   mounted: function mounted() {
     //
     var storedData = JSON.parse(localStorage.getItem("carrello"));
 
     if (storedData) {
-      this.carrello = storedData;
-      console.log(this.carrello);
+      this.carrello = storedData; //console.log(this.carrello);
     }
 
     this.getCategories();
@@ -19818,7 +20010,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Boolean\ProgettoFinale\Deliveboo\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\NICO\Desktop\provaGitGruppo\Deliveboo\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })
