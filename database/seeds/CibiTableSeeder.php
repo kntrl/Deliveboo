@@ -533,7 +533,7 @@ class CibiTableSeeder extends Seeder
             [
                 "name"=> "Sake",
                 "course" => "Bevande",
-                "ingredients" => "Panna cotta con cioccolato al latte",
+                "ingredients" => "Bevanda alcolica ottenuta dal riso (0.25cl)",
                 "price" =>2.50 ,
                 "available" => 1,
                 "is_vegan" => 0,

@@ -63,6 +63,7 @@ class Order extends Model
         ->join('foods', 'foods.id', '=', 'food_order.food_id')
         ->join('users', 'users.id', '=', 'foods.user_id')
         ->where('users.id','=',$userID)
+        ->where('orders.status_id','>','2')
         ->select('orders.*')
         ->orderBy('id','desc')
         ->get()->unique();

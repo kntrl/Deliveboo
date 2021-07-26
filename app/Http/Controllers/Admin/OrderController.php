@@ -24,7 +24,7 @@ class OrderController extends Controller
         if ($orders->isEmpty()) {
             return view('admin.orders.index',["message"=>"Qui non c'è nessun ordine"]);
         }
-        $statuses = Status::all();
+        $statuses = Status::where('id','>',2)->get();
         
         $orders = $paginate($orders,10);
 
