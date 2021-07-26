@@ -37,7 +37,7 @@ class CategoryController extends Controller
                     'id' => $element->id,
                     'name' => $element->name,
                     'slug' => $element->slug,
-                    'vote' => $element->vote,
+                    'vote' => round($element->vote,0,PHP_ROUND_HALF_DOWN),
                     'phone' => $element->phone,
                     'address' => $element->address,
                     'description' => $element->description,
