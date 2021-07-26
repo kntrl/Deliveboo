@@ -10086,24 +10086,24 @@ h3 {
 }
 /* MEDIA 978*/
 @media screen and (max-width: 978px) {
-  body .restaurant-menu-box #form-menu {
+  body .restaurants-box .restaurant-menu-box #form-menu {
     padding-top: 2rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
   }
-  body .restaurant-menu-box #form-menu .category-course {
+  body .restaurants-box .restaurant-menu-box #form-menu .category-course {
     width: 100%;
     padding: 1rem 0 1rem 0;
     margin-right: 1rem;
     display: flex;
     flex-wrap: wrap;
   }
-  body .restaurant-menu-box #form-menu .category-course .dish-info {
+  body .restaurants-box .restaurant-menu-box #form-menu .category-course .dish-info {
     width: 45%;
     margin-bottom: 3rem;
   }
-  body .restaurant-menu-box #form-menu .category-course .dish-info .allergenic-box {
+  body .restaurants-box .restaurant-menu-box #form-menu .category-course .dish-info .allergenic-box {
     padding-bottom: 0.5rem;
   }
   body .my-jumbotron .jm-img {
