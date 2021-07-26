@@ -71,6 +71,17 @@
         }
     }
 
+    .custom-control-input {
+        box-shadow: 0 0 0 0 !important;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: $primary-color;
+        box-shadow: 0 0 0 0 !important;
+    }
+
     .form-control, .custom-select {
         &:focus {
       
@@ -177,6 +188,17 @@
         &:before {
             top: 0rem;
         }
+    }
+
+    .custom-control-input {
+        box-shadow: 0 0 0 0 !important;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: $primary-color;
+        box-shadow: 0 0 0 0 !important;
     }
 
     .form-control, .custom-select {
