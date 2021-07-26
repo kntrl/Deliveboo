@@ -99,7 +99,6 @@ var app = new Vue({
             }
 
         },
-
         frontToBack(){
             const data = JSON.stringify(this.personalInfo);
             const config = {
@@ -129,7 +128,6 @@ var app = new Vue({
                     console.log(error);
                 })
         },
-
         brainTreeFunction(orderID) {
             var form = document.querySelector('#payment-form');
             braintree.dropin.create({
@@ -257,7 +255,7 @@ var app = new Vue({
                             const res = response.data;
                             this.topFunction();
                             Vue.set(this.restaurants, 0, res.restaurants);
-                            
+                            console.log(this.restaurants);
                             this.pickBannerColor(category);
                         })
                         .catch(error => {
@@ -321,7 +319,6 @@ var app = new Vue({
                     });
             }, 500);
         },
-
         /* frontend functionality */
         previousPage(){
             if (this.toPayment == true){
@@ -417,7 +414,6 @@ var app = new Vue({
                 this.animatePageTransition();
             }
         },
-
         pickBannerColor(category){
             switch (category) {
                 case "italiano":

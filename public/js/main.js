@@ -19643,6 +19643,7 @@ var app = new Vue({
           _this6.topFunction();
 
           Vue.set(_this6.restaurants, 0, res.restaurants);
+          console.log(_this6.restaurants);
 
           _this6.pickBannerColor(category);
         })["catch"](function (error) {

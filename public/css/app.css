@@ -11237,6 +11237,19 @@ footer .small-container .lower-footer .social-menu li a {
   justify-content: center;
   border-radius: 50%;
   color: black;
+  font-size: 20px;
+}
+footer .small-container .lower-footer .social-menu li a:hover {
+  text-decoration: none;
+}
+footer .small-container .lower-footer .social-menu li #social-circle-facebook {
+  background-color: #4867aa;
+}
+footer .small-container .lower-footer .social-menu li #social-circle-instagram {
+  background-color: #bb5287;
+}
+footer .small-container .lower-footer .social-menu li #social-circle-twitter {
+  background-color: #1da1f2;
 }
 
 @media screen and (max-width: 524px) {
@@ -11724,6 +11737,21 @@ input::-webkit-inner-spin-button {
     background-image: none;
   }
 }
+.reset-pw-cont {
+  width: 60%;
+  margin: auto;
+  padding-top: 125px;
+}
+.reset-pw-cont .bg-reset-pw {
+  background-color: #fcecd5;
+  border-radius: 10px;
+}
+.reset-pw-cont .send-pw {
+  background-color: #f74542;
+  color: white;
+  font-weight: bold;
+}
+
 .admin-create {
   background-image: url(../img/createimg.svg);
   background-repeat: no-repeat;

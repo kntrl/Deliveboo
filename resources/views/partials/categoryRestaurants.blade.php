@@ -26,8 +26,12 @@
             <div class="restaurants-cards-container" v-bind:class="togCardMargin">
                 <div v-if="restaurants[0].length" v-for="(restaurant, index) in restaurants[0]" class="restaurant-card" v-on:click="getMenu(restaurant.slug)">
                     <h5>@{{restaurant.name}}</h5>
-                    {{-- <h5>@{{restaurant.vote}}</h5>
-                    <h5>@{{restaurant.phone}}</h5> --}}
+                    <h5>
+                        <span v-for="n in restaurant.vote">
+                            <i class="fas fa-star" style="font-size: 13px; color: #f74542"></i>
+                        </span>
+                    </h5>
+                    <h5 style="font-size: 13px; color: grey">@{{restaurant.phone}}</h5>
                     <h6>@{{restaurant.address}}</h6>
                     <ul>
                         <li v-for="item in restaurant.categories">
