@@ -26,15 +26,7 @@ Route::name('guest.')
     //LANDING ROUTES
     Route::get('/', function(){
         return view('welcome');
-    });
-
-    //QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
-    Route::get('/home', 'HomeController@index')->name('home');
-
-    //Order Routes
-    Route::get('/restaurants/{user:slug}/create','OrderController@create')->name('orders.create');
-    Route::post('/restaurants/{user:slug}/store','OrderController@store')->name('orders.store');
-
+    })->name('welcome');
 }
 );
 
@@ -42,27 +34,24 @@ Route::name('guest.')
 Auth::routes(['verify' => true]);
 Auth::routes();
 
-//BRAINTREE ROUTES
-Route::get('/pay/{order:id}','PaymentController@setupPayment' )->name('guest.setupPayment');
-Route::post('/checkout/{order:id}','PaymentController@checkout' )->name('guest.checkout');
-
-
+//QUESTA IN REALTA' E' LA HOME DELLA DASHBOARD,VA CAMBIATA
+Route::get('/dashboard', 'HomeController@index')->name('admin.home')->middleware('verified');
 
 /*****************************
 *  AUTH DASHBOARD ROUTES
 ******************************/
-
-
-Route::prefix('admin')
+Route::prefix('dashboard')
 ->namespace('Admin')
-->middleware('verified')
 ->middleware('auth')
+->middleware('verified')
 ->name('admin.')
 ->group(function () {
+
         //Foods Routes
         Route::resource('foods', 'FoodController');
         
         //Order Routes
         Route::get('/orders','OrderController@index')->name('orders.index');
+        Route::put('/orders','OrderController@markAsComplete')->name('orders.complete');
     }
 );

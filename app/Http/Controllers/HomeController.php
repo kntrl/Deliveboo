@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $order = new \App\Order;
+        
+        $userOrders = $order->getOrderByUser(Auth::user()->id);
+        if (!($userOrders->count() > 0)) {
+            return view ('home',compact('userOrders'));
+        }
+        $orderTrendChart =  $order->getTrendChart($userOrders);
+        $coursePieChart = $order->getCoursePieChart($userOrders);
+        $yearlyOrderChart = $order->getYearlyChart($userOrders);
+        $data =[
+            'userOrders'=>$userOrders,
+            'coursePieChart'=>$coursePieChart,
+            'yearlyOrderChart'=>$yearlyOrderChart,
+            'orderTrendChart'=>$orderTrendChart,
+            'bestSellerFood'=> Auth::user()->bestSellers(1)->first(),
+        ];
+
+
+        return view('home',$data);
     }
 }

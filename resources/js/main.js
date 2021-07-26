@@ -45,6 +45,7 @@ var app = new Vue({
             "last_name": "",
             "email": "",
             "delivery_address" : "",
+            "phone" : "",
         },
         orderDetails: {},
         backResponse : {},
@@ -177,6 +178,16 @@ var app = new Vue({
                 });
             });
         },
+        submitPersonalOrderInfo(){
+            //console.log(this.personalInfo);
+            this.toPayment = true;
+            //this.personalInfo.phone = parseInt(this.personalInfo.phone);
+            this.personalInfo = { 
+                                ...this.personalInfo,
+                                "order": this.orderDetails
+                                }
+            console.log(this.personalInfo);
+            this.frontToBack();
 
         submitCart(restaurantSlug){
             /* this.isWhatPage(); */

@@ -12,6 +12,16 @@ class FoodsTableSeeder extends Seeder
 {
     public function run(Slug $slug)
     {
+        $course =[
+            'Antipasto',
+            'Piatto Unico',
+            'Primo',
+            'Secondo',
+            'Contorno',
+            'Dolce',
+            'Bevande'
+        ];
+
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \FakerRestaurant\Provider\it_IT\Restaurant($faker));
         $users = User::all();
@@ -21,11 +31,11 @@ class FoodsTableSeeder extends Seeder
             //creating up to 10 foods for each user
             for ($i=0; $i < $faker->numberBetween(5,10); $i++) { 
                 $new_food = new Food();
-                $new_food->name = $faker->foodName();
+                $new_food->course = $course[$faker->numberBetween(0,6)];
+                $new_food->name = $new_food->course == 'Bevande' ? $faker->beverageName() : $faker->foodName; 
                 $new_food->slug = $slug($new_food->name,'foods');
                 $new_food->ingredients = $faker->sentence(3);
                 $new_food->price = $faker->randomFloat(2, 1, 50);
-                $new_food->course = $faker->word();
                 $new_food->available = $faker->numberBetween(0,1);
                 
                 // dettagli extra per il piatto

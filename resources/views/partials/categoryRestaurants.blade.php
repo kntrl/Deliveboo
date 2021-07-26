@@ -87,8 +87,11 @@
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="" v-model="personalInfo.email" >
     
-                    <label for="address">Address:</label>
-                    <input type="text" name="" id="" v-model="personalInfo.delivery_address">
+                    <label for="address">Address</label><br>
+                    <input type="text" name="" id="" v-model="personalInfo.delivery_address"><br><br>
+
+                    <label for="address">Phone</label><br>
+                    <input type="number" name="" id="" v-model="personalInfo.phone" max="10"><br><br>
     
                     <input id="button-input" class="brainClick" v-on:click.prevent="submitPersonalOrderInfo()" type="submit" value="Order Now">
                 </form> 

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\VerifyEmailNotification;
+use App\Providers\RouteServiceProvider;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -17,8 +18,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','piva','address','description'
-    ];
+            'name', 
+            'email', 
+            'password',
+            'piva',
+            'phone',
+            'address',
+            'description',
+        ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -53,12 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * if true,returns the food 
      * if false aborts(404)
      * @param foodId
-     * @return App\Food or 404
+     * @return App\Food or redirects to previews page.
      */
     public function foodOrFail($foodId)
     {
         if (!$food = $this->foods->firstWhere('id',$foodId)){
-            abort(404);  
+            abort(403);
         } 
 
         return $food;
@@ -69,6 +76,24 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-    $this->notify(new VerifyEmailNotification());
+        $this->notify(new VerifyEmailNotification());
+    }
+
+
+    /**
+     * retrieves $limit number of most sold foods
+     * @param int results number
+     * @return Collection
+     * 
+     */
+    public function bestSellers($limit)
+    {
+        return $this->foods->toQuery()
+        ->join('food_order','foods.id','=','food_order.food_id')
+        ->selectRaw('foods.id,foods.name,sum(food_order.quantity) as orderedTimes')
+        ->groupBy('foods.id')
+        ->orderByDesc('orderedTimes')
+        ->limit($limit)
+        ->get();
     }
 }

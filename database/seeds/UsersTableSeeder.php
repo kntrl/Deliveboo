@@ -21,6 +21,8 @@ class UsersTableSeeder extends Seeder
             $new_user->piva = $faker->shuffle('80123456789');
             $new_user->address = $faker->address(); //da cambiare con faker address ===>>  https://fakerphp.github.io/formatters/#fakerprovideren_usaddress
             $new_user->slug = $slug($new_user->name,'users');
+            $new_user->phone = '3' . $faker->shuffle('012345678');
+            $new_user->vote = $faker->randomFloat(1,1,5);
             $new_user->description = $faker->paragraph(6, true);
             $new_user->email = $faker->safeEmail();
             $new_user->password = Hash::make('password');

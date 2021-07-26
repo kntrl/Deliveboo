@@ -13,7 +13,7 @@
                             @csrf
     
                             <div class="form-group row">
-                                <label for="name" class="col-md-5 col-form-label text-md-right">Restaurant name</label>
+                                <label for="name" class="col-md-5 col-form-label text-md-right">Nome ristorante</label>
     
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -65,7 +65,7 @@
                             {{-- CUSTOM FIELDS Section --}}
                             {{-- Address --}}
                             <div class="form-group row">
-                                <label for="address" class="col-md-5 col-form-label text-md-right">Restaurant address</label>
+                                <label for="address" class="col-md-5 col-form-label text-md-right">Indirizzo</label>
     
                                 <div class="col-md-6">
                                     <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
@@ -75,6 +75,15 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+
+                            {{-- telefono --}}
+                            <div class="form-group row">
+                                <label for="phone" class="col-md-5 col-form-label text-md-right">Telefono</label>
+    
+                                <div class="col-md-6">
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
                                 </div>
                             </div>
     
@@ -95,7 +104,7 @@
                            
                             {{-- text area --}}
                             <div class="form-group row">
-                                <label for="description" class="col-md-5 col-form-label text-md-right">Text area</label>
+                                <label for="description" class="col-md-5 col-form-label text-md-right">Descrizione</label>
                                 <div class="col-md-6">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="5">{{ old('description') }}</textarea>
                                 </div>
@@ -103,7 +112,7 @@
 
                             {{-- Categories --}}
                             <div class="form-group row">
-                                <span class="col-md-5 col-form-label text-md-right">Restauran categories</span>
+                                <span class="col-md-5 col-form-label text-md-right">Categorie</span>
                                 @error('categories')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>At least one category has to be checked</strong>
@@ -113,17 +122,17 @@
                                 <div class="categorie col-md-6 ml-2 d-flex flex-wrap ">
                                     @foreach ($categories as $category)
                                         <div class="{{ $loop->last ? 'col-6' : 'col-6'}}">
-                                        <input class="custom-control-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="{{$category->id}}" id="category-{{$category->id}}" >
-                                        <label class="custom-control-label" for="category-{{$category->id}}">
-                                            {{$category->name}}
-                                        </label>        
-                                        @if ($loop->last)
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>At least one category has to be checked</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                @endforeach
+                                            <input class="custom-control-input @error('categories') is-invalid @enderror" name="categories[]" type="checkbox" value="{{$category->id}}" id="category-{{$category->id}}" >
+                                            <label class="custom-control-label" for="category-{{$category->id}}">
+                                                {{$category->name}}
+                                            </label>        
+                                            @if ($loop->last)
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>At least one category has to be checked</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    @endforeach
                                 </div>   
                             </div>
                            

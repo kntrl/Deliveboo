@@ -1,0 +1,66 @@
+//ORDERS CRUD
+
+.order-list-container {
+    @include dashboard-widget;
+    a,
+    a:hover,
+    .btn.btn-link {
+        color: black;
+    }
+    .order-content .dish-name > i {
+        margin-right: 5px;
+    }
+    .delivery-info {
+        .label {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+}
+
+.badge-price {
+    background-color: #55e29c;
+}
+
+@media screen and (max-width: 1200px) {
+    .dashboard-wrapper {
+        padding-top: 75px;
+        .welcome {
+            display: none;
+        }
+        .dashboard-content {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .paginated-list .card-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        h5 {
+            flex-basis: 100%;
+            text-align: center;
+        }
+        .info {
+            justify-content: center;
+            flex-grow: 1;
+            > div {
+                text-align: center !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .paginated-list .card-header {
+        .info {
+            justify-content: center;
+            flex-wrap: wrap;
+            > div {
+                text-align: center !important;
+                flex-grow: 1;
+            }
+        }
+    }
+}

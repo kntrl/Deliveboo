@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OrderRequest;
 
 use Braintree\Gateway as Gateway;
 
+//mails
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Mail;
+
+//models
 use App\User;
 use App\Food;
 use App\Order;
-use Illuminate\Auth\Access\Gate;
 
 class OrderController extends Controller
 {
@@ -95,7 +99,7 @@ class OrderController extends Controller
         //creating the order
         $order = new Order();
         $order->price = 0;
-        $order->status="pending";
+        $order->status_id = 1;
         $order->fill($request->all());
 
         $order->save();
@@ -144,8 +148,8 @@ class OrderController extends Controller
         }
 
 
-        //checking order status not being already completed.
-        if ((!$order->status == "pending" || !$order->status == "rejected")){
+        //checking order status not being already completed (status > 2).
+        if ($order->status_id > 2){
             return response()->json(["messagge"=>"Transaction has already been completed","order"=>$order],404);
         }
 
@@ -164,16 +168,17 @@ class OrderController extends Controller
 
         //updating order status according to sale result.
         if (!$result->success) {
-            $order->status ="rejected";
+            $order->status_id =2;
             return response()->json(["message"=>$result->message,"order"=>$order],400);
         }
 
-        $order->status = "accepted";
+        $order->status_id = 3;
 
         $order->braintree_transaction_id = $result->transaction->orderId;
 
         $order->save();
 
+        Mail::to($order->email)->send(new OrderConfirmationMail($order));
         return response()->json(["message"=>"Pagamento effettuato con successo","order"=>$order],200);
     }
 

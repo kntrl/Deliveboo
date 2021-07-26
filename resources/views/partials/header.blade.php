@@ -9,7 +9,7 @@
                 <div class="container-commands">
                     <div class="shown-commands">
                         @auth
-                            <a href="{{ url('home') }}">Dashboard</a>
+                            <a href="{{ url('dashboard') }}">Dashboard</a>
                         @else
                             <a id="ghosted-btn" href="{{ route('login') }}">Login</a>
     
@@ -31,7 +31,7 @@
             </div>
             <div id="slider-standard" v-bind:class="toggledSlider">
                 @auth
-                    <a href="{{ url('home') }}">Dashboard</a>
+                    <a href="{{ route('admin.home') }}">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}">Login</a>
 
