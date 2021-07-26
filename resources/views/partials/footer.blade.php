@@ -1,5 +1,5 @@
 
-<footer>
+<footer v-if="!category.length">
 
     <div class="wrapper">
         
