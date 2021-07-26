@@ -59,6 +59,7 @@ class FoodController extends Controller
         $food->user_id = Auth::user()->id;
 
         $food->fill($form_data);
+        $food->price = round($food->price,2,PHP_ROUND_HALF_DOWN);
         $food->save();
 
         return redirect()->route('admin.foods.index');
