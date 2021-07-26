@@ -62,7 +62,7 @@
                                         <select name="course" class="custom-select" id="course">
 
                                             @foreach ($courses as $course)
-                                            <option value= {{$course}} {{ old('course', $course) == $food->course ? 'selected' : '' }}>{{$course}}</option>
+                                            <option value= {{$course}} {{ old('course', $course) == ucfirsT($food->course) ? 'selected' : '' }}>{{$course}}</option>
                                             @endforeach
                         
                                         </select>
