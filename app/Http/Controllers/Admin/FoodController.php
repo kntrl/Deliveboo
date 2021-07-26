@@ -33,7 +33,9 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('admin.foods.create');
+        $courses = $this->course();
+
+        return view('admin.foods.create', compact('courses'));
     }
 
     /**
@@ -89,8 +91,11 @@ class FoodController extends Controller
     {
         $food = Auth::user()->foodOrFail($id);
 
+        $courses = $this->course();
+
         $data = [
-            'food' => $food
+            'food' => $food,
+            'courses' => $courses
         ];
 
         return view('admin.foods.edit', $data);
@@ -139,6 +144,19 @@ class FoodController extends Controller
         $food->delete();
 
         return redirect()->route('admin.foods.index');
+    }
+
+    protected function course()
+    {
+        return $course =  [
+            'Antipasto',
+            'Piatto Unico',
+            'Primo',
+            'Secondo',
+            'Contorno',
+            'Dolce',
+            'Bevande'
+        ];
     }
 
 

@@ -11,50 +11,52 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
+<body style="font-family: 'Poppins'">
     
-    <div class="conf-email-container">
-        <div class="logo-mail-cont">
-            <img src="{{asset('img/logo-piccolo-nero.svg')}}" alt="Deliveboo - Logo">
-            <div class="logo-row"></div>
+    <div style="width: 90%; margin: auto;">
+        <div style="position: relative;">
+            <img style="width: 180px; margin-top: 30px; "src="{{asset('img/logo-piccolo-nero.svg')}}" alt="Deliveboo - Logo">
+            <div 
+            style="
+                border-bottom: 1px solid black;
+                width: calc( 100% - 230px);
+                position: absolute;
+                top: 73px;
+                left: 230px;"
+                >
+            </div>
         </div>
 
         <div class="">
-            <h1>Grazie per il tuo ordine</h1>
-            <p class="sub-n"> Ordine n° #00000{{--{{$order->id}}--}}</p>
+            <h1 style="text-align: right;">Grazie per il tuo ordine</h1>
+            <p style="text-align: right;">Ordine n° #00000{{$order->id}}</p>
             
 
 
-            <h5>Ciao {{--{{$order->name}}--}}Ernesto,</h5>
+            <h5>Ciao {{$order->name}}</h5>
 
-            <p>Ti informiamo che il tuo ordine #00000{{--{{$order->id}}--}} è stato ricevuto </p>
-            <p>L'importo totale pagato è {{--{{$order->price}}--}}</p>
+            <p>Ti informiamo che il tuo ordine #00000{{$order->id}} è stato inviato al ristorante. </p>
+            <p>L'importo totale pagato è {{$order->price}}</p>
 
-            <h4>Riepilogo</h4>
+            <h4 style="border-bottom: 1px solid #e7e5d9; padding: 5px 1px;">Riepilogo</h4>
 
-            <div><strong>Numero ordine:</strong>  #00000{{--{{$order->id}}--}}</div>
+            <div><strong>Numero ordine:</strong>  #00000{{$order->id}}</div>
 
             <div>
-                <h5 class="your-dish">I tuoi piatti</h5>
+                <h5 style="background-color: lightgrey;">I tuoi piatti</h5>
                 <ul>
-                    {{--@foreach ($order->foods as $food)--}}
+                    @foreach ($order->foods as $food)
                         <li>    
-                            <strong>Num. {{--{{$food->pivot->quantity}}--}}</strong> x {{--{{$food->name}}--}}
-                            {{--@if($food->pivot->note)--}}
-                                <div class="note">{{--{{$food->pivot->note}}--}}</div>
-                            {{--@endif--}}
+                            <strong>Num. {{$food->pivot->quantity}}</strong> x {{$food->name}}
+                            @if($food->pivot->note)
+                                <div class="note">{{$food->pivot->note}}</div>
+                            @endif
                         </li>
-                    {{--@endforeach--}}
+                    @endforeach
                 </ul>
             </div>
-        </div>
-        
-       
-
-        
-        
+        </div> 
     </div>
-    
 </body>
 </html>
 

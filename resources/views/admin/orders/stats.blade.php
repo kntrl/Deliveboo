@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 
@@ -99,4 +99,10 @@
 </script>
 @endif
 
-@endsection
+@endsection --}}
+
+
+
+<div style="width:75%;">
+    {!! $yearlyOrderChart->render() !!}
+</div>
