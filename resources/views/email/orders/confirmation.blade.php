@@ -36,7 +36,7 @@
             <h5>Ciao {{$order->name}}</h5>
 
             <p>Ti informiamo che il tuo ordine #00000{{$order->id}} è stato inviato al ristorante. </p>
-            <p>L'importo totale pagato è {{$order->price}}</p>
+            <p>L'importo totale pagato è di {{$order->price}} €</p>
 
             <h4 style="border-bottom: 1px solid #e7e5d9; padding: 5px 1px;">Riepilogo</h4>
 
