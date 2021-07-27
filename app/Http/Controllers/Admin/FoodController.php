@@ -62,7 +62,7 @@ class FoodController extends Controller
         $food->price = round($food->price,2,PHP_ROUND_HALF_DOWN);
         $food->save();
 
-        return view('admin.foods.index',['message'=>$food->name .' modificato con successo.']);
+        return view('admin.foods.index',['message'=>$food->name .' creato con successo.']);
     }
 
     /**
