@@ -97,7 +97,7 @@
                         </li>
     
                         <li>
-                            <a style="background-color: white" id="social-circle-instagram" href=""><i class="fab fa-instagram"></i></a>
+                            <a style="background-color: white" id="social-circle-instagram" href="https://www.instagram.com/deliveboo/"><i class="fab fa-instagram"></i></a>
                         </li>
     
                         <li>
