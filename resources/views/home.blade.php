@@ -45,7 +45,7 @@
 
             {{-- Dish --}}
             <div class="dashboard-dish">
-                <h2>My Foods</h2>
+                <h2>I miei piatti</h2>
 
                 <div class="dish-details">
 
@@ -82,7 +82,7 @@
             {{-- Trend --}}
             <div class="dashboard-order-trend">
                 
-                <h2>Order Trend</h2>  
+                <h2>I miei ordini</h2>  
                   
                 <div class="dish-details">
 

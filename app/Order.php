@@ -22,7 +22,9 @@ class Order extends Model
         'rgba(255, 206, 86, 0.7)',
         'rgba(75, 192, 192, 0.7)',
         'rgba(153, 102, 255, 0.7)',
-        'rgba(255, 159, 64, 0.7)'
+        'rgba(255, 129, 64, 0.7)',
+        'rgba(255, 144, 64, 0.7)',
+        'rgba(255, 171, 64, 0.7)'
     ];
 
     
@@ -148,11 +150,9 @@ class Order extends Model
 
         //creating template for ChartJS dataset
         foreach ($courseOrdered as $key=>$course) {
-
             $courseDataset['labels'][]=$course->course;
             $courseDataset['dataset']['data'][]= number_format($course->course_count / $courseOrdered->sum('course_count') *100,0);
             $courseDataset['dataset']['backgroundColor'][]=$this->colors[$key];
-
         }
 
         $chartCourse = app()->chartjs

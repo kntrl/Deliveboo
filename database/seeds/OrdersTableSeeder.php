@@ -16,7 +16,7 @@ class OrdersTableSeeder extends Seeder
         //array temporaneo che contiene i possibili status per l'ordine
 
 
-        for ($i=0; $i < 5000; $i++) { 
+        for ($i=0; $i < 7000; $i++) { 
 
             $new_order = new Order();
 
@@ -27,12 +27,12 @@ class OrdersTableSeeder extends Seeder
             $new_order->phone = '3' . $faker->shuffle('012345678');
             //address infos
             $new_order->delivery_address = $faker->address();
-            $new_order->status_id = $faker->numberBetween(1,4);
+            $new_order->status_id = $faker->numberBetween(3,4);
             $new_order->price = $faker->randomFloat(2, 1, 50);
          
             $new_order->save();
 
-            $new_order->created_at = $faker->dateTimeBetween('-2 years','-1 day');
+            $new_order->created_at = $faker->dateTimeBetween('-1 years','-1 day');
 
             $new_order->save();
             
