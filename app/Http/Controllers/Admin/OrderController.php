@@ -22,7 +22,7 @@ class OrderController extends Controller
         }
 
         if ($orders->isEmpty()) {
-            return view('admin.orders.index',["message"=>"Qui non c'è nessun ordine"]);
+            return view('admin.orders.index',["errore"=>"Qui non c'è nessun ordine"]);
         }
         $statuses = Status::where('id','>',2)->get();
         
@@ -69,7 +69,7 @@ class OrderController extends Controller
         $order->status_id = 4;
         $order->save();
         parse_str($request->uri,$queryStringParams);        
-        return redirect()->route('admin.orders.index',$queryStringParams);
+        return redirect()->route('admin.orders.index',$queryStringParams)->with('message','L\'ordine #'.$order->id .' è stato ora completato');
     }
 
 }

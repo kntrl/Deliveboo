@@ -14,7 +14,7 @@ class AddDeletedToFoodsTable extends Migration
     public function up()
     {
         Schema::table('foods', function (Blueprint $table) {
-            $table->tinyInteger('deleted')->default(0);
+            $table->tinyInteger('deleted')->after('course')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddDeletedToFoodsTable extends Migration
     public function down()
     {
         Schema::table('foods', function (Blueprint $table) {
-            //
+            $table->dropColumn('deleted');
         });
     }
 }

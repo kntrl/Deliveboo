@@ -62,7 +62,7 @@ class FoodController extends Controller
         $food->price = round($food->price,2,PHP_ROUND_HALF_DOWN);
         $food->save();
 
-        return redirect()->route('admin.foods.index');
+        return view('admin.foods.index',['message'=>$food->name .' modificato con successo.']);
     }
 
     /**
@@ -128,7 +128,7 @@ class FoodController extends Controller
         // Update
         $food->update($form_data);
 
-        return redirect()->route('admin.foods.index');
+        return view('admin.foods.index',['message'=>$food->name .' modificato con successo.']);
 
     }
 
@@ -142,9 +142,11 @@ class FoodController extends Controller
     {
         $food = Auth::user()->foodOrFail($id);
 
-        $food->delete();
+        $food->deleted = 1;
 
-        return redirect()->route('admin.foods.index');
+        $food->save();
+
+        return view('admin.foods.index',['message'=>$food->name .' cancellato con successo.']);
     }
 
     protected function course()

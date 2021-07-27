@@ -18,15 +18,25 @@
       </div>
     <div class="dashboard-content justify-content-center">
       <div class="order-list-container w-100">
-        @if (!isset($orders))
+        @if (!isset($orders) && isset($errore))
           <div class="message">
               <h2 class="mb-0">Ops..</h2>
-              {{$message}}
+              {{$errore}}
           </div>
         @else
         <div class="paginated-list pt-20">
           <div class="paginate-nav"></div>
           <div class="filters text-center ">
+              @if (Session::get('message') != null)
+              <div class="row d-flex justify-content-center">
+                  <div class="alert alert-success col-12 col-sm-6 text-center" role="alert">
+                      {{Session::get('message')}}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                  </div>
+              </div>
+              @endif
             <h3>Filtra per stato</h3>
             <div class="filters-label">
               @isset($_GET['filter'])

@@ -3,11 +3,20 @@
 {{-- TEST VIEW ADDED FOR THE SAKE OF TESTING  --}}
 @section('content')
 <div class="admin-food-index">
-
+    @if (isset($message))
+    <div class="row d-flex justify-content-center">
+        <div class="alert alert-success col-12 col-sm-6 text-center" role="alert">
+            {{$message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    </div>
+    @endif
     {{-- Food collection --}}
     <div class="food-collection">
         
-        @foreach (Auth::user()->foods->sortBy('name') as $food)
+        @foreach (Auth::user()->foods->where('deleted','=',0)->sortBy('name') as $food)
 
             <div class="single-food">
                 
