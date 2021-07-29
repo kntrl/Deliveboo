@@ -187,7 +187,7 @@ tl3.from("#row3 div", { y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "b
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\NICO\Desktop\provaGitGruppo\Deliveboo\resources\js\gsapAnimations.js */"./resources/js/gsapAnimations.js");
+module.exports = __webpack_require__(/*! C:\Boolean\ProgettoFinale\Deliveboo\resources\js\gsapAnimations.js */"./resources/js/gsapAnimations.js");
 
 
 /***/ })
