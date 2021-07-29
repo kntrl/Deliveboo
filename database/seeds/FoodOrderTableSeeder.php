@@ -25,7 +25,7 @@ class FoodOrderTableSeeder extends Seeder
     
             //assigning up to 4 foods to order
             for ($i = 0; $i < $faker->numberBetween(1,4); $i++) {
-                $order->foods()->attach($foods[$i]->id, ['quantity'=>$faker->numberBetween(1, 3), 'note'=>$faker->words(6, true)]);
+                $order->foods()->attach($foods[$i]->id, ['quantity'=>$faker->numberBetween(1, 5), 'note'=>$faker->words($faker->biasedNumberBetween(0,3), true)]);
             }
     
         }

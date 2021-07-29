@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js" integrity="sha512-5vwN8yor2fFT9pgPS9p9R7AszYaNn0LkQElTXIsZFCL7ucT8zDCAqlQXDdaqgA1mZP47hdvztBMsIoFxq/FyyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div class="dashboard-wrapper">
-    
-
     {{-- Auth default  tag --}}
     <div class="auth-default-tag">
 
@@ -47,21 +45,30 @@
 
             {{-- Dish --}}
             <div class="dashboard-dish">
-                <h2>My Foods</h2>
+                <h2>I miei piatti</h2>
 
                 <div class="dish-details">
 
                     <div>Numero totale piatti</div>
-                    <span>20</span>                   
+                    <span>{{Auth::user()->foods->count()}}</span>                   
 
                 </div>
 
                 <div class="dish-details">
 
                     <div>Numero piatti non disponibili</div>
-                    <span>20</span>                   
+                    <span>{{Auth::user()->foods->where('available','=',0)->count()}}</span>                   
 
                 </div>
+
+                @if($userOrders->count())
+                    <div class="dish-details">
+
+                        <div>Best seller</div>
+                        <span><a href="{{route('admin.foods.edit',['food'=>$bestSellerFood])}}">{{$bestSellerFood->name}} ({{$bestSellerFood->orderedTimes}} pz.)</a></span>                   
+
+                    </div>
+                @endif
                 
                 <div class="manage-btn">
                     <a href="{{ route('admin.foods.index') }}">Gestisci i tuoi piatti</a>
@@ -75,34 +82,39 @@
             {{-- Trend --}}
             <div class="dashboard-order-trend">
                 
-                <h2>Order Trend</h2>  
+                <h2>I miei ordini</h2>  
                   
                 <div class="dish-details">
 
-                    <div>Numero di ordini per mesi</div>
-                    <span>20</span>                   
+                    <div>Ordini da preparare</div>
+                    <span>{{$userOrders->where('status_id','=','3')->count()}}</span>                   
 
                 </div>   
 
                 <div class="dish-details">
 
-                    <div>Numero di ordini per anni</div>
-                    <span>20</span>                   
+                    <div>Totale ordini ricevuti</div>
+                    <span>{{$userOrders->count()}}</span>                   
 
                 </div> 
 
                 <div class="dish-details">
 
-                    <div>totale vendite</div>
-                    <span>20</span>                   
+                    <div>Totale incassato</div>
+                    <span>€ {{$userOrders->sum('price')}}</span>                   
+
+                </div>   
+                
+                <div class="dish-details">
+
+                    <div>Media € / ordine</div>
+                    <span>€ {{round($userOrders->avg('price'),2)}}</span>                   
 
                 </div>   
                  
 
                 <div class="manage-btn">
-                    <a href="">Mostra grafico</a>     
-                    <a href="{{ route('admin.orders.index') }}">Vai ai tuoi ordini</a>
-                   
+                    <a href="{{ route('admin.orders.index') }}">Gestisci ordini</a>
                 </div>           
                 
             </div>
@@ -112,82 +124,43 @@
         </div>
         {{-- end Dish and trend --}}
 
-        {{-- Order --}}
+        {{-- STATS --}}
         <div class="dashboard-order">
-            <h2>Ultimi ordini ricevuti</h2>
+            <h2>Statistiche</h2>
+            @if($userOrders->count())
+            <div class="charts-container d-flex flex-wrap justify-content-around">
+                    {{-- Monthly order Graph --}}
+                    <div class="chart-yearly col-12 col-md-7">
+                        <h3>Incasso per mese</h3>
+                        <div class="chart-wrapper">
+                            {!! $yearlyOrderChart->render() !!}
+                        </div>
+                    </div>
 
-            {{-- single order --}}
-            
-            <div class="single-order">
-                
-                {{-- order title --}}
-                <div class="order-title">
-
-                    <div>Numero ordine: 12</div>
-
-                    <div>19/07/2021 - 17.28</div>
-
-                    <div>Totale: € 11,90</div>            
-
-                </div>
-                {{-- end order title --}}
-
-                {{-- order details --}}
-                <div class="order-details">
-
-                    <ul class="dish-name">
-                        <li>
-                            <h5>Nome piatto</h5>
-                        </li>
-
-                        <li>Miso soup</li>
-
-                        <li>Miso soup</li>
-
-                        <li>Miso soup</li>
-                    </ul>
-
-                    <ul class="dish-quantity">
-                        <li>
-                            <h5>Quantità</h5>
-                        </li>
-
-                        <li>1</li>
-
-                        <li>1</li>
-
-                        <li>1</li>
-                    </ul>
-
+                    {{-- Course pie charth --}}
+                    <div class="chart-course-pie col-12 col-md-5">
+                        <h3>Distrubuzione portate</h3>
+                        <div class="chart-wrapper">
+                            {!! $coursePieChart->render() !!}
+                        </div>
+                    </div>
                     
+                    {{-- Monthly order Graph --}}
+                    <div class="chart-yearly col-12">
+                        <h3>Andamento degli ultimi 30 giorni</h3>
+                        <div class="chart-wrapper ">
+                            {!! $orderTrendChart->render() !!}
+                        </div>
+                    </div>
+            </div>
+            @else
+            <div>
+                Le statistiche saranno disponibili non appena avrai ricevuto degli ordini.
+            </div>
 
-                    <ul class="dish-price">
-                        <li>
-                            <h5>prezzo</h5>
-                        </li>
-
-                        <li>€ 3.90</li>
-
-                        <li>€ 3.90</li>
-
-                        <li>€ 3.90</li>
-
-                    </ul>
-
-                </div>
-                {{-- end order details --}}
-
-                <div class="note">
-                    Note: 
-                </div>
-                                           
-                            
-
-            </div>  
-            {{-- end single order --}}
-
+            @endif
         </div>
-            
+        {{-- STATS ENDS --}}
 
     </div>   
     

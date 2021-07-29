@@ -3,16 +3,18 @@
         @if (Route::has('login'))
             <div class="top-right links">
                 <img v-on:click="resetCategoryAndSlug()" src="{{ asset("/img/logo.png") }}" alt="Deliveboo logo">
-    
+                
+
+
                 <div class="container-commands">
                     <div class="shown-commands">
                         @auth
-                            <a href="{{ route('admin.home') }}">Dashboard</a>
+                            <a href="{{ url('dashboard') }}">Dashboard</a>
                         @else
-                            <a id="ghosted-btn" href="{{ route('login') }}">Login</a>
+                            <a id="ghosted-btn" href="{{ route('login') }}">Accedi</a>
     
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
+                                <a href="{{ route('register') }}">Registrati</a>
                             @endif
                         @endauth
                     </div>

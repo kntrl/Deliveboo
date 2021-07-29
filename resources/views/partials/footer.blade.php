@@ -1,5 +1,5 @@
 
-<footer>
+<footer v-if="!category.length">
 
     <div class="wrapper">
         
@@ -16,62 +16,45 @@
     
                     <ul class="menu">
                         <li>
-                            <a href="">Lavora con noi</a>
+                            <a href="{{route('register') }}">Lavora con noi</a>
                         </li>
     
                         <li>
-                            <a href="">Negozi patner</a>
+                            <a href="#">Negozi patner</a>
                         </li>
     
                         <li>
-                            <a href="">Corrieri</a>
+                            <a href="#">Corrieri</a>
                         </li>
     
                         <li>
-                            <a href="">Contattaci</a>
+                            <a href="#">Contattaci</a>
                         </li>                       
                         
                     </ul>
     
                 </div>
     
-                <div class="col-6 col-md-6 col-lg-3 col-xl-3">
-                    {{-- <h5>Seguici</h5>
-    
-                    
-                    <ul class="menu">
-                        <li>
-                            <a href="">Facebook</a>
-                        </li>
-    
-                        <li>
-                            <a href="">Instagram</a>
-                        </li>
-    
-                        <li>
-                            <a href="">Twitter</a>
-                        </li>
-                        
-                    </ul> --}}
+                <div class="col-6 col-md-6 col-lg-3 col-xl-3">                    
     
                     <h5>Link di interesse</h5>
     
                     
                     <ul class="menu">
                         <li>
-                            <a href="">FAQ</a>
+                            <a href="#">FAQ</a>
                         </li>
     
                         <li>
-                            <a href="">Termini e condizioni</a>
+                            <a href="#">Termini e condizioni</a>
                         </li>
     
                         <li>
-                            <a href="">Politica sulla privacy</a>
+                            <a href="#">Politica sulla privacy</a>
                         </li>
                         
                         <li>
-                            <a href="">Politica sui cookie</a>
+                            <a href="#">Politica sui cookie</a>
                         </li>
                     </ul>
                     
@@ -82,13 +65,13 @@
     
                     <ul class="menu">
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <img src="{{ asset('/img/app-store-badge.svg') }}" alt="app atore">
                             </a>
                         </li>
     
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <img src="{{ asset('/img/google-play-badge.svg') }}" alt="google play">
                             </a>
                         </li>
@@ -110,15 +93,15 @@
     
                     <ul class="social-menu">
                         <li>
-                            <a id="social-circle-facebook" href="">F</a>
+                            <a style="background-color: white" id="social-circle-facebook" href=""><i class="fab fa-facebook-f"></i></a>
                         </li>
     
                         <li>
-                            <a id="social-circle-twitter" href="">T</a>
+                            <a style="background-color: white" id="social-circle-instagram" href="https://www.instagram.com/deliveboo/"><i class="fab fa-instagram"></i></a>
                         </li>
     
                         <li>
-                            <a id="social-circle-instagram" href="">I</a>
+                            <a style="background-color: white" id="social-circle-twitter" href=""><i class="fab fa-twitter"></i></a>
                         </li>
     
                     </ul>   

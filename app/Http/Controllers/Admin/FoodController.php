@@ -33,7 +33,9 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('admin.foods.create');
+        $courses = $this->course();
+
+        return view('admin.foods.create', compact('courses'));
     }
 
     /**
@@ -57,9 +59,10 @@ class FoodController extends Controller
         $food->user_id = Auth::user()->id;
 
         $food->fill($form_data);
+        $food->price = round($food->price,2,PHP_ROUND_HALF_DOWN);
         $food->save();
 
-        return redirect()->route('admin.foods.index');
+        return view('admin.foods.index',['message'=>$food->name .' creato con successo.']);
     }
 
     /**
@@ -89,8 +92,11 @@ class FoodController extends Controller
     {
         $food = Auth::user()->foodOrFail($id);
 
+        $courses = $this->course();
+
         $data = [
-            'food' => $food
+            'food' => $food,
+            'courses' => $courses
         ];
 
         return view('admin.foods.edit', $data);
@@ -122,7 +128,7 @@ class FoodController extends Controller
         // Update
         $food->update($form_data);
 
-        return redirect()->route('admin.foods.index');
+        return view('admin.foods.index',['message'=>$food->name .' modificato con successo.']);
 
     }
 
@@ -136,9 +142,24 @@ class FoodController extends Controller
     {
         $food = Auth::user()->foodOrFail($id);
 
-        $food->delete();
+        $food->deleted = 1;
 
-        return redirect()->route('admin.foods.index');
+        $food->save();
+
+        return view('admin.foods.index',['message'=>$food->name .' cancellato con successo.']);
+    }
+
+    protected function course()
+    {
+        return $course =  [
+            'Antipasto',
+            'Piatto Unico',
+            'Primo',
+            'Secondo',
+            'Contorno',
+            'Dolce',
+            'Bevande'
+        ];
     }
 
 

@@ -95,6 +95,30 @@
 /* MEDIA 978*/
 @media screen and (max-width: 978px){
     body{
+        .restaurants-box{
+            .restaurant-menu-box{
+                #form-menu{
+                    padding-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    .category-course{
+                        width: 100%;
+                        padding: 1rem 0 1rem 0;
+                        margin-right: 1rem;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .dish-info{ 
+                            width: 45%;
+                            margin-bottom: 3rem;
+                            .allergenic-box{
+                                padding-bottom: .5rem;    
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .my-jumbotron{
             .jm-img {
                 height: 85px;
@@ -202,6 +226,51 @@
                 }
             }
         }
+        .restaurants-box{
+            .double-box{
+                .restaurants-cards-container{
+                    .restaurant-card{
+                        padding-right: .5rem;
+                        width: 100%;
+                    }
+                }
+            } 
+            .restaurant-menu-box{
+                #form-menu{
+                    padding-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    .category-course{
+                        width: 100%;
+                        padding: 1rem 0 1rem 0;
+                        margin-right: 1rem;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .dish-info{ 
+                            width: 45%;
+                            margin-bottom: 3rem;
+                            .allergenic-box{
+                                padding-bottom: .5rem;    
+                            }
+                        }
+                    }
+                }
+            }
+            .final-page{
+                margin-top: 0rem;
+                flex-direction: column;
+                align-items: center;
+                
+                .order-recap{
+                    width: 60%;
+                    margin-bottom: 3rem;
+                }
+                #braintree-box{
+                    width: 60%;
+                }
+            }
+        }
     }
 }
 
@@ -230,6 +299,91 @@
                 }
             }
         }
+        .restaurants-box{
+            .category-banner-box{
+                top: 0px;
+                #category-banner {
+                    right: 12px;
+                }
+            }
+            #restaurant-name{
+                font-size: 20px;
+                padding-top: 2rem;
+            }
+            .media-category-select{
+                display: block;
+                border-radius: 25px;
+                position: fixed;
+                top: 11.5%;
+                right: -18.5%;
+                background-color: white;
+                button{
+                    padding: 5px 100px 5px 25px;
+                    border: 2px solid black;
+                    outline: none;
+                    border-radius: 25px;
+                }
+            }
+            .double-box{
+                .ribbons-box{
+                    border: none;
+                    pointer-events: none;
+                    top: 63%;
+                    .container-ribbon{
+                        transition: .5s;
+                        transform: translateX(-125%);
+                    }
+                    .toggled-cat-slider{
+                        pointer-events: all;
+                        transform: translateX(0);
+                    }
+                }
+
+                .restaurants-cards-container{
+                    transition: .5s;
+                    margin-left: 0;            
+                    
+                }
+                .toggled-cards-margin{
+                    margin-left: 150px;
+                }
+            }
+            .restaurant-menu-box{
+                #form-menu{
+                    padding-top: 2rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    .category-course{
+                        width: 100%;
+                        padding: 1rem 0 1rem 0;
+                        margin-right: 1rem;
+                        display: flex;
+                        
+                        .dish-info{
+                            width: 100%;
+                            margin-bottom: 3rem;
+                            .allergenic-box{
+                                padding-bottom: .5rem;    
+                            }
+                        }
+                    }
+                }
+            }
+            .final-page{
+                display: flex;
+        
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                .order-recap{
+                    width: 100%;
+                }
+                #braintree-box{
+                    width: 100%;
+                }
+            }
+        }
 
         .card-temp{
             .inner-box{
@@ -240,3 +394,26 @@
         }
     }
 }
+
+@media screen and (max-width: 281px){
+    body{
+        .ribbons-box{
+            .pointy{
+                font-size: 11px;
+                min-width: 70px;
+            }
+        }
+        .restaurants-box{
+            .double-box{
+                .restaurants-cards-container{
+                    margin-top: 7rem;
+                    margin-left: 0px;
+                }
+
+                .toggled-cards-margin{
+                    margin-left: 90px;
+                }
+            }            
+        }
+    }
+}   

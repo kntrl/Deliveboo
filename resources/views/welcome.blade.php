@@ -18,8 +18,12 @@
         {{-- Favicon --}}
         <link rel="shortcut icon" href="{{asset('/img/fav.ico')}}">
         
+        {{-- fontawesome --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         {{-- Axios CDN --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
         {{-- VUE --}}
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 
@@ -46,9 +50,9 @@
 
                     <div class="my-wrap">
                         <div class="left-side">
-                            <h1 id="main-title">Hungry? You're in the right place</h1>
+                            <h1 id="main-title">Hai fame? Sei decisamente nel posto giusto</h1>
                             <p>Piatti tipici da tutto il mondo, direttamente a casa tua</p>
-                            <a href="#order-now">Order Now</a>
+                            <a href="#order-now">Ordina Ora</a>
                         </div>
                     </div>
                 </section>
@@ -58,7 +62,7 @@
                     <main class="main-content">
                         <div class="container">
                             {{-- ROW 1 --}}
-                            <h2 id="anim-h2">Categories of Restaurants</h2>
+                            <h2 id="anim-h2">Cucine Da Tutto Il Mondo</h2>
                             <div id="row1" class="row"> 
                                 <div v-for="(el, index) in categories" class="col-sm-12 col-md-6 col-lg-3 card-temp">
                                     <div v-on:click="setCategory(el.name)" class="inner-box">
@@ -75,7 +79,9 @@
             {{-- v-else --}}
             @include('partials/categoryRestaurants')
             
-            
+            <div class="transition-page" v-bind:class="transitionClass">
+            </div>
+
             @include('partials/footer')
         </div>
     
@@ -85,11 +91,9 @@
 
         {{-- braintree --}}
         <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
-        
         {{-- gsap --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
-
         {{-- my script --}}
         <script src="{{ asset("js/main.js") }}"></script>
         <script src="{{ asset("js/gsapAnimations.js") }}"></script>

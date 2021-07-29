@@ -5,25 +5,39 @@ var app = new Vue({
     el: "#root",    
 
     data: {
-        url: "http://127.0.0.1:8000/api/",
+        
+        /* style data */
         activeRibbon: "selected-pointy",
         crossRightBurgerBar: "untoggle-cross-right",
         crossLeftBurgerBar: "untoggle-cross-left",
         upperBar: "upper-bar",
         lowerBar: "lower-bar",
-
         toggledSlider: "slider-off",
+        toggledCategoriesSlider: "",
+        togCardMargin: "",
+        transitionClass: "transition-page-left",
+        isHomePage: true,
+        menuPage : false,
+        bannerColor : "",
+
+
+        /* navigation data */
+        url: "http://127.0.0.1:8000/api/",
         category: "",
         slug: "",
         restaurants: [],
         categories: [],
         restaurantDetails : {},
         restaurantMenu : [],
+        orderPaid : false,
+        payButton: true,
 
 
+        /* communication data */
+        submittedInfo : false,
         carrello : {},
         toPayment: false,
-        submittedCart : true,
+        submittedCart : false,
         foods: [],
         cartToPay : {},
         personalInfo : {
@@ -34,14 +48,87 @@ var app = new Vue({
             "phone" : "",
         },
         orderDetails: {},
-
         backResponse : {},
         clientToken: "",
+
+        orderResponse : {},
+        orderRecap : {},
+        totalPrice : "",
     },
     
     methods: {
-        
-        brainTreeFunction(orderID){
+        /* communication functions */
+        goHome(){
+            console.log("ciao ora torno alla homepage")
+            
+            setTimeout(() => {
+                this.payButton = false;
+            }, 1000);  
+        },
+        clearStorage(){
+            setTimeout(() => {
+                this.orderPaid = true;
+                localStorage.clear();
+                /* this.isWhatPage(); */
+            }, 500);
+            setTimeout(() => {
+                this.orderRecap = {};
+                window.location.reload();
+            }, 3000);
+        },
+        submitPersonalOrderInfo(){
+            if (this.personalInfo["name"] != "" && 
+                this.personalInfo["last_name"] != "" && 
+                this.personalInfo["email"] != "" && 
+                this.personalInfo["delivery_address"] != "" &&
+                this.personalInfo["phone"] != "") {
+                
+                    
+                    this.submittedInfo = true;
+                    this.toPayment = true;
+                    this.personalInfo = { 
+                                        ...this.personalInfo,
+                                        "order": this.orderDetails
+                                        }
+                    //console.log(this.personalInfo);
+                    this.frontToBack();
+            }
+            else{
+                //da convertire con un MODAL
+                alert("All fields are required!")
+            }
+
+        },
+        frontToBack(){
+            const data = JSON.stringify(this.personalInfo);
+            const config = {
+                "method": "post",
+                'url': 'http://127.0.0.1:8000/api/orders/validate-order',
+                "headers": {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                "data": data
+            }
+            Axios(config)
+                .then((response) => {
+                    const res = JSON.stringify(response.data);
+                    this.backResponse = JSON.parse(res);
+                    this.clientToken = this.backResponse.data.clientToken;
+
+                    //QUESTI SONO I DATI PER IL RIEPILOGO ORDINE
+                    console.log("order data to show for recap", this.backResponse.data.order);
+                    this.orderRecap = this.backResponse.data.order;
+                    this.totalPrice = (this.orderRecap.price).toFixed(2);
+                    console.log("order data to show for recap", this.orderRecap);
+                    this.brainTreeFunction(this.backResponse.data.order.id);
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        },
+        brainTreeFunction(orderID) {
             var form = document.querySelector('#payment-form');
             braintree.dropin.create({
                 authorization: this.clientToken,
@@ -62,15 +149,15 @@ var app = new Vue({
                             return;
                         }
                         // Add the nonce to the form and submit
-                        
+
                         document.querySelector('#nonce').value = payload.nonce;
-                        
-                        
-                        const toBack = 
-                            {
-                                "order_id": orderID,
-                                "nonceFromTheClient": payload.nonce,
-                            }
+
+
+                        const toBack =
+                        {
+                            "order_id": orderID,
+                            "nonceFromTheClient": payload.nonce,
+                        }
                         const config = {
                             "method": "post",
                             'url': 'http://127.0.0.1:8000/api/orders/create-transaction',
@@ -80,7 +167,8 @@ var app = new Vue({
                             },
                             "data": toBack
                         }
-                    
+
+                        //stampa la risposta da brain tree
                         Axios(config)
                             .then((response) => {
                                 console.log(response.data);
@@ -99,44 +187,25 @@ var app = new Vue({
                                 }
             console.log(this.personalInfo);
             this.frontToBack();
-
-        },
-        frontToBack(){
-            const data = JSON.stringify(this.personalInfo);
-            const config = {
-                "method": "post",
-                'url': 'http://127.0.0.1:8000/api/orders/validate-order',
-                "headers": {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                "data": data
-            }
-            Axios(config)
-                .then((response) => {
-                    const res = JSON.stringify(response.data);
-                    this.backResponse = JSON.parse(res);
-                    this.clientToken = this.backResponse.data.clientToken;
-                
-                    this.brainTreeFunction(this.backResponse.data.order.id);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
         },
         submitCart(restaurantSlug){
-            this.submittedCart = false;
+            /* this.isWhatPage(); */
+            setTimeout(() => {
+                this.submittedCart = true;
+            }, 500);
+            this.isWhatPage();
             this.cartToPay = this.carrello[restaurantSlug];
-            console.log("sono cart to pay", this.cartToPay);
+            //console.log("sono cart to pay", this.cartToPay);
             const apiToCall = `${this.url}restaurants/${restaurantSlug}`;
             Axios
                 .get(apiToCall)
                 .then(response => {
+                    this.topFunction();
                     const res = response.data;
-                    console.log("sono res.foods", res.restaurant.foods);
+                    //console.log("sono res.foods", res.restaurant.foods);
 
                     for (const iterator of res.restaurant.foods) {
-                        console.log(iterator);
+                        //console.log(iterator);
                         if (this.cartToPay[iterator.slug]) {
                             this.foods.push(
                                 {
@@ -151,8 +220,6 @@ var app = new Vue({
                         "restaurant" : restaurantSlug,
                         "foods" : this.foods,
                     }
-                    console.log(this.orderDetails);
-                    console.log(this.foods);
                 });
         },
         setCart(restaurantSlug){
@@ -162,57 +229,124 @@ var app = new Vue({
         setCartData(restaurantSlug){
             let tempCart = JSON.parse(localStorage.getItem("carrello"));
             this.carrello[restaurantSlug] = tempCart[restaurantSlug];
-            console.log(this.carrello)
+            //console.log(this.carrello)
         },
         getCategories() {
             Axios
                 .get("http://127.0.0.1:8000/api/categories")
                 .then(response => {
                     const res = response.data.categories;
+                    console.log(res);
                     this.categories = res;
                 });
         },
         setCategory(category){
-            this.category = category;
-            const apiToCall = `${this.url}categories/${category}`;
-            Axios
-                .get(apiToCall)
-                .then(response => {
-                    const res = response.data;
-                    this.topFunction();
-                    Vue.set(this.restaurants, 0, res.restaurants);
-                })
-                .catch( error => {
-                    console.log("ERRORE");
-                    if (error.response) {
-                        Vue.set(this.restaurants, 0, []);
-                    } else if (error.request) {
-                        Vue.set(this.restaurants, 0, []);
-                    } else {
-                        Vue.set(this.restaurants, 0, []);
-                    }
-                })
+            if (this.isHomePage == true) {
+                this.isWhatPage();
+                setTimeout(() => {
+                    this.isHomePage = false;
+                    this.menuPage = true;
+                    this.category = category;
+                    const apiToCall = `${this.url}categories/${category}`;
+                    this.toggleCategoriesSlider();
+                    Axios
+                        .get(apiToCall)
+                        .then(response => {
+                            const res = response.data;
+                            this.topFunction();
+                            Vue.set(this.restaurants, 0, res.restaurants);
+                            console.log(this.restaurants);
+                            this.pickBannerColor(category);
+                        })
+                        .catch(error => {
+                            console.log("ERRORE");
+                            if (error.response) {
+                                Vue.set(this.restaurants, 0, []);
+                            } else if (error.request) {
+                                Vue.set(this.restaurants, 0, []);
+                            } else {
+                                Vue.set(this.restaurants, 0, []);
+                            }
+                        })
+                }, 500);
+            }
+            else{
+                this.category = category;   
+                const apiToCall = `${this.url}categories/${category}`;
+                this.toggleCategoriesSlider();
+                Axios
+                    .get(apiToCall)
+                    .then(response => {
+                        const res = response.data;
+                        this.topFunction();
+                        Vue.set(this.restaurants, 0, res.restaurants);
+                        this.pickBannerColor(category);
+                        //console.log(this.restaurants);
+                    })
+                    .catch( error => {
+                        console.log("ERRORE");
+                        if (error.response) {
+                            Vue.set(this.restaurants, 0, []);
+                        } else if (error.request) {
+                            Vue.set(this.restaurants, 0, []);
+                        } else {
+                            Vue.set(this.restaurants, 0, []);
+                        }
+                    })
+            }
         },
         getMenu(slug){
-            this.slug = slug;
-            const apiToCall = `${this.url}restaurants/${slug}`;
-            Axios
-                .get(apiToCall)
-                .then(response => {
-                    const res = response.data;
-                    this.restaurantDetails = res.restaurant;
-                    this.restaurantMenu = this.restaurantDetails.foods;
-
-                    if (!this.carrello[slug]) {
-                        this.carrello[slug] = {};                
-                    }
-                });
+            this.isWhatPage();
+            setTimeout(() => {
+                this.slug = slug;
+                const apiToCall = `${this.url}restaurants/${slug}`;
+                Axios
+                    .get(apiToCall)
+                    .then(response => {
+                        const res = response.data;
+                        this.restaurantDetails = res.restaurant;
+                        this.restaurantMenu = this.restaurantDetails.foods;
+                        if (!this.carrello[slug]) {
+                            this.carrello[slug] = {}; 
+                            for (const iterator of this.restaurantMenu) {              
+                                this.carrello[slug] = { 
+                                                       ...this.carrello[slug], 
+                                                       [iterator.slug] : 0
+                                                       };
+                            }
+                        }
+                        console.log(this.restaurantMenu);
+                    });
+            }, 500);
         },
+        /* frontend functionality */
+        previousPage(){
+            if (this.toPayment == true){
+                this.personalInfo = {
+                    "name": "",
+                    "last_name": "",
+                    "email": "",
+                    "delivery_address" : "",
+                }
+                this.toPayment = false;
+            }
+            else if (this.submittedCart) {
+                this.submittedCart = false;
+            }
+            else if (this.category.length && this.slug.length){
+                this.slug = "";
+            }
+            else if (this.category.length) {
+                this.menuPage = false;
+                this.isHomePage = true;
+                this.category = "";
+            }
+        },
+        /* style functions */
         resetCategoryAndSlug(){
             this.category = "";
             this.slug = "";
         },
-        //riporta l'utente in cima alla pagina
         topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
@@ -253,6 +387,73 @@ var app = new Vue({
                 this.toggledSlider = "slider-off";
             }
         },
+        toggleCategoriesSlider(){
+            this.toggledCategoriesSlider == "" ? this.toggledCategoriesSlider = "toggled-cat-slider" : this.toggledCategoriesSlider = "";
+            this.togCardMargin == "" ? this.togCardMargin = "toggled-cards-margin" : this.togCardMargin = "";
+
+        },
+        animatePageTransition(){
+            if (this.transitionClass == "transition-page-right") {
+                this.transitionClass = "transition-page-left";
+            }
+            else if (this.transitionClass == "transition-page-left"){
+                this.transitionClass = "transition-page-right";
+            }    
+        },
+        isWhatPage(){
+            if (this.isHomePage == true && this.menuPage == false) {
+                this.animatePageTransition();
+            }
+            else if (this.menuPage == true && this.isHomePage == false) {
+                this.animatePageTransition();
+            }
+            else if (this.submittedCart == true){
+                this.animatePageTransition();
+            }
+            else if (this.orderPaid == true){
+                this.animatePageTransition();
+            }
+        },
+        pickBannerColor(category){
+            switch (category) {
+                case "italiano":
+                    this.bannerColor = "italiano"               
+                    break;
+                case "cinese":
+                    this.bannerColor = "cinese"
+                    break;
+                case "indiano":
+                    this.bannerColor = "indiano"
+                    break;
+                case "hamburger":
+                    this.bannerColor = "hamburger"
+                    break;
+                case "pizza":
+                    this.bannerColor = "pizza"
+                    break;
+                case "libanese":
+                    this.bannerColor = "libanese"
+                    break;
+                case "americano":
+                    this.bannerColor = "americano"
+                    break;
+                case "sushi":
+                    this.bannerColor = "sushi"
+                    break;
+                case "vegano":
+                    this.bannerColor = "vegano"
+                    break;
+                case "messicano":
+                    this.bannerColor = "messicano"
+                    break;
+                case "kebab":
+                    this.bannerColor = "kebab"
+                    break;
+                case "hawaiano":
+                    this.bannerColor = "hawaiano"
+                    break;    
+            }
+        }
     },
 
     mounted(){
@@ -260,10 +461,10 @@ var app = new Vue({
         let storedData = JSON.parse(localStorage.getItem("carrello"));
         if (storedData) {
             this.carrello = storedData;
-            console.log(this.carrello);
+            //console.log(this.carrello);
         }
 
-        this.getCategories();
+        this.getCategories()
 
         function rand(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
